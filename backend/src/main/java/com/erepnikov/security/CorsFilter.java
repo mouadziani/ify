@@ -1,30 +1,37 @@
 package com.erepnikov.security;
 
-import org.springframework.web.filter.OncePerRequestFilter;
-
-import javax.servlet.FilterChain;
-import javax.servlet.ServletException;
+import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class CorsFilter extends OncePerRequestFilter {
-
-    static final String ORIGIN = "Origin";
+/**
+ * Class CorsFilter
+ *
+ * @author Egor Repnikov
+ * @since 21.02.2018
+ */
+public class CorsFilter implements javax.servlet.Filter {
 
     @Override
-    protected void doFilterInternal(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, FilterChain filterChain) throws ServletException, IOException {
-        String origin = httpServletRequest.getHeader(ORIGIN);
-
-        httpServletResponse.setHeader("Access-Control-Allow-Origin", "http://localhost:4200");//* or origin as u prefer
-        httpServletResponse.setHeader("Access-Control-Allow-Credentials", "true");
-        httpServletResponse.setHeader("Access-Control-Allow-Methods", "PUT, POST, GET, OPTIONS, DELETE, PATCH");
-        httpServletResponse.setHeader("Access-Control-Max-Age", "3600");
-        httpServletResponse.setHeader("Access-Control-Allow-Headers", "content-type, authorization");
-
-        if (httpServletRequest.getMethod().equals("OPTIONS"))
-            httpServletResponse.setStatus(HttpServletResponse.SC_OK);
-        else
-            filterChain.doFilter(httpServletRequest, httpServletResponse);
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+        HttpServletResponse res = (HttpServletResponse) response;
+        HttpServletRequest  req = (HttpServletRequest) request;
+        res.setHeader("Access-Control-Allow-Origin", "*");
+        res.setHeader("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT, OPTIONS");
+        res.setHeader("Access-Control-Allow-Headers",
+                "Origin, X-Requested-With, Content-Type, Accept, Accept-Encoding, Accept-Language, Host, Referer, Connection, User-Agent, authorization, sw-useragent, sw-version"
+        );
+        if (req.getMethod().equals("OPTIONS")) {
+            res.setStatus(HttpServletResponse.SC_OK);
+            return;
+        }
+        chain.doFilter(request, response);
     }
+
+    @Override
+    public void destroy() {}
+
+    @Override
+    public void init(FilterConfig filterConfig) throws ServletException {}
 }

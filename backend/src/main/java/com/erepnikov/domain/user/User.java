@@ -1,65 +1,48 @@
 package com.erepnikov.domain.user;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-import java.util.Date;
-import java.util.List;
+import com.erepnikov.model.user.Role;
 
+import javax.persistence.*;
+
+/**
+ * Class User (Entity)
+ *
+ * @author Egor Repnikov
+ * @since 21.02.2018
+ */
 @Entity
 @Table(name = "users")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    @Column(name = "id")
+    private Integer id;
 
-    @Column(length = 50, unique = true)
-    @NotNull
-    @Size(min = 4, max = 50)
+    @Column(name = "username")
     private String username;
 
-    @Column(length = 50)
-    @NotNull
-    @Size(min = 4, max = 50)
+    @Column(name = "password")
     private String password;
 
-    @Column(length = 100)
-    @NotNull
-    @Size(min = 4, max = 100)
-    private String firstname;
+    @Column(name = "firstname")
+    private String firstName;
 
-    @Column(length = 50)
-    @NotNull
-    @Size(min = 4, max = 50)
-    private String lastname;
+    @Column(name = "lastname")
+    private String lastName;
 
-    @Column(length = 50)
-    @NotNull
-    @Size(min = 4, max = 50)
+    @Column(name = "email")
     private String email;
 
-    @NotNull
-    private boolean enabled;
+    @Column(name = "role")
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @NotNull
-    private Date lastPasswordResetDate;
-
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "USER_AUTHORITY",
-            joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "ID")},
-            inverseJoinColumns = {@JoinColumn(name = "authority_id", referencedColumnName = "ID")},
-            uniqueConstraints = {@UniqueConstraint(
-                    columnNames = {"user_id", "authority_id"})})
-    private List<Authority> authorities;
-
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -79,20 +62,20 @@ public class User {
         this.password = password;
     }
 
-    public String getFirstname() {
-        return firstname;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getLastname() {
-        return lastname;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getEmail() {
@@ -103,27 +86,56 @@ public class User {
         this.email = email;
     }
 
-    public boolean isEnabled() {
-        return enabled;
+    public Role getRole() {
+        return role;
     }
 
-    public void setEnabled(boolean enabled) {
-        this.enabled = enabled;
+    public void setRole(Role role) {
+        this.role = role;
     }
 
-    public Date getLastPasswordResetDate() {
-        return lastPasswordResetDate;
+    public String getFullName() {
+        return String.format("%s%s", this.firstName, this.lastName);
     }
 
-    public void setLastPasswordResetDate(Date lastPasswordResetDate) {
-        this.lastPasswordResetDate = lastPasswordResetDate;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        User user = (User) o;
+
+        if (id != null ? !id.equals(user.id) : user.id != null) return false;
+        if (username != null ? !username.equals(user.username) : user.username != null) return false;
+        if (password != null ? !password.equals(user.password) : user.password != null) return false;
+        if (firstName != null ? !firstName.equals(user.firstName) : user.firstName != null) return false;
+        if (lastName != null ? !lastName.equals(user.lastName) : user.lastName != null) return false;
+        if (email != null ? !email.equals(user.email) : user.email != null) return false;
+        return role == user.role;
     }
 
-    public List<Authority> getAuthorities() {
-        return authorities;
+    @Override
+    public int hashCode() {
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (username != null ? username.hashCode() : 0);
+        result = 31 * result + (password != null ? password.hashCode() : 0);
+        result = 31 * result + (firstName != null ? firstName.hashCode() : 0);
+        result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
+        result = 31 * result + (email != null ? email.hashCode() : 0);
+        result = 31 * result + (role != null ? role.hashCode() : 0);
+        return result;
     }
 
-    public void setAuthorities(List<Authority> authorities) {
-        this.authorities = authorities;
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", role=" + role +
+                '}';
     }
 }
