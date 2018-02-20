@@ -1,0 +1,58 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div [ngClass]="{'has-error': form.get('username').invalid && form.get('username').touched}">
+    <label for="email">Username</label>
+    <input
+      type="text"
+      id="username"
+      placeholder="Введите username"
+      formControlName="username"
+    >
+  </div>
+  <div [ngClass]="{'has-error': form.get('email').invalid && form.get('email').touched}">
+    <label for="email">Email</label>
+    <input
+      type="text"
+      id="email"
+      placeholder="Введите email"
+      formControlName="email"
+    >
+  </div>
+  <div [ngClass]="{'has-error': form.get('password').invalid && form.get('password').touched}">
+    <label for="password">Пароль</label>
+    <input
+      type="password"
+      id="password"
+      placeholder="Введите пароль"
+      formControlName="password"
+    >
+  </div>
+  <div class="form-group has-success" [ngClass]="{'has-error': form.get('firstname').invalid && form.get('firstname').touched}">
+    <label for="firstname">Имя</label>
+    <input
+      type="text"
+      id="firstname"
+      placeholder="Введите имя"
+      formControlName="firstname"
+    >
+  </div>
+  <div class="form-group has-success" [ngClass]="{'has-error': form.get('lastname').invalid && form.get('lastname').touched}">
+    <label for="lastname">Фамилия</label>
+    <input
+      type="text"
+      id="lastname"
+      placeholder="Введите фамилию"
+      formControlName="lastname"
+    >
+  </div>
+  <div>
+    <button type="submit" (submit)="onSubmit()" [disabled]="form.invalid">Зарегистрироваться</button>
+  </div>
+  <div>
+    <p>
+      Уже есть аккаунт?
+      <a [routerLink]="'/login'">
+        Войти!
+      </a>
+    </p>
+  </div>
+</form>

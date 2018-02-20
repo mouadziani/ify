@@ -1,0 +1,29 @@
+<div>
+  <form name="form" (ngSubmit)="login()" #f="ngForm" novalidate>
+    <input
+      type="text"
+      placeholder="Логин"
+      name="username"
+      [(ngModel)]="model.username"
+      #username="ngModel"
+      required
+    />
+    <input
+      type="password"
+      placeholder="Пароль"
+      name="password"
+      [(ngModel)]="model.password"
+      #password="ngModel"
+      required
+    />
+    <button type="submit">Войти</button>
+  </form>
+  <div>
+    <div *ngIf="errMsg" style="color:indianred; font-weight: bold">{{ errMsg }}</div>
+  </div>
+  <div>
+    <p>
+      Нет аккаунта? <a [routerLink]="'/registration'">Зарегистрироваться</a>
+    </p>
+  </div>
+</div>
