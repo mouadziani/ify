@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 export interface UserInStorage {
-  userId: string;
+  username: string;
   email: string;
   displayName: string;
   token: string;
@@ -44,20 +44,20 @@ export class UserInfoService {
   }
 
   isLoggedIn(): boolean {
-    return this.storage.getItem(this.currentUserKey) ? true : false;
+    return !!this.storage.getItem(this.currentUserKey);
   }
 
   getUserName(): string {
     const userObj: UserInStorage = this.getUserInfo();
-    if (userObj !== null){
-      return userObj.displayName
+    if (userObj !== null) {
+      return userObj.displayName;
     }
     return 'no-user';
   }
 
-  getStoredToken():string|null {
+  getStoredToken(): string | null {
     const userObj: UserInStorage = this.getUserInfo();
-    if (userObj !== null){
+    if (userObj !== null) {
       return userObj.token;
     }
     return null;

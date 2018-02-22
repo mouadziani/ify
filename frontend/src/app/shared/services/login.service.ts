@@ -5,7 +5,7 @@ import { LoginInfoInStorage, UserInfoService } from './user-info.service';
 import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
 
-export interface LoginRequestParam{
+export interface LoginRequestParam {
   username: string;
   password: string;
 }
@@ -38,8 +38,8 @@ export class LoginService {
               'message': jsonResp.operationMessage,
               'landingPage': this.landingPage,
               'user': {
-                'userId': jsonResp.item.userId,
-                'email': jsonResp.item.emailAddress,
+                'username': jsonResp.item.username,
+                'email': jsonResp.item.email,
                 'displayName': jsonResp.item.firstName + ' ' + jsonResp.item.lastName,
                 'token': jsonResp.item.token,
               }
@@ -67,7 +67,7 @@ export class LoginService {
 
   logout(navigatetoLogout = true): void {
     this.userInfoService.removeUserInfo();
-    if(navigatetoLogout){
+    if (navigatetoLogout) {
       this.router.navigate(['logout']);
     }
   }

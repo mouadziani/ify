@@ -1,7 +1,6 @@
-import {User} from '../models/user.model';
-import {BaseApi} from '../api/base-api';
-import {Injectable} from '@angular/core';
-import {ApiRequestService} from "../api/api-request.service";
+import { User } from '../models/user.model';
+import { Injectable } from '@angular/core';
+import { ApiRequestService } from '../api/api-request.service';
 
 @Injectable()
 export class UsersService {

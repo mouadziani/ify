@@ -12,7 +12,6 @@ export class ApiRequestService {
   private baseApiPath = BASE_API_URL;
 
   constructor(
-    // private appConfig: AppConfig,
     private http: HttpClient,
     private router: Router,
     private userInfoService: UserInfoService

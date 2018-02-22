@@ -54,7 +54,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         new VerifyTokenFilter(tokenUtil),
                         UsernamePasswordAuthenticationFilter.class)
                 .addFilterBefore(
-                        new GenerateTokenForUserFilter("/session", authenticationManager(), tokenUtil),
+                        new GenerateTokenForUserFilter("api/session", authenticationManager(), tokenUtil),
                         UsernamePasswordAuthenticationFilter.class)
                 .authorizeRequests()
                     .antMatchers(

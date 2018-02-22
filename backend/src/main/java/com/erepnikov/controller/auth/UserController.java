@@ -24,7 +24,6 @@ public class UserController {
 
     @PostMapping(value = "api/registration")
     public OperationResponse addNewUser(@RequestBody User user) {
-        System.out.println(user.toString());
         boolean userAddSuccess = userService.addNewUser(user);
         OperationResponse resp = new OperationResponse();
         if (userAddSuccess){

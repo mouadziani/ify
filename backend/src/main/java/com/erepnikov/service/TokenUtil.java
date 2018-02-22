@@ -35,7 +35,7 @@ public class TokenUtil {
     public Optional<Authentication> verifyToken(HttpServletRequest request) {
         final String token = request.getHeader(AUTH_HEADER_NAME);
         if (token != null && !token.isEmpty()){
-            final TokenUser user = parseUserFromToken(token.replace("Bearer","").trim());
+            final TokenUser user = this.parseUserFromToken(token.replace("Bearer","").trim());
             if (user != null) {
                 return  Optional.of(new UserAuthentication(user));
             }
@@ -44,7 +44,7 @@ public class TokenUtil {
 
     }
 
-    public TokenUser parseUserFromToken(String token){
+    private TokenUser parseUserFromToken(String token){
         Claims claims = Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody();
         User user = new User();
         user.setUsername((String) claims.get("username"));
@@ -57,10 +57,10 @@ public class TokenUtil {
     }
 
     public String createTokenForUser(TokenUser tokenUser) {
-        return createTokenForUser(tokenUser.getUser());
+        return this.createTokenForUser(tokenUser.getUser());
     }
 
-    public String createTokenForUser(User user) {
+    private String createTokenForUser(User user) {
         return Jwts.builder()
                 .setExpiration(new Date(System.currentTimeMillis() + VALIDITY_TIME_MS))
                 .setSubject(user.getFullName())

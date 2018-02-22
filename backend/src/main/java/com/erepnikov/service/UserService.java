@@ -28,6 +28,15 @@ public class UserService {
         this.passwordEncoder = passwordEncoder;
     }
 
+    public User getUserByUsernameAndPassword(String username, String password) {
+        User result = null;
+        User user = this.userRepository.findByUsername(username);
+        if (user != null && this.passwordEncoder.matches(password, user.getPassword())) {
+            result = user;
+        }
+        return result;
+    }
+
     public String getLoggedInUsername(){
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (auth == null){

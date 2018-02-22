@@ -6,7 +6,9 @@ import com.erepnikov.model.response.SessionResponse;
 import com.erepnikov.model.request.Login;
 import com.erepnikov.model.response.SessionItem;
 import com.erepnikov.repository.UserRepository;
+import com.erepnikov.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -18,16 +20,19 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class SessionController {
 
-    private UserRepository userRepository;
+    private UserService userService;
 
     @Autowired
-    public SessionController(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    public SessionController(UserService userService) {
+        this.userService = userService;
     }
 
     @PostMapping(value = "api/session")
     public SessionResponse newSession(@RequestBody Login login) {
-        User user = this.userRepository.findByUsernameAndPassword(login.getUsername(), login.getPassword());
+        User user = this.userService.getUserByUsernameAndPassword(
+                login.getUsername(),
+                login.getPassword()
+        );
         SessionResponse resp = new SessionResponse();
         SessionItem sessionItem = new SessionItem();
         if (user != null) {
