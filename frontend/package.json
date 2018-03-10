@@ -5,7 +5,11 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --prod",
+    "build": "ng build",
+    "buildprod": "ng build --prod",
+    "postbuild": "npm run deploy",
+    "predeploy": "rimraf ../backend/src/main/resources/static && mkdirp ../backend/src/main/resources/static",
+    "deploy": "cp -f dist/** ../backend/src/main/resources/static",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
@@ -22,6 +26,8 @@
     "@angular/platform-browser-dynamic": "^5.2.0",
     "@angular/router": "^5.2.0",
     "core-js": "^2.4.1",
+    "ngx-cookie": "^2.0.1",
+    "ngx-webstorage": "^2.0.1",
     "rxjs": "^5.5.6",
     "zone.js": "^0.8.19"
   },

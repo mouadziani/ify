@@ -1,0 +1,27 @@
+<div>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <input
+      type="text"
+      id="username"
+      placeholder="Login"
+      formControlName="username"
+    >
+    <input
+      type="password"
+      id="password"
+      placeholder="Пароль"
+      formControlName="password"
+    >
+    <span>Запомнить</span>
+    <input
+      type="checkbox"
+      name="rememberMe"
+      id="rememberMe"
+      formControlName="rememberMe"
+    >
+    <button type="submit" [disabled]="form.invalid">Войти</button>
+    <div>
+      Нет аккаунта? <a [routerLink]="'/register'">Зарегистрироваться</a>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,13 @@
+<nav>
+  <span>
+    <a [routerLink]="['']">Главная</a>
+  </span>
+  <span *ngIf="isAuthenticated()">
+    <button (click)="logout()">Выйти</button>
+  </span>
+  <span *ngIf="!isAuthenticated()">
+    <a [routerLink]="['login']">Логин</a>
+    <a [routerLink]="['register']">Регистрация</a>
+  </span>
+  <span *ifyHasAnyAuthority="'ROLE_ADMIN'">Вы админ</span>
+</nav>

@@ -1,0 +1,23 @@
+<div>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <input
+      type="text"
+      id="login"
+      formControlName="login"
+      placeholder="Логин"
+    >
+    <input
+      type="email"
+      id="email"
+      formControlName="email"
+      placeholder="Email"
+    >
+    <input
+      type="password"
+      id="password"
+      formControlName="password"
+      placeholder="Пароль"
+    >
+    <button type="submit" [disabled]="form.invalid">Регистрация</button>
+  </form>
+</div>
