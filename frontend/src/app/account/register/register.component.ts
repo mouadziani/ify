@@ -31,6 +31,9 @@ export class RegisterComponent implements OnInit {
         Validators.required,
         Validators.minLength(4),
         Validators.maxLength(50)
+      ]),
+      'repeat-password': new FormControl(null, [
+        Validators.required
       ])
     });
   }

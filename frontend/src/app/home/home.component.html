@@ -1,1 +1,148 @@
-<h1>Главная страница</h1>
+<section class="p-y-5">
+  <div class="owl-carousel owl-posts">
+
+    <div class="post-carousel" *ngFor="let i of carouselPosts">
+      <a href="#"><img src="https://img.youtube.com/vi/82Xd-lHmtzk/maxresdefault.jpg" alt=""></a>
+      <span class="badge badge-ps4">Any</span>
+      <div class="post-block">
+        <div class="post-caption">
+          <h2 class="post-title">
+            <a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing.</a>
+          </h2>
+          <div class="post-meta">
+            <span><i class="fa fa-clock-o"></i> Март 14, 2018</span>
+            <span><i class="fa fa-user"></i> <a href="#">User</a></span>
+            <span><a href="#"><i class="fa fa-comment-o"></i> 98 comments</a></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="bg-secondary p-t-15 p-b-5 p-x-15">
+  <div class="owl-carousel owl-videos">
+
+    <div class="card card-video" *ngFor="let i of mainPosts">
+      <div class="card-img">
+        <a href="#">
+          <img src="https://i1.ytimg.com/vi/GaERL8Nrl9k/mqdefault.jpg" alt="Lorem">
+        </a>
+        <div class="card-meta">
+          <span>4:32</span>
+        </div>
+      </div>
+      <div class="card-block">
+        <h4 class="card-title"><a href="#">Tom Clancy's Ghost Recon: Wildlands</a></h4>
+        <div class="card-meta">
+          <span><i class="fa fa-clock-o"></i> Март 14, 2018</span>
+          <span>423 views</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="heading">
+      <i class="fa fa-newspaper-o"></i>
+      <h2>Последние Новости</h2>
+    </div>
+    <div class="row row-5">
+      <div class="col-12 col-sm-6 col-md-3" *ngFor="let i of newsPosts">
+        <div class="card card-block">
+          <div class="card-img">
+            <a href="#">
+              <img src="https://i.ytimg.com/vi/GaERL8Nrl9k/mqdefault.jpg" class="card-img-top" alt="Lorem">
+            </a>
+            <span class="badge badge-info">Новости</span>
+          </div>
+          <div class="card-block">
+            <h4 class="card-title"><a href="#">Lorem ipsum dolor sit amet.</a></h4>
+            <div class="card-meta">
+              <span><i class="fa fa-clock-o"></i> Март 14, 2018</span>
+            </div>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium, sapiente.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="text-center">
+      <a href="#" class="btn btn-primary btn-shadow btn-rounded btn-effect btn-lg m-t-20">Все Новости</a>
+    </div>
+  </div>
+</section>
+
+<section class="bg-secondary p-t-30">
+  <div class="container">
+    <div class="heading">
+      <i class="fa fa-gamepad"></i>
+      <h2>Последние Обзоры</h2>
+    </div>
+    <div class="row">
+
+      <div class="col-12 col-sm-6 col-md-4" *ngFor="let i of reviewPosts">
+        <div class="card card-lg">
+          <div class="card-img">
+            <a href="#">
+              <img src="assets/img/game/game-1.jpg" class="card-img-top" alt="Lorem">
+            </a>
+            <div class="badge badge-outline-primary">Обзор</div>
+          </div>
+          <div class="card-block">
+            <h4 class="card-title">
+              <a href="#">Lorem ipsum dolor sit amet.</a>
+            </h4>
+            <div class="card-meta">
+              <span>Март 14, 2018</span>
+            </div>
+            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium, maxime?</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="text-center">
+      <a href="#" class="btn btn-outline-primary btn-shadow btn-rounded btn-effect btn-lg m-t-20">Все Обзоры</a>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="heading">
+      <i class="fa fa-film"></i>
+      <h2>Последние Видео</h2>
+    </div>
+    <div class="row row-5">
+
+      <div class="col-12 col-sm-6 col-md-3" *ngFor="let i of videoPosts">
+        <div class="card card-video">
+          <div class="card-img">
+            <a href="#">
+              <img src="https://i1.ytimg.com/vi/GaERL8Nrl9k/mqdefault.jpg" alt="Lorem">
+            </a>
+            <div class="card-meta">
+              <span>4:32</span>
+            </div>
+          </div>
+          <div class="card-block">
+            <h4 class="card-title"><a href="#">Lorem ipsum dolor sit amet.</a></h4>
+            <div class="card-meta">
+              <span><i class="fa fa-clock-o"></i> Март 14, 2018</span>
+              <span>423 views</span>
+            </div>
+            <p>Defeating the corrupt tyrants entrenched there will require not only strength.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="text-center">
+      <a href="#" class="btn btn-primary btn-shadow btn-rounded btn-effect btn-lg m-t-20">Все Видео</a>
+    </div>
+  </div>
+</section>

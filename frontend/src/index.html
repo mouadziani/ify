@@ -1,16 +1,66 @@
 <!doctype html>
-<html lang="en">
+<html lang="ru">
 <head>
   <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>IdeaForYou</title>
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700">
+
   <base href="/">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
-<body>
+<body class="fixed-header">
   <ify-main></ify-main>
   <noscript>
     <h1>Для работы сайта требуется поддержка javascript</h1>
   </noscript>
 </body>
+<script>
+  (function($) {
+    "use strict";
+    $('.owl-posts').owlCarousel({
+      margin: 5,
+      loop: true,
+      dots: false,
+      autoplay: true,
+      responsive: {
+        0: {
+          items: 1
+        },
+        1024: {
+          items: 1,
+          center: false
+        },
+        1200: {
+          items: 2,
+          center: true
+        }
+      }
+    });
+    $('.owl-videos').owlCarousel({
+      margin: 15,
+      loop: true,
+      dots: false,
+      responsive: {
+        0: {
+          items: 1
+        },
+        700: {
+          items: 2
+        },
+        800: {
+          items: 3
+        },
+        1000: {
+          items: 4
+        },
+        1200: {
+          items: 6
+        }
+      }
+    });
+  })(jQuery);
+</script>
 </html>

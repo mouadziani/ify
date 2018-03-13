@@ -1,13 +1,104 @@
-<nav>
-  <span>
-    <a [routerLink]="['']">Главная</a>
-  </span>
-  <span *ngIf="isAuthenticated()">
-    <button (click)="logout()">Выйти</button>
-  </span>
-  <span *ngIf="!isAuthenticated()">
-    <a [routerLink]="['login']">Логин</a>
-    <a [routerLink]="['register']">Регистрация</a>
-  </span>
-  <span *ifyHasAnyAuthority="'ROLE_ADMIN'">Вы админ</span>
-</nav>
+<header id="header">
+  <div class="container">
+    <div class="navbar-backdrop">
+      <div class="navbar">
+        <div class="navbar-left">
+          <a class="navbar-toggle"><i class="fa fa-bars"></i></a>
+          <a [routerLink]="''" class="logo"><img src="assets/img/logo.png" alt="IdeaForYou"></a>
+          <nav class="nav">
+            <ul>
+              <li>
+                <a [routerLink]="''">Главная</a>
+              </li>
+              <li class="has-dropdown mega-menu mega-games">
+                <a [routerLink]="'videos'">Видео</a>
+                <ul>
+                  <li>
+                    <div class="container">
+                      <div class="row">
+                        <div class="col">
+                          <div class="img">
+                            <a href="#"><img src="/assets/img/menu/menu-1.jpg" alt="Video"></a>
+                            <span class="badge badge-ps4">Category</span>
+                          </div>
+                          <h4><a href="#">Video</a></h4>
+                          <span>Date</span>
+                        </div>
+                        <div class="col">
+                          <div class="img">
+                            <a href="#"><img src="/assets/img/menu/menu-1.jpg" alt="Video"></a>
+                            <span class="badge badge-ps4">Category</span>
+                          </div>
+                          <h4><a href="#">Video</a></h4>
+                          <span>Date</span>
+                        </div>
+                        <div class="col">
+                          <div class="img">
+                            <a href="#"><img src="/assets/img/menu/menu-1.jpg" alt="Video"></a>
+                            <span class="badge badge-ps4">Category</span>
+                          </div>
+                          <h4><a href="#">Video</a></h4>
+                          <span>Date</span>
+                        </div>
+                        <div class="col">
+                          <div class="img">
+                            <a href="#"><img src="/assets/img/menu/menu-1.jpg" alt="Video"></a>
+                            <span class="badge badge-ps4">Category</span>
+                          </div>
+                          <h4><a href="#">Video</a></h4>
+                          <span>Date</span>
+                        </div>
+                        <div class="col">
+                          <div class="img">
+                            <a href="#"><img src="/assets/img/menu/menu-1.jpg" alt="Video"></a>
+                            <span class="badge badge-ps4">Category</span>
+                          </div>
+                          <h4><a href="#">Video</a></h4>
+                          <span>Date</span>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </li>
+              <li class="has-dropdown">
+                <a href="#">Блог</a>
+                <ul>
+                  <li>
+                    <a href="#">Категория</a>
+                  </li>
+                  <li>
+                    <a href="#">Категория</a>
+                  </li>
+                  <li>
+                    <a href="#">Категория</a>
+                  </li>
+                </ul>
+              </li>
+              <li><a href="#">Что-то</a></li>
+              <li>
+                <a href="#">Форум</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+        <div class="nav navbar-right">
+          <ul>
+            <li *ngIf="!isAuthenticated()" class="hidden-xs-down"><a [routerLink]="'login'">Логин</a></li>
+            <li *ngIf="!isAuthenticated()" class="hidden-xs-down"><a [routerLink]="'register'">Регистрация</a></li>
+            <li *ngIf="isAuthenticated()" class="hidden-xs-down"><a role="button" (click)="logout()">Выйти</a></li>
+            <li><a data-toggle="search"><i class="fa fa-search"></i></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="navbar-search">
+      <div class="container">
+        <form method="post">
+          <input type="text" class="form-control" placeholder="Поиск...">
+          <i class="fa fa-times close"></i>
+        </form>
+      </div>
+    </div>
+  </div>
+</header>
