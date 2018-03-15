@@ -10,14 +10,14 @@ public class News extends AbstractPost implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @ManyToOne
-    @JoinColumn(name = "video_category_id")
-    private VideoCategory videoCategory;
+    @JoinColumn(name = "news_category_id")
+    private NewsCategory newsCategory;
 
-    public VideoCategory getVideoCategory() {
-        return videoCategory;
+    public NewsCategory getNewsCategory() {
+        return newsCategory;
     }
 
-    public void setVideoCategory(VideoCategory videoCategory) {
-        this.videoCategory = videoCategory;
+    public void setNewsCategory(NewsCategory newsCategory) {
+        this.newsCategory = newsCategory;
     }
 }
