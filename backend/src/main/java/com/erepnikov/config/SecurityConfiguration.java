@@ -8,6 +8,7 @@ import org.springframework.beans.factory.BeanInitializationException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -116,8 +117,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                     .antMatchers("/api/authenticate").permitAll()
                     .antMatchers("/api/account/reset-password/init").permitAll()
                     .antMatchers("/api/account/reset-password/finish").permitAll()
+                    .antMatchers(HttpMethod.GET, "/api/**").permitAll()
                     .antMatchers("/api/**").authenticated()
-                    .antMatchers("/management/**").hasAuthority(AuthoritiesConstants.MODERATOR)
+                    .antMatchers("/manage/**").hasAuthority(AuthoritiesConstants.MODERATOR)
                     .antMatchers("/administration/**").hasAuthority(AuthoritiesConstants.ADMIN);
 
     }
