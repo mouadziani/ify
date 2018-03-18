@@ -1,24 +1,74 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import { VideoService } from '../shared/service/video.service';
+import { NewsService } from '../shared/service/news.service';
+import { ArticleService } from '../shared/service/article.service';
+import { News } from '../shared/model/news.model';
+import { Article } from '../shared/model/article.model';
+import { Video } from '../shared/model/video.model';
+import 'rxjs/add/operator/map';
+import {Subscription} from "rxjs/Subscription";
 
 @Component({
   selector: 'ify-home',
   templateUrl: './home.component.html'
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
 
   carouselPosts = [1, 2, 3];
 
   mainPosts = [1, 2, 3, 4, 5, 6];
 
-  newsPosts = [1, 2, 3, 4, 5, 6, 7, 8];
+  news: News[];
 
-  reviewPosts = [1, 2, 3, 4, 5, 6];
+  articles: Article[];
 
-  videoPosts = [1, 2, 3, 4];
+  videos: Video[];
 
-  constructor() { }
+  subNews: Subscription;
+
+  subArticles: Subscription;
+
+  subVideos: Subscription;
+
+  constructor(
+    private newsService: NewsService,
+    private articleService: ArticleService,
+    private videoService: VideoService
+  ) { }
 
   ngOnInit() {
+    this.newsService.query({
+      page: 0,
+      size: 12
+    }).subscribe(res => {
+      this.news = res.body;
+      console.log(this.news);
+    });
+    this.articleService.query({
+      page: 0,
+      size: 6
+    }).subscribe(res => {
+      this.articles = res.body;
+      console.log(this.articles);
+    });
+    this.videoService.query({
+      page: 0,
+      size: 8
+    }).subscribe(res => {
+      this.videos = res.body;
+      console.log(this.videos);
+    });
   }
 
+  ngOnDestroy() {
+    if (this.subNews) {
+      this.subNews.unsubscribe();
+    }
+    if (this.subArticles) {
+      this.subArticles.unsubscribe();
+    }
+    if (this.subVideos) {
+      this.subVideos.unsubscribe();
+    }
+  }
 }

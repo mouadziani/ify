@@ -52,26 +52,26 @@
       <h2>Последние Новости</h2>
     </div>
     <div class="row row-5">
-      <div class="col-12 col-sm-6 col-md-3" *ngFor="let i of newsPosts">
+      <div class="col-12 col-sm-6 col-md-3" *ngFor="let n of news">
         <div class="card card-block">
           <div class="card-img">
-            <a href="#">
-              <img src="https://i.ytimg.com/vi/GaERL8Nrl9k/mqdefault.jpg" class="card-img-top" alt="Lorem">
+            <a [routerLink]="['/news', n.id]">
+              <img src="https://i.ytimg.com/vi/GaERL8Nrl9k/mqdefault.jpg" class="card-img-top" alt="{{ n.title }}">
             </a>
-            <span class="badge badge-info">Новости</span>
+            <span class="badge badge-info">{{ n.newsCategory.name }}</span>
           </div>
           <div class="card-block">
-            <h4 class="card-title"><a href="#">Lorem ipsum dolor sit amet.</a></h4>
+            <h4 class="card-title"><a [routerLink]="['/news', n.id]">{{ n.title }}</a></h4>
             <div class="card-meta">
-              <span><i class="fa fa-clock-o"></i> Март 14, 2018</span>
+              <span><i class="fa fa-clock-o"></i> {{ n.createdDate }}</span> <!-- Март 14, 2018 -->
             </div>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium, sapiente.</p>
+            <p>{{ n.text.substring(0, 100) }}...</p>
           </div>
         </div>
       </div>
     </div>
     <div class="text-center">
-      <a href="#" class="btn btn-primary btn-shadow btn-rounded btn-effect btn-lg m-t-20">Все Новости</a>
+      <a [routerLink]="'/news'" class="btn btn-primary btn-shadow btn-rounded btn-effect btn-lg m-t-20">Все Новости</a>
     </div>
   </div>
 </section>
@@ -80,33 +80,31 @@
   <div class="container">
     <div class="heading">
       <i class="fa fa-gamepad"></i>
-      <h2>Последние Обзоры</h2>
+      <h2>Последние Статьи</h2>
     </div>
     <div class="row">
-
-      <div class="col-12 col-sm-6 col-md-4" *ngFor="let i of reviewPosts">
+      <div class="col-12 col-sm-6 col-md-4" *ngFor="let a of articles">
         <div class="card card-lg">
           <div class="card-img">
-            <a href="#">
-              <img src="assets/img/game/game-1.jpg" class="card-img-top" alt="Lorem">
+            <a [routerLink]="['/article', a.id]">
+              <img src="assets/img/game/game-1.jpg" class="card-img-top" alt="{{ a.title }}">
             </a>
-            <div class="badge badge-outline-primary">Обзор</div>
+            <div class="badge badge-outline-primary">{{ a.articleCategory.name }}</div>
           </div>
           <div class="card-block">
             <h4 class="card-title">
-              <a href="#">Lorem ipsum dolor sit amet.</a>
+              <a [routerLink]="['/article', a.id]">{{ a.title }}</a>
             </h4>
             <div class="card-meta">
-              <span>Март 14, 2018</span>
+              <span>{{ a.createdDate }}</span>
             </div>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium, maxime?</p>
+            <p class="card-text">{{ a.text.substring(0, 100) }}</p>
           </div>
         </div>
       </div>
-
     </div>
     <div class="text-center">
-      <a href="#" class="btn btn-outline-primary btn-shadow btn-rounded btn-effect btn-lg m-t-20">Все Обзоры</a>
+      <a [routerLink]="'/article'" class="btn btn-outline-primary btn-shadow btn-rounded btn-effect btn-lg m-t-20">Все Обзоры</a>
     </div>
   </div>
 </section>
@@ -119,30 +117,31 @@
     </div>
     <div class="row row-5">
 
-      <div class="col-12 col-sm-6 col-md-3" *ngFor="let i of videoPosts">
+      <div class="col-12 col-sm-6 col-md-3" *ngFor="let v of videos">
         <div class="card card-video">
           <div class="card-img">
-            <a href="#">
-              <img src="https://i1.ytimg.com/vi/GaERL8Nrl9k/mqdefault.jpg" alt="Lorem">
+            <a [routerLink]="['/video', v.id]">
+              <img src="https://i1.ytimg.com/vi/GaERL8Nrl9k/mqdefault.jpg" alt="{{ v.title }}">
             </a>
-            <div class="card-meta">
-              <span>4:32</span>
-            </div>
+            <span class="badge badge-youtube">{{ v.videoCategory.name }}</span>
+            <!--<div class="card-meta">-->
+              <!--<span>Длина</span>-->
+            <!--</div>-->
           </div>
           <div class="card-block">
-            <h4 class="card-title"><a href="#">Lorem ipsum dolor sit amet.</a></h4>
+            <h4 class="card-title"><a [routerLink]="['/video', v.id]">{{ v.title }}</a></h4>
             <div class="card-meta">
-              <span><i class="fa fa-clock-o"></i> Март 14, 2018</span>
-              <span>423 views</span>
+              <span><i class="fa fa-clock-o"></i> {{ v.createdDate }}</span>
+              <!--<span>Просмотры</span>-->
             </div>
-            <p>Defeating the corrupt tyrants entrenched there will require not only strength.</p>
+            <p>{{ v.text.substring(0, 100) }} ...</p>
           </div>
         </div>
       </div>
 
     </div>
     <div class="text-center">
-      <a href="#" class="btn btn-primary btn-shadow btn-rounded btn-effect btn-lg m-t-20">Все Видео</a>
+      <a [routerLink]="'/video'" class="btn btn-primary btn-shadow btn-rounded btn-effect btn-lg m-t-20">Все Видео</a>
     </div>
   </div>
 </section>

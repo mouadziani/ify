@@ -16,9 +16,6 @@ public abstract class AbstractPost {
     @Column(name = "text")
     private String text;
 
-    @Column(name = "image_url")
-    private String imageUrl;
-
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
@@ -48,14 +45,6 @@ public abstract class AbstractPost {
 
     public void setText(String text) {
         this.text = text;
-    }
-
-    public String getImageUrl() {
-        return imageUrl;
-    }
-
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
     }
 
     public User getUser() {

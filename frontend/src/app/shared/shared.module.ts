@@ -12,6 +12,9 @@ import { CSRFService } from './auth/csrf.service';
 import { StateStorageService } from './auth/state-storage.service';
 import { CookieModule } from 'ngx-cookie';
 import { BaseApiService } from './api/base-api.service';
+import { NewsService } from './service/news.service';
+import { ArticleService } from './service/article.service';
+import { VideoService } from './service/video.service';
 
 @NgModule({
   imports: [
@@ -33,7 +36,10 @@ import { BaseApiService } from './api/base-api.service';
     UserService,
     DatePipe,
     CSRFService,
-    StateStorageService
+    StateStorageService,
+    NewsService,
+    ArticleService,
+    VideoService
   ],
   exports: [
     HasAnyAuthorityDirective,

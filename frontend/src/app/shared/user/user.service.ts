@@ -1,32 +1,33 @@
 import { Injectable } from '@angular/core';
-import { SERVER_API_URL } from '../../app.constants';
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpResponse } from '@angular/common/http';
 import { User } from './user.model';
 import { Observable } from 'rxjs/Observable';
+import { BaseApiService } from '../api/base-api.service';
 
 @Injectable()
 export class UserService {
-  private resourceUrl = SERVER_API_URL + 'api/users';
 
-  constructor(private http: HttpClient) { }
+  private resourceUrl = 'api/users';
+
+  constructor(private api: BaseApiService) { }
 
   create(user: User): Observable<HttpResponse<User>> {
-    return this.http.post<User>(this.resourceUrl, user, { observe: 'response' });
+    return this.api.post<User>(this.resourceUrl, user);
   }
 
-  update(user: User): Observable<HttpResponse<User>> {
-    return this.http.put<User>(this.resourceUrl, user, { observe: 'response' });
+  update(user: User): Observable<any> {
+    return this.api.put(this.resourceUrl, user);
   }
 
-  find(login: string): Observable<HttpResponse<User>> {
-    return this.http.get<User>(`${this.resourceUrl}/${login}`, { observe: 'response' });
+  find(login: string): Observable<User> {
+    return this.api.get<User>(`${this.resourceUrl}/${login}`);
   }
 
   delete(login: string): Observable<HttpResponse<any>> {
-    return this.http.delete(`${this.resourceUrl}/${login}`, { observe: 'response' });
+    return this.api.delete(`${this.resourceUrl}/${login}`);
   }
 
   authorities(): Observable<string[]> {
-    return this.http.get<string[]>(SERVER_API_URL + 'api/users/authorities');
+    return this.api.get<string[]>('api/users/authorities');
   }
 }
