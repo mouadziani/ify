@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { VideoService } from '../shared/service/video.service';
 import { NewsService } from '../shared/service/news.service';
 import { ArticleService } from '../shared/service/article.service';
@@ -6,7 +6,7 @@ import { News } from '../shared/model/news.model';
 import { Article } from '../shared/model/article.model';
 import { Video } from '../shared/model/video.model';
 import 'rxjs/add/operator/map';
-import {Subscription} from "rxjs/Subscription";
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'ify-home',
@@ -37,26 +37,26 @@ export class HomeComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this.newsService.query({
+    this.subNews = this.newsService.query({
       page: 0,
-      size: 12
+      size: 12,
+      sort: ['id,desc']
     }).subscribe(res => {
       this.news = res.body;
-      console.log(this.news);
     });
-    this.articleService.query({
+    this.subArticles = this.articleService.query({
       page: 0,
-      size: 6
+      size: 6,
+      sort: ['id,desc']
     }).subscribe(res => {
       this.articles = res.body;
-      console.log(this.articles);
     });
-    this.videoService.query({
+    this.subVideos = this.videoService.query({
       page: 0,
-      size: 8
+      size: 8,
+      sort: ['id,desc']
     }).subscribe(res => {
       this.videos = res.body;
-      console.log(this.videos);
     });
   }
 

@@ -13,6 +13,7 @@ import { AccountModule } from './account/account.module';
 import { AdminModule } from './admin/admin.module';
 import { HttpClientModule, HttpClientXsrfModule } from '@angular/common/http';
 import { Ng2Webstorage } from 'ngx-webstorage';
+import { ContentModule } from './content/content.module';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { Ng2Webstorage } from 'ngx-webstorage';
     AdminModule,
     HttpClientModule,
     HttpClientXsrfModule,
-    Ng2Webstorage.forRoot({ prefix: 'ify', separator: '-'})
+    Ng2Webstorage.forRoot({ prefix: 'ify', separator: '-'}),
+    ContentModule
   ],
   providers: [
     UserRouteAccessService,

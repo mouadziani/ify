@@ -15,13 +15,17 @@ import { BaseApiService } from './api/base-api.service';
 import { NewsService } from './service/news.service';
 import { ArticleService } from './service/article.service';
 import { VideoService } from './service/video.service';
+import { PaginationService } from './service/pagination.service';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ResolvePagingParamsService } from './service/resolve-paging-params.service';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    CookieModule.forRoot()
+    CookieModule.forRoot(),
+    NgbModule.forRoot()
   ],
   declarations: [
     HasAnyAuthorityDirective
@@ -39,13 +43,16 @@ import { VideoService } from './service/video.service';
     StateStorageService,
     NewsService,
     ArticleService,
-    VideoService
+    VideoService,
+    PaginationService,
+    ResolvePagingParamsService
   ],
   exports: [
     HasAnyAuthorityDirective,
     DatePipe,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
