@@ -17,13 +17,13 @@
       <div class="col-12 col-sm-6 col-md-3" *ngFor="let a of articles">
         <div class="card card-block">
           <div class="card-img">
-            <a [routerLink]="['article', a.id]">
+            <a [routerLink]="['/article', a.id]">
               <img src="https://i.ytimg.com/vi/GaERL8Nrl9k/mqdefault.jpg" class="card-img-top" alt="{{ a.title }}">
             </a>
             <span class="badge badge-info">{{ a.articleCategory.name }}</span>
           </div>
           <div class="card-block">
-            <h4 class="card-title"><a [routerLink]="['article', a.id]">{{ a.title }}</a></h4>
+            <h4 class="card-title"><a [routerLink]="['/article', a.id]">{{ a.title }}</a></h4>
             <div class="card-meta">
               <span><i class="fa fa-clock-o"></i> {{ a.createdDate }}</span> <!-- Март 14, 2018 -->
             </div>

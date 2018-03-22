@@ -1,3 +1,66 @@
-<p>
-  video-post works!
-</p>
+<section class="bg-image" style="background-image: url('https://img.youtube.com/vi/zSd9McRXHZ8/maxresdefault.jpg');">
+  <div class="overlay-light"></div>
+  <div class="container">
+    <div class="embed-responsive embed-responsive-16by9">
+      <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/Kae-JjbLsgA?rel=0&amp;amp;autoplay=1&amp;amp;showinfo=0" allowfullscreen></iframe>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-9">
+        <div class="post post-single">
+          <div class="post-header">
+            <div>
+              <a href="#"><img src="assets/img/user/user-1.jpg" alt=""></a>
+            </div>
+            <div>
+              <h2 class="post-title">{{ video.title }}</h2>
+              <div class="post-meta">
+                <span>
+                  <i class="fa fa-clock-o"></i>{{ video.createdDate }} | <i class="fa fa-user"></i><a href="#">{{ video.user.login }}</a>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div>{{ video.text }}</div>
+        </div>
+        <div class="post-actions">
+          <div class="post-tags">
+            <a href="#">#tag1</a>
+            <a href="#">#tag2</a>
+            <a href="#">#tag3</a>
+            <a href="#">#tag4</a>
+          </div>
+          <div class="social-share">
+            <a class="btn btn-social btn-facebook btn-circle" href="#" data-toggle="tooltip" title="" data-placement="bottom" role="button" data-original-title="Share on facebook"><i class="fa fa-facebook"></i></a>
+            <a class="btn btn-social btn-twitter btn-circle" href="#" data-toggle="tooltip" title="" data-placement="bottom" role="button" data-original-title="Share on twitter"><i class="fa fa-twitter"></i></a>
+            <a class="btn btn-social btn-google-plus btn-circle" href="#" data-toggle="tooltip" title="" data-placement="bottom" role="button" data-original-title="Share on google-plus"><i class="fa fa-google-plus"></i></a>
+            <a class="btn btn-social btn-vk btn-circle" href="#" data-toggle="tooltip" title="" data-placement="bottom" role="button" data-original-title="Share on google-plus"><i class="fa fa-vk"></i></a>
+          </div>
+        </div>
+        <div id="comments" class="comments anchor">
+          TODO COMMENTS
+        </div>
+      </div>
+      <div class="col-lg-3">
+        <div class="sidebar">
+          <div class="widget widget-videos">
+            <h5 class="widget-title">Последние Новости</h5>
+            <ul class="widget-list">
+              <li *ngFor="let n of lastNews">
+                <div class="widget-img">
+                  <a [routerLink]="['/news', n.id]"><img src="https://i1.ytimg.com/vi/4BLkEJu9szM/mqdefault.jpg" alt="{{ n.title }}"></a>
+                </div>
+                <h4><a [routerLink]="['/news', n.id]">{{ n.title }}</a></h4>
+                <span><i class="fa fa-clock-o"></i> {{ n.createdDate }}</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
