@@ -18,6 +18,7 @@ import { VideoService } from './service/video.service';
 import { PaginationService } from './service/pagination.service';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ResolvePagingParamsService } from './service/resolve-paging-params.service';
+import { DateConverterPipe } from './pipe/date-converter.pipe';
 
 @NgModule({
   imports: [
@@ -28,7 +29,8 @@ import { ResolvePagingParamsService } from './service/resolve-paging-params.serv
     NgbModule.forRoot()
   ],
   declarations: [
-    HasAnyAuthorityDirective
+    HasAnyAuthorityDirective,
+    DateConverterPipe
   ],
   providers: [
     BaseApiService,
@@ -52,7 +54,8 @@ import { ResolvePagingParamsService } from './service/resolve-paging-params.serv
     DatePipe,
     FormsModule,
     ReactiveFormsModule,
-    NgbModule
+    NgbModule,
+    DateConverterPipe
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

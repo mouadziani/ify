@@ -25,9 +25,9 @@
           <div class="card-block">
             <h4 class="card-title"><a [routerLink]="['/article', a.id]">{{ a.title }}</a></h4>
             <div class="card-meta">
-              <span><i class="fa fa-clock-o"></i> {{ a.createdDate }}</span> <!-- Март 14, 2018 -->
+              <span><i class="fa fa-clock-o"></i> {{ a.createdDate | dateConverter }}</span>
             </div>
-            <p>{{ a.text.substring(0, 100) }}...</p>
+            <p>{{ a.text | slice:0:100 }}...</p>
           </div>
         </div>
       </div>

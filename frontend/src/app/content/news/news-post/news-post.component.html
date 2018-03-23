@@ -16,7 +16,7 @@
           <h2 class="post-title">{{ news.title }}</h2>
           <div class="post-meta">
             <span>
-              <i class="fa fa-clock-o"></i>{{ news.createdDate }} |
+              <i class="fa fa-clock-o"></i>{{ news.createdDate | dateConverter }} |
               <i class="fa fa-user"></i><a href="#">{{ news.user.login }}</a>
             </span>
           </div>
@@ -49,8 +49,8 @@
                 </div>
                 <div class="card-block">
                   <h4 class="card-title"><a [routerLink]="['/news', n.id]">{{ n.title }}</a></h4>
-                  <div class="card-meta"><span><i class="fa fa-clock-o"></i> {{ n.createdDate }}</span></div>
-                  <p>{{ n.text.substring(0, 100) }}...</p>
+                  <div class="card-meta"><span><i class="fa fa-clock-o"></i> {{ n.createdDate | dateConverter }}</span></div>
+                  <p>{{ n | slice:0:100 }}...</p>
                 </div>
               </div>
             </div>

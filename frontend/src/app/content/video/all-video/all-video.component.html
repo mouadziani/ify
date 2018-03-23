@@ -28,10 +28,10 @@
           <div class="card-block">
             <h4 class="card-title"><a [routerLink]="['/video', v.id]">{{ v.title }}</a></h4>
             <div class="card-meta">
-              <span><i class="fa fa-clock-o"></i> {{ v.createdDate }}</span>
+              <span><i class="fa fa-clock-o"></i> {{ v.createdDate | dateConverter }}</span>
               <!--<span>Просмотры</span>-->
             </div>
-            <p>{{ v.text.substring(0, 100) }} ...</p>
+            <p>{{ v.text | slice:0:100 }} ...</p>
           </div>
         </div>
       </div>

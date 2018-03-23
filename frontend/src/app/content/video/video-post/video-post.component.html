@@ -20,7 +20,7 @@
               <h2 class="post-title">{{ video.title }}</h2>
               <div class="post-meta">
                 <span>
-                  <i class="fa fa-clock-o"></i>{{ video.createdDate }} | <i class="fa fa-user"></i><a href="#">{{ video.user.login }}</a>
+                  <i class="fa fa-clock-o"></i>{{ video.createdDate | dateConverter }} | <i class="fa fa-user"></i><a href="#">{{ video.user.login }}</a>
                 </span>
               </div>
             </div>
@@ -55,7 +55,7 @@
                   <a [routerLink]="['/news', n.id]"><img src="https://i1.ytimg.com/vi/4BLkEJu9szM/mqdefault.jpg" alt="{{ n.title }}"></a>
                 </div>
                 <h4><a [routerLink]="['/news', n.id]">{{ n.title }}</a></h4>
-                <span><i class="fa fa-clock-o"></i> {{ n.createdDate }}</span>
+                <span><i class="fa fa-clock-o"></i> {{ n.createdDate | dateConverter }}</span>
               </li>
             </ul>
           </div>
