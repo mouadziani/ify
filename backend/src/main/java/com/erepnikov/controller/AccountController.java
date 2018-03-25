@@ -58,14 +58,6 @@ public class AccountController {
         userService.registerUser(managedUserVM, managedUserVM.getPassword());
     }
 
-    @GetMapping("/activate")
-    public void activateAccount(@RequestParam(value = "key") String key) throws ServerErrorException {
-        Optional<User> user = userService.activateRegistration(key);
-        if (!user.isPresent()) {
-            throw new ServerErrorException("No user was found for this reset key");
-        }
-    }
-
     @GetMapping("/authenticate")
     public String isAuthenticated(HttpServletRequest request) {
         return request.getRemoteUser();
@@ -89,8 +81,7 @@ public class AccountController {
         if (!user.isPresent()) {
             throw new ServerErrorException("User could not be found");
         }
-        userService.updateUser(userDTO.getFirstName(), userDTO.getLastName(), userDTO.getEmail(),
-                userDTO.getLangKey(), userDTO.getImageUrl());
+        userService.updateUser(userDTO.getFirstName(), userDTO.getLastName(), userDTO.getEmail());
     }
 
     @PostMapping(path = "/account/change-password")
@@ -99,17 +90,6 @@ public class AccountController {
             throw new InvalidPasswordException();
         }
         userService.changePassword(password);
-    }
-
-    @PostMapping(path = "/account/reset-password/finish")
-    public void finishPasswordReset(@RequestBody KeyAndPasswordVM keyAndPassword) throws ServerErrorException, InvalidPasswordException {
-        if (!checkPasswordLength(keyAndPassword.getNewPassword())) {
-            throw new InvalidPasswordException();
-        }
-        Optional<User> user = userService.completePasswordReset(keyAndPassword.getNewPassword(), keyAndPassword.getKey());
-        if (!user.isPresent()) {
-            throw new ServerErrorException("No user was found for this reset key");
-        }
     }
 
     private static boolean checkPasswordLength(String password) {
