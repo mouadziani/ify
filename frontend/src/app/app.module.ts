@@ -14,6 +14,7 @@ import { AdminModule } from './admin/admin.module';
 import { HttpClientModule, HttpClientXsrfModule } from '@angular/common/http';
 import { Ng2Webstorage } from 'ngx-webstorage';
 import { ContentModule } from './content/content.module';
+import { ModeratorModule } from './moderator/moderator.module';
 
 
 @NgModule({
@@ -30,6 +31,7 @@ import { ContentModule } from './content/content.module';
     HomeModule,
     AccountModule,
     AdminModule,
+    ModeratorModule,
     HttpClientModule,
     HttpClientXsrfModule,
     Ng2Webstorage.forRoot({ prefix: 'ify', separator: '-'}),

@@ -1,0 +1,52 @@
+<div class="container">
+  <div class="row">
+    <table class="table table-striped" cellspacing="0" width="100%">
+      <thead>
+        <tr>
+          <th>Аккаунт</th>
+          <th>Дата Регистрации</th>
+          <th>Роли</th>
+          <th>Действия</th>
+        </tr>
+      </thead>
+      <tbody *ngIf="users && users.length">
+        <tr *ngFor="let user of users">
+          <td>
+            <ul>
+              <li>ID: {{ user.id }}</li>
+              <li>Логин: {{ user.login }}</li>
+              <li>Имя: {{ user.firstName }}</li>
+              <li>Фамилия: {{ user.lastName }}</li>
+              <li>Email: {{ user.email }}</li>
+            </ul>
+          </td>
+          <td>{{ user.createdDate | dateConverter }}</td>
+          <td>
+            <ul>
+              <li *ngFor="let role of user.authorities">{{ role }}</li>
+            </ul>
+          </td>
+          <td>
+            <button
+              class="btn btn-link p-a-5"
+              (click)="deleteUser(user.login)"
+              title="Удалить"
+              [disabled]="currentAccount.login === user.login"
+            ><i class="fa fa-trash-o"></i></button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="row">
+      <div class="pagination-results m-t-10" *ngIf="users && users.length">
+        <ngb-pagination
+          [collectionSize]="totalItems"
+          [(page)]="page"
+          [pageSize]="postsPerPage"
+          [maxSize]="5"
+          (pageChange)="loadPage(page)"
+        ></ngb-pagination>
+      </div>
+    </div>
+  </div>
+</div>

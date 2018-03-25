@@ -30,7 +30,11 @@ export class BaseApiService {
   }
 
   delete<T>(url: string): Observable<any> {
-    return this.http.delete<T>(SERVER_API_URL + url);
+    return this.http.delete<T>(SERVER_API_URL + url, {
+      headers: new HttpHeaders({
+        'X-XSRF-TOKEN': this.tokenExtractor.getToken()
+      })
+    });
   }
 
   private createRequestOption(req?: any): HttpParams {

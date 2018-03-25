@@ -11,6 +11,18 @@
               <li><a [routerLink]="'news'">Новости</a></li>
               <li><a [routerLink]="'article'">Статьи</a></li>
               <li><a [routerLink]="'video'">Видео</a></li>
+              <li class="has-dropdown" *ifyHasAnyAuthority="'ROLE_MODERATOR'">
+                <a href="#">Модерирование</a>
+                <ul>
+                  <li><a [routerLink]=""></a></li>
+                </ul>
+              </li>
+              <li class="has-dropdown" *ifyHasAnyAuthority="'ROLE_ADMIN'">
+                <a href="#">Администрирование</a>
+                <ul>
+                  <li><a [routerLink]="'/admin/user-management'">Управление пользователями</a></li>
+                </ul>
+              </li>
             </ul>
           </nav>
         </div>

@@ -1,17 +1,19 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Article } from '../../../shared/model/article.model';
+import { User } from '../../shared/user/user.model';
 import { Subscription } from 'rxjs/Subscription';
-import { ArticleService } from '../../../shared/service/article.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { POSTS_PER_PAGE } from '../../../app.constants';
+import { UserService } from '../../shared/user/user.service';
+import { POSTS_PER_PAGE } from '../../app.constants';
+import { Principal } from '../../shared/auth/principal.service';
+import { Account } from '../../shared/user/account.model';
 
 @Component({
-  selector: 'ify-all-article',
-  templateUrl: './all-article.component.html'
+  selector: 'ify-user-management',
+  templateUrl: './user-management.component.html'
 })
-export class AllArticleComponent implements OnInit, OnDestroy {
+export class UserManagementComponent implements OnInit, OnDestroy {
 
-  articles: Article[];
+  users: User[];
   routeData;
   page;
   previousPage;
@@ -19,11 +21,14 @@ export class AllArticleComponent implements OnInit, OnDestroy {
   totalItems;
   postsPerPage;
   sub: Subscription;
+  deleteSub: Subscription;
+  currentAccount: Account;
 
   constructor(
-    private articleService: ArticleService,
+    private userService: UserService,
     private activatedRoute: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private principal: Principal
   ) {
     this.postsPerPage = POSTS_PER_PAGE;
     this.routeData = this.activatedRoute.data.subscribe((data) => {
@@ -34,16 +39,19 @@ export class AllArticleComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.loadAll();
+    this.principal.identity().then(account => {
+      this.currentAccount = account;
+      this.loadAll();
+    });
   }
 
   loadAll() {
-    this.sub = this.articleService.query({
+    this.sub = this.userService.query({
       page: this.page - 1,
       size: this.postsPerPage,
       sort: ['id,desc']
     }).subscribe(res => {
-      this.articles = res.body;
+      this.users = res.body;
       this.totalItems = res.headers.get('X-Total-Count');
     });
   }
@@ -51,7 +59,7 @@ export class AllArticleComponent implements OnInit, OnDestroy {
   loadPage(page: number) {
     if (page !== this.previousPage) {
       this.previousPage = page;
-      this.router.navigate(['/article'], {
+      this.router.navigate(['/admin/user-management'], {
         queryParams: {
           page: this.page,
           size: this.postsPerPage,
@@ -62,7 +70,13 @@ export class AllArticleComponent implements OnInit, OnDestroy {
     }
   }
 
+  deleteUser(login: string) {
+    this.deleteSub = this.userService.delete(login).subscribe();
+    this.loadAll();
+  }
+
   ngOnDestroy() {
     this.sub.unsubscribe();
+    this.deleteSub.unsubscribe();
   }
 }

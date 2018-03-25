@@ -7,24 +7,28 @@ import { BaseApiService } from '../api/base-api.service';
 @Injectable()
 export class UserService {
 
-  private resourceUrl = 'api/users';
+  private url = 'api/users';
 
   constructor(private api: BaseApiService) { }
 
   create(user: User): Observable<HttpResponse<User>> {
-    return this.api.post<User>(this.resourceUrl, user);
+    return this.api.post<User>(this.url, user);
   }
 
   update(user: User): Observable<any> {
-    return this.api.put(this.resourceUrl, user);
+    return this.api.put(this.url, user);
   }
 
   find(login: string): Observable<User> {
-    return this.api.get<User>(`${this.resourceUrl}/${login}`);
+    return this.api.get<User>(`${this.url}/${login}`);
+  }
+
+  query(req?: any): Observable<HttpResponse<User[]>> {
+    return this.api.getWithPagination<User[]>(this.url, req);
   }
 
   delete(login: string): Observable<HttpResponse<any>> {
-    return this.api.delete(`${this.resourceUrl}/${login}`);
+    return this.api.delete(`${this.url}/${login}`);
   }
 
   authorities(): Observable<string[]> {
