@@ -4,7 +4,6 @@ import com.erepnikov.controller.exceptions.EmailAlreadyUsedException;
 import com.erepnikov.controller.exceptions.InvalidPasswordException;
 import com.erepnikov.controller.exceptions.LoginAlreadyUsedException;
 import com.erepnikov.controller.exceptions.ServerErrorException;
-import com.erepnikov.controller.vm.KeyAndPasswordVM;
 import com.erepnikov.controller.vm.ManagedUserVM;
 import com.erepnikov.domain.User;
 import com.erepnikov.repository.UserRepository;
@@ -17,9 +16,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
-import java.util.List;
 import java.util.Optional;
 
 @RestController

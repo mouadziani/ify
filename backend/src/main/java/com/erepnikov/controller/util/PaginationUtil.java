@@ -6,7 +6,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 public final class PaginationUtil {
 
-    public static HttpHeaders generatePaginationHttpHeaders(Page page, String baseUrl) {
+    public static HttpHeaders generatePaginationHttpHeaders(Page<?> page, String baseUrl) {
         HttpHeaders headers = new HttpHeaders();
         headers.add("X-Total-Count", Long.toString(page.getTotalElements()));
         String link = "";
