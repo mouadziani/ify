@@ -14,13 +14,18 @@
               <li class="has-dropdown" *ifyHasAnyAuthority="'ROLE_MODERATOR'">
                 <a href="#">Модерирование</a>
                 <ul>
-                  <li><a [routerLink]=""></a></li>
+                  <li><a [routerLink]="'/moderator/news'">Новости</a></li>
+                  <li><a [routerLink]="'/moderator/news/create'">Создание новости</a></li>
+                  <li><a [routerLink]="'/moderator/article'">Статьи</a></li>
+                  <li><a [routerLink]="'/moderator/article/create'">Создание статьи</a></li>
+                  <li><a [routerLink]="'/moderator/video'">Видео</a></li>
+                  <li><a [routerLink]="'/moderator/video/create'">Создание видео</a></li>
                 </ul>
               </li>
               <li class="has-dropdown" *ifyHasAnyAuthority="'ROLE_ADMIN'">
                 <a href="#">Администрирование</a>
                 <ul>
-                  <li><a [routerLink]="'/admin/user-management'">Управление пользователями</a></li>
+                  <li><a [routerLink]="'/admin/user-management'">Пользователи</a></li>
                 </ul>
               </li>
             </ul>

@@ -4,7 +4,6 @@ import { SharedModule } from '../shared/shared.module';
 import { adminState } from './admin.route';
 import { RouterModule } from '@angular/router';
 import { UserManagementComponent } from './user-management/user-management.component';
-import { UserResolve } from './user-management/user-management.route';
 
 @NgModule({
   imports: [
@@ -12,7 +11,6 @@ import { UserResolve } from './user-management/user-management.route';
     SharedModule,
     RouterModule.forChild(adminState)
   ],
-  declarations: [UserManagementComponent],
-  providers: [UserResolve]
+  declarations: [UserManagementComponent]
 })
 export class AdminModule { }
