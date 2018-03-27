@@ -1,3 +1,51 @@
-<p>
-  all-article works!
-</p>
+<div class="container">
+  <div class="row">
+    <table class="table table-striped" cellspacing="0" width="100%">
+      <thead>
+        <tr>
+          <th>Картинка</th>
+          <th>Информация</th>
+          <th>Действия</th>
+        </tr>
+      </thead>
+      <tbody *ngIf="articles && articles.length">
+        <tr *ngFor="let article of articles">
+          <td><img src="https://i.ytimg.com/vi/GaERL8Nrl9k/mqdefault.jpg" width="150" alt="{{ article.title }}"></td>
+          <td>
+            <ul>
+              <li>Название: <strong>{{ article.title }}</strong></li>
+              <li>Текст: <strong>{{ article.text | slice:0:100 }}</strong></li>
+              <li>Автор: <strong>{{ article.user.login }}</strong></li>
+              <li>Дата публикации: <strong>{{ article.createdDate | dateConverter }}</strong></li>
+            </ul>
+          </td>
+          <td>
+            <span *ngIf="currentAccount.login === article.user.login || currentAccount.authorities.indexOf('ROLE_ADMIN') > -1">
+              <ul>
+                <li>
+                  <button class="btn btn-link p-a-5" (click)="deleteArticle(article.id)"><i class="fa fa-trash-o"></i></button>
+                </li>
+                <li>
+                  <a class="btn btn-link p-a-5" [routerLink]="['/moderator/article', article.id]"><i class="fa fa-pencil"></i></a>
+                </li>
+              </ul>
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="pagination-results m-t-10" *ngIf="articles && articles.length">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="page"
+        [pageSize]="postsPerPage"
+        [maxSize]="5"
+        (pageChange)="loadPage(page)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

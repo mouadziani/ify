@@ -1,6 +1,5 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { User } from '../../shared/user/user.model';
-import { Subscription } from 'rxjs/Subscription';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../../shared/user/user.service';
 import { POSTS_PER_PAGE } from '../../app.constants';
@@ -11,7 +10,7 @@ import { Account } from '../../shared/user/account.model';
   selector: 'ify-user-management',
   templateUrl: './user-management.component.html'
 })
-export class UserManagementComponent implements OnInit, OnDestroy {
+export class UserManagementComponent implements OnInit {
 
   users: User[];
   routeData;
@@ -20,8 +19,6 @@ export class UserManagementComponent implements OnInit, OnDestroy {
   predicate;
   totalItems;
   postsPerPage;
-  sub: Subscription;
-  deleteSub: Subscription;
   currentAccount: Account;
 
   constructor(
@@ -46,7 +43,7 @@ export class UserManagementComponent implements OnInit, OnDestroy {
   }
 
   loadAll() {
-    this.sub = this.userService.query({
+    this.userService.query({
       page: this.page - 1,
       size: this.postsPerPage,
       sort: ['id,desc']
@@ -71,12 +68,7 @@ export class UserManagementComponent implements OnInit, OnDestroy {
   }
 
   deleteUser(login: string) {
-    this.deleteSub = this.userService.delete(login).subscribe();
+    this.userService.delete(login).subscribe();
     this.loadAll();
-  }
-
-  ngOnDestroy() {
-    this.sub.unsubscribe();
-    this.deleteSub.unsubscribe();
   }
 }
