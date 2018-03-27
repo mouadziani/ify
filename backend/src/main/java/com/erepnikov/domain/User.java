@@ -21,7 +21,7 @@ public class User extends AbstractAuditingEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
     @SequenceGenerator(name = "sequenceGenerator")
-    private Long id;
+    private Integer id;
 
     @NotNull
     @Pattern(regexp = Constants.LOGIN_REGEX)
@@ -58,11 +58,11 @@ public class User extends AbstractAuditingEntity {
     @BatchSize(size = 20)
     private Set<Authority> authorities = new HashSet<>();
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

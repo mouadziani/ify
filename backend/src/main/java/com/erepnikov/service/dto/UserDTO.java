@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 
 public class UserDTO {
 
-    private Long id;
+    private Integer id;
 
     @NotBlank
     @Pattern(regexp = Constants.LOGIN_REGEX)
@@ -50,11 +50,11 @@ public class UserDTO {
                 .collect(Collectors.toSet());
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
