@@ -14,9 +14,9 @@
         <td>
           <ul>
             <li>Название: <strong>{{ n.title }}</strong></li>
-            <li>Текст: <strong>{{ n.text | slice:0:100 }}</strong></li>
             <li>Автор: <strong>{{ n.user.login }}</strong></li>
             <li>Дата публикации: <strong>{{ n.createdDate | dateConverter }}</strong></li>
+            <li>Текст: <strong [innerHtml]="n.text | textSlicer"></strong></li>
           </ul>
         </td>
         <td>

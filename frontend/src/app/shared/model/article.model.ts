@@ -6,7 +6,7 @@ export class Article {
     public id?: number,
     public title?: string,
     public text?: string,
-    public articleCategory?: ArticleCategory,
+    public category?: ArticleCategory,
     public user?: User,
     public createdDate?: Date
   ) {}

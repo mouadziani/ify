@@ -5,3 +5,4 @@ export const MONTHS_IN_RUSSIAN = [
   'Май', 'Июнь', 'Июль', 'Август',
   'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'
 ];
+export const YOUTUBE_PATH = 'https://www.youtube.com/embed/';

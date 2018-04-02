@@ -19,6 +19,10 @@ import { PaginationService } from './service/pagination.service';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ResolvePagingParamsService } from './service/resolve-paging-params.service';
 import { DateConverterPipe } from './pipe/date-converter.pipe';
+import { ArticleCategoryService } from './service/article-category.service';
+import { VideoCategoryService } from './service/video-category.service';
+import { NewsCategoryService } from './service/news-category.service';
+import { TextSlicerPipe } from './pipe/text-slicer.pipe';
 
 @NgModule({
   imports: [
@@ -30,7 +34,8 @@ import { DateConverterPipe } from './pipe/date-converter.pipe';
   ],
   declarations: [
     HasAnyAuthorityDirective,
-    DateConverterPipe
+    DateConverterPipe,
+    TextSlicerPipe
   ],
   providers: [
     BaseApiService,
@@ -47,7 +52,10 @@ import { DateConverterPipe } from './pipe/date-converter.pipe';
     ArticleService,
     VideoService,
     PaginationService,
-    ResolvePagingParamsService
+    ResolvePagingParamsService,
+    ArticleCategoryService,
+    VideoCategoryService,
+    NewsCategoryService
   ],
   exports: [
     HasAnyAuthorityDirective,
@@ -55,7 +63,8 @@ import { DateConverterPipe } from './pipe/date-converter.pipe';
     FormsModule,
     ReactiveFormsModule,
     NgbModule,
-    DateConverterPipe
+    DateConverterPipe,
+    TextSlicerPipe
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

@@ -9,11 +9,7 @@ export class BaseApiService {
   constructor(private http: HttpClient, private tokenExtractor: HttpXsrfTokenExtractor) {}
 
   post<T>(url: string, data: any): Observable<any> {
-    return this.http.post<T>(SERVER_API_URL + url, data, {
-      headers: new HttpHeaders({
-        'X-XSRF-TOKEN': this.tokenExtractor.getToken()
-      })
-    });
+    return this.http.post<T>(SERVER_API_URL + url, data, this.getOptions());
   }
 
   getWithPagination<T>(url: string, req?: any): Observable<any> {
@@ -26,15 +22,19 @@ export class BaseApiService {
   }
 
   put<T>(url: string, data: any): Observable<any> {
-    return this.http.put<T>(SERVER_API_URL + url, data);
+    return this.http.put<T>(SERVER_API_URL + url, data, this.getOptions());
   }
 
   delete<T>(url: string): Observable<any> {
-    return this.http.delete<T>(SERVER_API_URL + url, {
+    return this.http.delete<T>(SERVER_API_URL + url, this.getOptions());
+  }
+
+  private getOptions(): any {
+    return {
       headers: new HttpHeaders({
         'X-XSRF-TOKEN': this.tokenExtractor.getToken()
       })
-    });
+    };
   }
 
   private createRequestOption(req?: any): HttpParams {

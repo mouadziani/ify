@@ -2,7 +2,6 @@ import { Routes } from '@angular/router';
 import { ResolvePagingParamsService } from '../../shared/service/resolve-paging-params.service';
 import { AllArticleComponent } from './all-article/all-article.component';
 import { CreateArticleComponent } from './create-article/create-article.component';
-import { EditArticleComponent } from './edit-article/edit-article.component';
 
 export const managementArticleRoute: Routes = [
   {
@@ -22,7 +21,7 @@ export const managementArticleRoute: Routes = [
     }
   }, {
     path: 'article/:id',
-    component: EditArticleComponent,
+    component: CreateArticleComponent,
     data: {
       pageTitle: 'Редактирование статьи - IdeaForYou'
     }

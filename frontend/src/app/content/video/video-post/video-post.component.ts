@@ -5,7 +5,8 @@ import { Subscription } from 'rxjs/Subscription';
 import { VideoService } from '../../../shared/service/video.service';
 import { NewsService } from '../../../shared/service/news.service';
 import { ActivatedRoute } from '@angular/router';
-import { Meta, Title } from '@angular/platform-browser';
+import { Meta, Title, DomSanitizer } from '@angular/platform-browser';
+import { YOUTUBE_PATH } from '../../../app.constants';
 
 @Component({
   selector: 'ify-video-post',
@@ -14,6 +15,7 @@ import { Meta, Title } from '@angular/platform-browser';
 export class VideoPostComponent implements OnInit, OnDestroy {
 
   video: Video;
+  videoUrl: any;
   lastNews: News[];
   routeSub: Subscription;
   videoSub: Subscription;
@@ -24,7 +26,8 @@ export class VideoPostComponent implements OnInit, OnDestroy {
     private newsService: NewsService,
     private route: ActivatedRoute,
     private title: Title,
-    private meta: Meta
+    private meta: Meta,
+    private sanitizer: DomSanitizer
   ) {}
 
   ngOnInit() {
@@ -32,6 +35,7 @@ export class VideoPostComponent implements OnInit, OnDestroy {
       this.videoSub = this.videoService.find(params['id'])
         .subscribe(res => {
           this.video = res;
+          this.videoUrl = this.sanitizer.bypassSecurityTrustResourceUrl(YOUTUBE_PATH + this.video.videoUrl);
           this.title.setTitle(res.title + ' - IdeaForYou');
           this.meta.addTags([
             { name: 'description', content: res.text }

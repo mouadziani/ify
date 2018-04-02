@@ -11,8 +11,8 @@ export class ArticleService {
 
   constructor(private api: BaseApiService) {}
 
-  create(article: Article): Observable<any> {
-    return this.api.post(this.url, article);
+  create(article: Article): Observable<Article> {
+    return this.api.post<Article>(this.url, article);
   }
 
   update(article: Article): Observable<any> {

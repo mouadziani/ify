@@ -14,9 +14,9 @@
         <td>
           <ul>
             <li>Название: <strong>{{ video.title }}</strong></li>
-            <li>Текст: <strong>{{ video.text | slice:0:100 }}</strong></li>
             <li>Автор: <strong>{{ video.user.login }}</strong></li>
             <li>Дата публикации: <strong>{{ video.createdDate | dateConverter }}</strong></li>
+            <li>Текст: <strong [innerHtml]="video.text | textSlicer"></strong></li>
           </ul>
         </td>
         <td>

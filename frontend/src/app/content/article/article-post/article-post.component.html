@@ -21,9 +21,9 @@
             </span>
           </div>
           <div class="post-thumbnail">
-            <img src="assets/img/blog/blog-lg-1.jpg" alt="{{ article.title }}">
+            <img src="assets/img/blog/blog-lg-1.jpg" [alt]="article.title">
           </div>
-          <div>{{ article.text }}</div>
+          <div [innerHtml]="article.text"></div>
         </div>
         <div class="post-actions">
           <div class="post-tags">
@@ -45,12 +45,11 @@
             <div class="col-12 col-sm-6 col-md-3" *ngFor="let n of lastNews">
               <div class="card card-widget">
                 <div class="card-img">
-                  <a [routerLink]="['/news', n.id]"><img src="assets/img/blog/blog-related-1.jpg" alt="{{ n.title }}"></a>
+                  <a [routerLink]="['/news', n.id]"><img src="assets/img/blog/blog-related-1.jpg" [alt]="n.title"></a>
                 </div>
                 <div class="card-block">
                   <h4 class="card-title"><a [routerLink]="['/news', n.id]">{{ n.title }}</a></h4>
                   <div class="card-meta"><span><i class="fa fa-clock-o"></i> {{ n.createdDate | dateConverter }}</span></div>
-                  <p>{{ n | slice:0:100 }}...</p>
                 </div>
               </div>
             </div>

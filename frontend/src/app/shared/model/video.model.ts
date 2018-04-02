@@ -6,7 +6,8 @@ export class Video {
     public id?: number,
     public title?: string,
     public text?: string,
-    public videoCategory?: VideoCategory,
+    public videoUrl?: string,
+    public category?: VideoCategory,
     public user?: User,
     public createdDate?: Date
   ) {}
