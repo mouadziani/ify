@@ -1,5 +1,7 @@
 package com.erepnikov.service;
 
+import java.util.List;
+
 import com.erepnikov.domain.NewsCategory;
 import com.erepnikov.repository.NewsCategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,5 +23,13 @@ public class NewsCategoryService {
 
     public void delete(Integer id) {
         this.newsCategoryRepository.delete(id);
+    }
+
+    public NewsCategory get(Integer id) {
+        return this.newsCategoryRepository.findOne(id);
+    }
+
+    public List<NewsCategory> getAll() {
+        return this.newsCategoryRepository.findAll();
     }
 }

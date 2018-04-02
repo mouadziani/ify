@@ -10,14 +10,14 @@ public class Article extends AbstractPost implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @ManyToOne
-    @JoinColumn(name = "article_category_id")
-    private ArticleCategory articleCategory;
+    @JoinColumn(name = "category_id")
+    private ArticleCategory category;
 
-    public ArticleCategory getArticleCategory() {
-        return articleCategory;
+    public ArticleCategory getCategory() {
+        return category;
     }
 
-    public void setArticleCategory(ArticleCategory articleCategory) {
-        this.articleCategory = articleCategory;
+    public void setCategory(ArticleCategory category) {
+        this.category = category;
     }
 }

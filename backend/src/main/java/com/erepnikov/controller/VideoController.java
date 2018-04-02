@@ -3,6 +3,8 @@ package com.erepnikov.controller;
 import com.erepnikov.controller.exceptions.ServerErrorException;
 import com.erepnikov.controller.util.PaginationUtil;
 import com.erepnikov.domain.Video;
+import com.erepnikov.security.SecurityUtils;
+import com.erepnikov.service.UserService;
 import com.erepnikov.service.VideoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -12,6 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 @RestController
@@ -20,18 +23,24 @@ public class VideoController {
 
     private VideoService videoService;
 
+    private UserService userService;
+
     @Autowired
-    public VideoController(VideoService videoService) {
+    public VideoController(VideoService videoService, UserService userService) {
         this.videoService = videoService;
+        this.userService = userService;
     }
 
     @PostMapping("/video")
-    public ResponseEntity<Void> createVideo(@RequestBody Video video) throws ServerErrorException {
+    public ResponseEntity<Video> createVideo(@RequestBody Video video) throws ServerErrorException {
         if (video.getId() != null) {
             throw new ServerErrorException("Video already have an ID");
         }
+        video.setCreatedDate(new Timestamp(System.currentTimeMillis()));
+        SecurityUtils.getCurrentUserLogin().ifPresent(login ->
+                this.userService.getUserWithAuthoritiesByLogin(login).ifPresent(video::setUser));
         this.videoService.save(video);
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(video, HttpStatus.OK);
     }
 
     @PutMapping("/video")
@@ -39,6 +48,7 @@ public class VideoController {
         if (video.getId() == null) {
             this.createVideo(video);
         }
+        video.setUser(this.videoService.get(video.getId()).getUser());
         this.videoService.save(video);
     }
 

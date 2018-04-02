@@ -3,7 +3,10 @@ package com.erepnikov.controller;
 import com.erepnikov.controller.exceptions.ServerErrorException;
 import com.erepnikov.controller.util.PaginationUtil;
 import com.erepnikov.domain.News;
+import com.erepnikov.security.SecurityUtils;
 import com.erepnikov.service.NewsService;
+import com.erepnikov.service.UserService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -12,6 +15,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 @RestController
@@ -20,18 +24,24 @@ public class NewsController {
 
     private NewsService newsService;
 
+    private UserService userService;
+
     @Autowired
-    public NewsController(NewsService newsService) {
+    public NewsController(NewsService newsService, UserService userService) {
         this.newsService = newsService;
+        this.userService = userService;
     }
 
     @PostMapping("/news")
-    public ResponseEntity<Void> createNews(@RequestBody News news) throws ServerErrorException {
+    public ResponseEntity<News> createNews(@RequestBody News news) throws ServerErrorException {
         if (news.getId() != null) {
             throw new ServerErrorException("News already have an ID");
         }
+        news.setCreatedDate(new Timestamp(System.currentTimeMillis()));
+        SecurityUtils.getCurrentUserLogin().ifPresent(login ->
+                this.userService.getUserWithAuthoritiesByLogin(login).ifPresent(news::setUser));
         this.newsService.save(news);
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(news, HttpStatus.OK);
     }
 
     @PutMapping("/news")
@@ -39,6 +49,7 @@ public class NewsController {
         if (news.getId() == null) {
             this.createNews(news);
         }
+        news.setUser(this.newsService.get(news.getId()).getUser());
         this.newsService.save(news);
     }
 

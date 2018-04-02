@@ -1,10 +1,12 @@
 package com.erepnikov.domain;
 
+import com.erepnikov.domain.interfaces.Category;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
 @MappedSuperclass
-public abstract class AbstractCategory implements Serializable {
+public abstract class AbstractCategory implements Serializable, Category {
 
     private static final long serialVersionUID = 1L;
 

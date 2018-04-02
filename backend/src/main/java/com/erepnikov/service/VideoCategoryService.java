@@ -5,6 +5,8 @@ import com.erepnikov.repository.VideoCategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class VideoCategoryService {
 
@@ -21,5 +23,13 @@ public class VideoCategoryService {
 
     public void delete(Integer id) {
         this.videoCategoryRepository.delete(id);
+    }
+
+    public VideoCategory get(Integer id) {
+        return this.videoCategoryRepository.findOne(id);
+    }
+
+    public List<VideoCategory> getAll() {
+        return this.videoCategoryRepository.findAll();
     }
 }

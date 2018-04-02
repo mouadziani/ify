@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api")
 public class ArticleCategoryController {
@@ -17,6 +19,16 @@ public class ArticleCategoryController {
     @Autowired
     public ArticleCategoryController(ArticleCategoryService articleCategoryService) {
         this.articleCategoryService = articleCategoryService;
+    }
+
+    @GetMapping("/article-category")
+    public ResponseEntity<List<ArticleCategory>> getAllArticleCategories() {
+        return new ResponseEntity<>(this.articleCategoryService.getAll(), HttpStatus.OK);
+    }
+
+    @GetMapping("/article-category/{id}")
+    public ResponseEntity<ArticleCategory> getArticleCategory(@PathVariable Integer id) {
+        return new ResponseEntity<>(this.articleCategoryService.get(id), HttpStatus.OK);
     }
 
     @PostMapping("/article-category")

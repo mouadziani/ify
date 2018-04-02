@@ -14,7 +14,7 @@ public class Video extends AbstractPost implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "video_category_id")
-    private VideoCategory videoCategory;
+    private VideoCategory category;
 
     public String getVideoUrl() {
         return videoUrl;
@@ -24,11 +24,11 @@ public class Video extends AbstractPost implements Serializable {
         this.videoUrl = videoUrl;
     }
 
-    public VideoCategory getVideoCategory() {
-        return videoCategory;
+    public VideoCategory getCategory() {
+        return category;
     }
 
-    public void setVideoCategory(VideoCategory videoCategory) {
-        this.videoCategory = videoCategory;
+    public void setCategory(VideoCategory category) {
+        this.category = category;
     }
 }

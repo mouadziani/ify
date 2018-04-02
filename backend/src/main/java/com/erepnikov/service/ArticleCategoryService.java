@@ -5,6 +5,8 @@ import com.erepnikov.repository.ArticleCategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ArticleCategoryService {
 
@@ -21,5 +23,13 @@ public class ArticleCategoryService {
 
     public void delete(Integer id) {
         this.articleCategoryRepository.delete(id);
+    }
+
+    public ArticleCategory get(Integer id) {
+        return this.articleCategoryRepository.findOne(id);
+    }
+
+    public List<ArticleCategory> getAll() {
+        return this.articleCategoryRepository.findAll();
     }
 }

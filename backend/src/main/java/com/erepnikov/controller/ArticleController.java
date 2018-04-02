@@ -3,7 +3,9 @@ package com.erepnikov.controller;
 import com.erepnikov.controller.exceptions.ServerErrorException;
 import com.erepnikov.controller.util.PaginationUtil;
 import com.erepnikov.domain.Article;
+import com.erepnikov.security.SecurityUtils;
 import com.erepnikov.service.ArticleService;
+import com.erepnikov.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -12,6 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 @RestController
@@ -20,18 +23,24 @@ public class ArticleController {
 
     private ArticleService articleService;
 
+    private UserService userService;
+
     @Autowired
-    public ArticleController(ArticleService articleService) {
+    public ArticleController(ArticleService articleService, UserService userService) {
         this.articleService = articleService;
+        this.userService = userService;
     }
 
     @PostMapping("/article")
-    public ResponseEntity<Void> createArticle(@RequestBody Article article) throws ServerErrorException {
+    public ResponseEntity<Article> createArticle(@RequestBody Article article) throws ServerErrorException {
         if (article.getId() != null) {
             throw new ServerErrorException("Article already have an ID");
         }
+        article.setCreatedDate(new Timestamp(System.currentTimeMillis()));
+        SecurityUtils.getCurrentUserLogin().ifPresent(login ->
+                this.userService.getUserWithAuthoritiesByLogin(login).ifPresent(article::setUser));
         this.articleService.save(article);
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(article, HttpStatus.OK);
     }
 
     @PutMapping("/article")
@@ -39,6 +48,7 @@ public class ArticleController {
         if (article.getId() == null) {
             this.createArticle(article);
         }
+        article.setUser(this.articleService.get(article.getId()).getUser());
         this.articleService.save(article);
     }
 

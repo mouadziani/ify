@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api")
 public class VideoCategoryController {
@@ -17,6 +19,16 @@ public class VideoCategoryController {
     @Autowired
     public VideoCategoryController(VideoCategoryService videoCategoryService) {
         this.videoCategoryService = videoCategoryService;
+    }
+
+    @GetMapping("/video-category")
+    public ResponseEntity<List<VideoCategory>> getAllArticles() {
+        return new ResponseEntity<>(this.videoCategoryService.getAll(), HttpStatus.OK);
+    }
+
+    @GetMapping("/video-category/{id}")
+    public ResponseEntity<VideoCategory> getVideoCategory(@PathVariable Integer id) {
+        return new ResponseEntity<>(this.videoCategoryService.get(id), HttpStatus.OK);
     }
 
     @PostMapping("/video-category")

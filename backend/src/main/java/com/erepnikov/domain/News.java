@@ -11,13 +11,13 @@ public class News extends AbstractPost implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "news_category_id")
-    private NewsCategory newsCategory;
+    private NewsCategory category;
 
-    public NewsCategory getNewsCategory() {
-        return newsCategory;
+    public NewsCategory getCategory() {
+        return category;
     }
 
-    public void setNewsCategory(NewsCategory newsCategory) {
-        this.newsCategory = newsCategory;
+    public void setCategory(NewsCategory category) {
+        this.category = category;
     }
 }

@@ -119,7 +119,7 @@ public class H2Bootstrap implements CommandLineRunner {
             news.setTitle("Test news number " + (i + 1));
             news.setText("Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam at consectetur dolor doloribus ducimus, earum expedita harum ipsam, laborum libero mollitia necessitatibus nostrum possimus quo ratione rem veritatis vero voluptatem!");
             news.setCreatedDate(new Timestamp(System.currentTimeMillis()));
-            news.setNewsCategory(newsCategory);
+            news.setCategory(newsCategory);
             news.setUser(this.userService.getUserWithAuthoritiesByLogin("moderator").get());
             this.newsService.save(news);
 
@@ -127,7 +127,7 @@ public class H2Bootstrap implements CommandLineRunner {
             article.setTitle("Test article number" + (i + 1));
             article.setText("Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam at consectetur dolor doloribus ducimus, earum expedita harum ipsam, laborum libero mollitia necessitatibus nostrum possimus quo ratione rem veritatis vero voluptatem!");
             article.setCreatedDate(new Timestamp(System.currentTimeMillis()));
-            article.setArticleCategory(articleCategory);
+            article.setCategory(articleCategory);
             article.setUser(this.userService.getUserWithAuthoritiesByLogin("moderator").get());
             this.articleService.save(article);
 
@@ -135,7 +135,7 @@ public class H2Bootstrap implements CommandLineRunner {
             video.setTitle("Test video number" + (i + 1));
             video.setText("Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam at consectetur dolor doloribus ducimus, earum expedita harum ipsam, laborum libero mollitia necessitatibus nostrum possimus quo ratione rem veritatis vero voluptatem!");
             video.setCreatedDate(new Timestamp(System.currentTimeMillis()));
-            video.setVideoCategory(videoCategory);
+            video.setCategory(videoCategory);
             video.setUser(this.userService.getUserWithAuthoritiesByLogin("moderator").get());
             this.videoService.save(video);
         }

@@ -1,5 +1,7 @@
 package com.erepnikov.controller;
 
+import java.util.List;
+
 import com.erepnikov.controller.exceptions.ServerErrorException;
 import com.erepnikov.domain.NewsCategory;
 import com.erepnikov.service.NewsCategoryService;
@@ -17,6 +19,16 @@ public class NewsCategoryController {
     @Autowired
     public NewsCategoryController(NewsCategoryService newsCategoryService) {
         this.newsCategoryService = newsCategoryService;
+    }
+
+    @GetMapping("/news-category")
+    public ResponseEntity<List<NewsCategory>> getAllArticleCategories() {
+        return new ResponseEntity<>(this.newsCategoryService.getAll(), HttpStatus.OK);
+    }
+
+    @GetMapping("/news-category/{id}")
+    public ResponseEntity<NewsCategory> getArticleCategory(@PathVariable Integer id) {
+        return new ResponseEntity<>(this.newsCategoryService.get(id), HttpStatus.OK);
     }
 
     @PostMapping("/news-category")
