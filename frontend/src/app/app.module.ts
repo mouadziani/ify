@@ -15,6 +15,7 @@ import { HttpClientModule, HttpClientXsrfModule } from '@angular/common/http';
 import { Ng2Webstorage } from 'ngx-webstorage';
 import { ContentModule } from './content/content.module';
 import { ModeratorModule } from './moderator/moderator.module';
+import { PagesModule } from './pages/pages.module';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { ModeratorModule } from './moderator/moderator.module';
     HttpClientModule,
     HttpClientXsrfModule,
     Ng2Webstorage.forRoot({ prefix: 'ify', separator: '-'}),
-    ContentModule
+    ContentModule,
+    PagesModule
   ],
   providers: [
     UserRouteAccessService,
