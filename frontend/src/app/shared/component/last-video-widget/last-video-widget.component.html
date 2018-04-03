@@ -1,0 +1,17 @@
+<div class="widget widget-video" *ngIf="video">
+  <h5 class="widget-title">Последнее видео</h5>
+  <div class="card card-video">
+    <div class="card-img">
+      <a [routerLink]="['/video', video.id]">
+        <img src="assets/img/blog/blog-widget-popular-1.jpg" [alt]="video.title">
+      </a>
+      <span class="badge badge-youtube">{{ video.category.name }}</span>
+    </div>
+    <div class="card-block">
+      <h4 class="card-title"><a [routerLink]="['/video', video.id]">{{ video.title }}</a></h4>
+      <div class="card-meta">
+        <span><i class="fa fa-clock-o"></i> {{ video.createdDate | dateConverter }}</span>
+      </div>
+    </div>
+  </div>
+</div>

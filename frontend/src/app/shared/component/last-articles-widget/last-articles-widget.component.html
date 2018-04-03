@@ -1,0 +1,17 @@
+<div class="widget widget-post">
+  <h5 class="widget-title">Последние статьи</h5>
+  <ul class="widget-list">
+    <li *ngFor="let article of articles">
+      <div class="widget-img">
+        <a [routerLink]="['/article', article.id]">
+          <img src="assets/img/blog/blog-widget-1.jpg" [alt]="article.title">
+        </a>
+      </div>
+      <div>
+        <h4><a [routerLink]="['/article', article.id]">{{ article.title }}</a></h4>
+        <span>{{ article.createdDate | dateConverter }}</span><br>
+        <span>{{ article.category.name }}</span>
+      </div>
+    </li>
+  </ul>
+</div>

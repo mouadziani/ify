@@ -1,6 +1,7 @@
 package com.erepnikov.domain;
 
 import javax.persistence.*;
+import org.hibernate.annotations.Type;
 import java.sql.Timestamp;
 
 @MappedSuperclass
@@ -14,6 +15,7 @@ public abstract class AbstractPost {
     private String title;
 
     @Column(name = "text")
+    @Type(type = "text")
     private String text;
 
     @ManyToOne

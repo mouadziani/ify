@@ -13,34 +13,43 @@
 
 <section>
   <div class="container">
-    <div class="row row-5">
-      <div class="col-12 col-sm-6 col-md-3" *ngFor="let a of articles">
-        <div class="card card-block">
-          <div class="card-img">
+    <div class="row">
+      <div class="col-lg-8">
+        <div class="post post-md" *ngFor="let a of articles">
+          <div class="post-thumbnail">
             <a [routerLink]="['/article', a.id]">
-              <img src="https://i.ytimg.com/vi/GaERL8Nrl9k/mqdefault.jpg" class="card-img-top" [alt]="a.title">
+              <img src="https://i.ytimg.com/vi/GaERL8Nrl9k/mqdefault.jpg" [alt]="a.title">
             </a>
-            <span class="badge badge-info">{{ a.category.name }}</span>
           </div>
-          <div class="card-block">
-            <h4 class="card-title"><a [routerLink]="['/article', a.id]">{{ a.title }}</a></h4>
-            <div class="card-meta">
+          <div class="post-block">
+            <h2 class="post-title">
+              <a [routerLink]="['/article', a.id]">{{ a.title }}</a>
+            </h2>
+            <div class="post-meta">
               <span><i class="fa fa-clock-o"></i> {{ a.createdDate | dateConverter }}</span>
+              <span><i class="fa fa-user"></i> <a href="#">{{ a.user.login }}</a></span>
+              <span><i class="fa fa-tag"></i> {{ a.category.name }}</span>
             </div>
             <p [innerHtml]="a.text | textSlicer"></p>
           </div>
         </div>
+        <div class="pagination-results m-t-10" *ngIf="articles && articles.length">
+          <ngb-pagination
+            [collectionSize]="totalItems"
+            [(page)]="page"
+            [pageSize]="postsPerPage"
+            [maxSize]="5"
+            (pageChange)="loadPage(page)"
+          ></ngb-pagination>
+        </div>
       </div>
-    </div>
-
-    <div class="pagination-results m-t-10" *ngIf="articles && articles.length">
-      <ngb-pagination
-        [collectionSize]="totalItems"
-        [(page)]="page"
-        [pageSize]="postsPerPage"
-        [maxSize]="5"
-        (pageChange)="loadPage(page)"
-      ></ngb-pagination>
+      <div class="col-lg-4">
+        <div class="sidebar">
+          <ify-vk-group-widget></ify-vk-group-widget>
+          <ify-last-video-widget></ify-last-video-widget>
+          <ify-last-news-widget></ify-last-news-widget>
+        </div>
+      </div>
     </div>
   </div>
 </section>

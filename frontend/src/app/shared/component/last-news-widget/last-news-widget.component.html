@@ -1,0 +1,17 @@
+<div class="widget widget-post">
+  <h5 class="widget-title">Последние новости</h5>
+  <ul class="widget-list">
+    <li *ngFor="let n of news">
+      <div class="widget-img">
+        <a [routerLink]="['/news', n.id]">
+          <img src="assets/img/blog/blog-widget-1.jpg" [alt]="n.title">
+        </a>
+      </div>
+      <div>
+        <h4><a [routerLink]="['/news', n.id]">{{ n.title }}</a></h4>
+        <span>{{ n.createdDate | dateConverter }}</span>
+      </div>
+    </li>
+  </ul>
+</div>
+  

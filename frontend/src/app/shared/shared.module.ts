@@ -23,6 +23,11 @@ import { ArticleCategoryService } from './service/article-category.service';
 import { VideoCategoryService } from './service/video-category.service';
 import { NewsCategoryService } from './service/news-category.service';
 import { TextSlicerPipe } from './pipe/text-slicer.pipe';
+import { LastVideoWidgetComponent } from './component/last-video-widget/last-video-widget.component';
+import { LastArticlesWidgetComponent } from './component/last-articles-widget/last-articles-widget.component';
+import { LastNewsWidgetComponent } from './component/last-news-widget/last-news-widget.component';
+import { VkGroupWidgetComponent } from './component/vk-group-widget/vk-group-widget.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   imports: [
@@ -30,12 +35,17 @@ import { TextSlicerPipe } from './pipe/text-slicer.pipe';
     FormsModule,
     ReactiveFormsModule,
     CookieModule.forRoot(),
-    NgbModule.forRoot()
+    NgbModule.forRoot(),
+    RouterModule
   ],
   declarations: [
     HasAnyAuthorityDirective,
     DateConverterPipe,
-    TextSlicerPipe
+    TextSlicerPipe,
+    LastVideoWidgetComponent,
+    LastArticlesWidgetComponent,
+    LastNewsWidgetComponent,
+    VkGroupWidgetComponent
   ],
   providers: [
     BaseApiService,
@@ -64,7 +74,11 @@ import { TextSlicerPipe } from './pipe/text-slicer.pipe';
     ReactiveFormsModule,
     NgbModule,
     DateConverterPipe,
-    TextSlicerPipe
+    TextSlicerPipe,
+    LastVideoWidgetComponent,
+    LastArticlesWidgetComponent,
+    LastNewsWidgetComponent,
+    VkGroupWidgetComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
