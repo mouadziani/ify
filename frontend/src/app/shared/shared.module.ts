@@ -28,6 +28,7 @@ import { LastArticlesWidgetComponent } from './component/last-articles-widget/la
 import { LastNewsWidgetComponent } from './component/last-news-widget/last-news-widget.component';
 import { VkGroupWidgetComponent } from './component/vk-group-widget/vk-group-widget.component';
 import { RouterModule } from '@angular/router';
+import { LastNewsBottomComponent } from './component/last-news-bottom/last-news-bottom.component';
 
 @NgModule({
   imports: [
@@ -45,7 +46,8 @@ import { RouterModule } from '@angular/router';
     LastVideoWidgetComponent,
     LastArticlesWidgetComponent,
     LastNewsWidgetComponent,
-    VkGroupWidgetComponent
+    VkGroupWidgetComponent,
+    LastNewsBottomComponent
   ],
   providers: [
     BaseApiService,
@@ -78,7 +80,8 @@ import { RouterModule } from '@angular/router';
     LastVideoWidgetComponent,
     LastArticlesWidgetComponent,
     LastNewsWidgetComponent,
-    VkGroupWidgetComponent
+    VkGroupWidgetComponent,
+    LastNewsBottomComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

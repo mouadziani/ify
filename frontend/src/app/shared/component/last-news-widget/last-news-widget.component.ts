@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { News } from '../../model/news.model';
 import { NewsService } from '../../service/news.service';
 
@@ -8,6 +8,9 @@ import { NewsService } from '../../service/news.service';
 })
 export class LastNewsWidgetComponent implements OnInit {
 
+  @Input()
+  currentNews: News;
+
   news: News[];
 
   constructor(private newsService: NewsService) {}
@@ -15,10 +18,17 @@ export class LastNewsWidgetComponent implements OnInit {
   ngOnInit() {
     this.newsService.query({
       page: 0,
-      size: 4,
+      size: 5,
       sort: ['id,desc']
     }).subscribe(res => {
-      this.news = res.body;
+      if (this.currentNews) {
+        this.news = res.body.filter(n => n.id !== this.currentNews.id);
+        if (this.news.length !== 4) {
+          this.news.pop();
+        }
+      } else {
+        this.news = res.body.slice(0, 4);
+      }
     });
   }
 }

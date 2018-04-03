@@ -1,36 +1,25 @@
 <section>
   <div class="container">
     <div class="row">
-      <div class="col-lg-1 hidden-md-down">
-        <div class="widget widget-share" data-fixed="widget">
-          <div class="widget-block">
-            <a class="btn btn-social btn-facebook btn-circle" href="#" data-toggle="tooltip" title="Поделись в Facebook" data-placement="right" role="button"><i class="fa fa-facebook"></i></a>
-            <a class="btn btn-social btn-twitter btn-circle" href="#" data-toggle="tooltip" title="Поделись в Twitter" data-placement="right" role="button"><i class="fa fa-twitter"></i></a>
-            <a class="btn btn-social btn-google-plus btn-circle" href="#" data-toggle="tooltip" title="Поделись в Google Plus" data-placement="right" role="button"><i class="fa fa-google-plus"></i></a>
-            <a class="btn btn-social btn-vk btn-circle" href="#" data-toggle="tooltip" title="Поделись в ВК" data-placement="right" role="button"><i class="fa fa-vk"></i></a>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-10" *ngIf="news">
+      <div class="col-lg-8" *ngIf="news">
         <div class="post post-single">
           <h2 class="post-title">{{ news.title }}</h2>
           <div class="post-meta">
-            <span>
-              <i class="fa fa-clock-o"></i>{{ news.createdDate | dateConverter }} |
-              <i class="fa fa-user"></i><a href="#">{{ news.user.login }}</a>
-            </span>
+            <span><i class="fa fa-clock-o"></i> {{ news.createdDate | dateConverter }}</span>
+            <span><i class="fa fa-user"></i><a href="#">{{ news.user.login }}</a></span>
           </div>
           <div class="post-thumbnail">
-            <img src="assets/img/blog/blog-lg-1.jpg" [alt]="news.title">
+            <img src="assets/img/blog/blog-md.jpg" [alt]="news.title">
           </div>
           <div [innerHtml]="news.text"></div>
         </div>
+
         <div class="post-actions">
           <div class="post-tags">
-            <a href="#">#tag1</a>
-            <a href="#">#tag2</a>
-            <a href="#">#tag3</a>
-            <a href="#">#tag4</a>
+            <a href="#">#TAG</a>
+            <a href="#">#TAG</a>
+            <a href="#">#TAG</a>
+            <a href="#">#TAG</a>
           </div>
           <div class="social-share">
             <a class="btn btn-social btn-facebook btn-circle" href="#" data-toggle="tooltip" title="Поделись в Facebook" data-placement="bottom" role="button"><i class="fa fa-facebook"></i></a>
@@ -39,24 +28,15 @@
             <a class="btn btn-social btn-vk btn-circle" href="#" data-toggle="tooltip" title="Поделись в VK" data-placement="bottom" role="button"><i class="fa fa-vk"></i></a>
           </div>
         </div>
-        <div class="post-related">
-          <h6 class="subtitle">Последние Новости</h6>
-          <div class="row">
-            <div class="col-12 col-sm-6 col-md-3" *ngFor="let n of lastNews">
-              <div class="card card-widget">
-                <div class="card-img">
-                  <a [routerLink]="['/news', n.id]"><img src="assets/img/blog/blog-related-1.jpg" [alt]="n.title"></a>
-                </div>
-                <div class="card-block">
-                  <h4 class="card-title"><a [routerLink]="['/news', n.id]">{{ n.title }}</a></h4>
-                  <div class="card-meta"><span><i class="fa fa-clock-o"></i> {{ n.createdDate | dateConverter }}</span></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
         <div id="comments" class="comments anchor">
           TODO COMMENTS
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="sidebar">
+          <ify-vk-group-widget></ify-vk-group-widget>
+          <ify-last-video-widget></ify-last-video-widget>
+          <ify-last-news-widget [currentNews]="news"></ify-last-news-widget>
         </div>
       </div>
     </div>

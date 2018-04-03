@@ -1,0 +1,16 @@
+<div class="post-related">
+  <h6 class="subtitle">Последние Новости</h6>
+  <div class="row">
+    <div class="col-12 col-sm-6 col-md-3" *ngFor="let n of news">
+      <div class="card card-widget">
+        <div class="card-img">
+          <a [routerLink]="['/news', n.id]"><img src="assets/img/blog/blog-related-1.jpg" [alt]="n.title"></a>
+        </div>
+        <div class="card-block">
+          <h4 class="card-title"><a [routerLink]="['/news', n.id]">{{ n.title }}</a></h4>
+          <div class="card-meta"><span><i class="fa fa-clock-o"></i> {{ n.createdDate | dateConverter }}</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
