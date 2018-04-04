@@ -14,6 +14,10 @@ public abstract class AbstractPost {
     @Column(name = "title")
     private String title;
 
+    @Column(name = "image")
+    @Type(type = "text")
+    private String image;
+
     @Column(name = "text")
     @Type(type = "text")
     private String text;
@@ -39,6 +43,14 @@ public abstract class AbstractPost {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getImage() {
+        return this.image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public String getText() {

@@ -4,7 +4,7 @@
     <div class="col-12 col-sm-6 col-md-3" *ngFor="let n of news">
       <div class="card card-widget">
         <div class="card-img">
-          <a [routerLink]="['/news', n.id]"><img src="assets/img/blog/blog-related-1.jpg" [alt]="n.title"></a>
+          <a [routerLink]="['/news', n.id]"><img [src]="n.image" [alt]="n.title"></a>
         </div>
         <div class="card-block">
           <h4 class="card-title"><a [routerLink]="['/news', n.id]">{{ n.title }}</a></h4>

@@ -18,7 +18,7 @@
         <div class="card card-video">
           <div class="card-img">
             <a [routerLink]="['/video', v.id]">
-              <img src="https://i1.ytimg.com/vi/GaERL8Nrl9k/mqdefault.jpg" [alt]="v.title">
+              <img [src]="v.image" [alt]="v.title">
             </a>
             <span class="badge badge-youtube">{{ v.category.name }}</span>
             <!--<div class="card-meta">-->

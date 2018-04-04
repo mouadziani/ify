@@ -42,6 +42,14 @@ export class CreateVideoComponent implements OnInit {
     });
   }
 
+  saveImg($event) {
+    const reader: FileReader = new FileReader();
+    reader.onloadend = () => {
+      this.video.image = reader.result;
+    };
+    reader.readAsDataURL($event.target.files[0]);
+  }
+
   save() {
     this.video.text = $('#text').summernote('code');
     if (this.video.id === undefined) {

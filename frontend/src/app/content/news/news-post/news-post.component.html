@@ -9,7 +9,7 @@
             <span><i class="fa fa-user"></i><a href="#">{{ news.user.login }}</a></span>
           </div>
           <div class="post-thumbnail">
-            <img src="assets/img/blog/blog-md.jpg" [alt]="news.title">
+            <img [src]="news.image" [alt]="news.title">
           </div>
           <div [innerHtml]="news.text"></div>
         </div>

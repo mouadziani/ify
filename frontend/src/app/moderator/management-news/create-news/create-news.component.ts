@@ -42,6 +42,14 @@ export class CreateNewsComponent implements OnInit {
     });
   }
 
+  saveImg($event) {
+    const reader: FileReader = new FileReader();
+    reader.onloadend = () => {
+      this.news.image = reader.result;
+    };
+    reader.readAsDataURL($event.target.files[0]);
+  }
+
   save() {
     this.news.text = $('#text').summernote('code');
     if (this.news.id === undefined) {

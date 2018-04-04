@@ -6,6 +6,7 @@ export class News {
     public id?: number,
     public title?: string,
     public text?: string,
+    public image?: string,
     public category?: NewsCategory,
     public user?: User,
     public createdDate?: Date

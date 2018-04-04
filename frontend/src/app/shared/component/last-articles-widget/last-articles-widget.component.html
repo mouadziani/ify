@@ -4,7 +4,7 @@
     <li *ngFor="let article of articles">
       <div class="widget-img">
         <a [routerLink]="['/article', article.id]">
-          <img src="assets/img/blog/blog-widget-1.jpg" [alt]="article.title">
+          <img [src]="article.image" [alt]="article.title">
         </a>
       </div>
       <div>

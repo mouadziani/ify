@@ -42,6 +42,14 @@ export class CreateArticleComponent implements OnInit {
     });
   }
 
+  saveImg($event) {
+    const reader: FileReader = new FileReader();
+    reader.onloadend = () => {
+      this.article.image = reader.result;
+    };
+    reader.readAsDataURL($event.target.files[0]);
+  }
+
   save() {
     this.article.text = $('#text').summernote('code');
     if (this.article.id === undefined) {

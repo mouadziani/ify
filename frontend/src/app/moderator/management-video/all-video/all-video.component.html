@@ -10,7 +10,7 @@
       </thead>
       <tbody *ngIf="videos && videos.length">
       <tr *ngFor="let video of videos">
-        <td><img src="https://i.ytimg.com/vi/GaERL8Nrl9k/mqdefault.jpg" width="150" alt="{{ video.title }}"></td>
+        <td><img [src]="video.image" width="150" alt="{{ video.title }}"></td>
         <td>
           <ul>
             <li>Название: <strong>{{ video.title }}</strong></li>

@@ -21,7 +21,7 @@
             </span>
           </div>
           <div class="post-thumbnail">
-            <img src="assets/img/blog/blog-lg-1.jpg" [alt]="article.title">
+            <img [src]="article.image" [alt]="article.title">
           </div>
           <div [innerHtml]="article.text"></div>
         </div>

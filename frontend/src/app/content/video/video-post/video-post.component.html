@@ -1,4 +1,4 @@
-<section class="bg-image" style="background-image: url('https://img.youtube.com/vi/zSd9McRXHZ8/maxresdefault.jpg');">
+<section *ngIf="video" class="bg-image" style="background-image: url('{{ video.image }}');">
   <div class="overlay-light"></div>
   <div class="container">
     <div class="embed-responsive embed-responsive-16by9">
@@ -7,10 +7,10 @@
   </div>
 </section>
 
-<section>
+<section *ngIf="video">
   <div class="container">
     <div class="row">
-      <div class="col-lg-9" *ngIf="video">
+      <div class="col-lg-9">
         <div class="post post-single">
           <div class="post-header">
             <div>
@@ -47,18 +47,9 @@
       </div>
       <div class="col-lg-3">
         <div class="sidebar">
-          <div class="widget widget-videos">
-            <h5 class="widget-title">Последние Новости</h5>
-            <ul class="widget-list">
-              <li *ngFor="let n of lastNews">
-                <div class="widget-img">
-                  <a [routerLink]="['/news', n.id]"><img src="https://i1.ytimg.com/vi/4BLkEJu9szM/mqdefault.jpg" [alt]="n.title"></a>
-                </div>
-                <h4><a [routerLink]="['/news', n.id]">{{ n.title }}</a></h4>
-                <span><i class="fa fa-clock-o"></i> {{ n.createdDate | dateConverter }}</span>
-              </li>
-            </ul>
-          </div>
+            <ify-vk-group-widget></ify-vk-group-widget>
+            <ify-last-news-widget></ify-last-news-widget>
+            <ify-last-articles-widget></ify-last-articles-widget>
         </div>
       </div>
     </div>

@@ -3,7 +3,7 @@
   <div class="card card-video">
     <div class="card-img">
       <a [routerLink]="['/video', video.id]">
-        <img src="assets/img/blog/blog-widget-popular-1.jpg" [alt]="video.title">
+        <img [src]="video.image" [alt]="video.title">
       </a>
       <span class="badge badge-youtube">{{ video.category.name }}</span>
     </div>

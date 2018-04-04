@@ -18,7 +18,7 @@
         <div class="post post-md" *ngFor="let n of news">
           <div class="post-thumbnail">
             <a [routerLink]="['/news', n.id]">
-              <img src="https://i.ytimg.com/vi/GaERL8Nrl9k/mqdefault.jpg" [alt]="n.title">
+              <img [src]="n.image" [alt]="n.title">
             </a>
           </div>
           <div class="post-block">

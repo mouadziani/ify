@@ -10,7 +10,7 @@
       </thead>
       <tbody *ngIf="articles && articles.length">
         <tr *ngFor="let article of articles">
-          <td><img src="https://i.ytimg.com/vi/GaERL8Nrl9k/mqdefault.jpg" width="150" alt="{{ article.title }}"></td>
+          <td><img [src]="article.image" width="150" alt="{{ article.title }}"></td>
           <td>
             <ul>
               <li>Название: <strong>{{ article.title }}</strong></li>
