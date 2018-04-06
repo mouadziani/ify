@@ -1,20 +1,35 @@
 package com.erepnikov;
 
-import com.erepnikov.domain.*;
-import com.erepnikov.repository.AuthorityRepository;
+import com.erepnikov.domain.category.ArticleCategory;
+import com.erepnikov.domain.category.NewsCategory;
+import com.erepnikov.domain.category.VideoCategory;
+import com.erepnikov.domain.comment.ArticleComment;
+import com.erepnikov.domain.comment.NewsComment;
+import com.erepnikov.domain.comment.VideoComment;
+import com.erepnikov.domain.post.Article;
+import com.erepnikov.domain.post.News;
+import com.erepnikov.domain.post.Video;
+import com.erepnikov.repository.user.AuthorityRepository;
 import com.erepnikov.security.AuthoritiesConstants;
-import com.erepnikov.service.*;
+import com.erepnikov.service.category.ArticleCategoryService;
+import com.erepnikov.service.category.NewsCategoryService;
+import com.erepnikov.service.category.VideoCategoryService;
+import com.erepnikov.service.comment.ArticleCommentService;
+import com.erepnikov.service.comment.NewsCommentService;
+import com.erepnikov.service.comment.VideoCommentService;
 import com.erepnikov.service.dto.UserDTO;
 import com.erepnikov.service.mapper.UserMapper;
+import com.erepnikov.service.post.ArticleService;
+import com.erepnikov.service.post.NewsService;
+import com.erepnikov.service.post.VideoService;
+import com.erepnikov.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Timestamp;
@@ -26,23 +41,17 @@ import java.util.HashSet;
 public class H2Bootstrap implements CommandLineRunner {
 
     private NewsService newsService;
-
     private ArticleService articleService;
-
     private VideoService videoService;
-
     private UserService userService;
-
     private NewsCategoryService newsCategoryService;
-
     private ArticleCategoryService articleCategoryService;
-
     private VideoCategoryService videoCategoryService;
-
+    private NewsCommentService newsCommentService;
+    private ArticleCommentService articleCommentService;
+    private VideoCommentService videoCommentService;
     private AuthorityRepository authorityRepository;
-
     private UserMapper userMapper;
-
     private String imageInBase64;
 
     @Autowired
@@ -55,7 +64,10 @@ public class H2Bootstrap implements CommandLineRunner {
             ArticleCategoryService articleCategoryService,
             VideoCategoryService videoCategoryService,
             AuthorityRepository authorityRepository,
-            UserMapper userMapper
+            UserMapper userMapper,
+            NewsCommentService newsCommentService,
+            ArticleCommentService articleCommentService,
+            VideoCommentService videoCommentService
     ) {
         this.newsService = newsService;
         this.articleService = articleService;
@@ -66,6 +78,9 @@ public class H2Bootstrap implements CommandLineRunner {
         this.videoCategoryService = videoCategoryService;
         this.authorityRepository = authorityRepository;
         this.userMapper = userMapper;
+        this.newsCommentService = newsCommentService;
+        this.articleCommentService = articleCommentService;
+        this.videoCommentService = videoCommentService;
         this.setTestImage();
     }
 
@@ -171,6 +186,44 @@ public class H2Bootstrap implements CommandLineRunner {
             video.setVideoUrl("zeCmW6Kyx8o");
             video.setUser(this.userService.getUserWithAuthoritiesByLogin("moderator").get());
             this.videoService.save(video);
+        }
+
+        for (int i = 1; i < 16; i++) {
+            NewsComment comment1 = new NewsComment();
+            comment1.setText("lorem ipsum");
+            comment1.setUser(this.userService.getUserWithAuthoritiesByLogin("user2").get());
+            comment1.setNews(this.newsService.get(i));
+            this.newsCommentService.save(comment1);
+
+            NewsComment comment2 = new NewsComment();
+            comment2.setText("lorem ipsum");
+            comment2.setUser(this.userService.getUserWithAuthoritiesByLogin("moderator").get());
+            comment2.setNews(this.newsService.get(i));
+            this.newsCommentService.save(comment2);
+
+            ArticleComment comment3 = new ArticleComment();
+            comment3.setText("lorem ipsum");
+            comment3.setUser(this.userService.getUserWithAuthoritiesByLogin("user2").get());
+            comment3.setArticle(this.articleService.get(i));
+            this.articleCommentService.save(comment3);
+
+            ArticleComment comment4 = new ArticleComment();
+            comment4.setText("lorem ipsum");
+            comment4.setUser(this.userService.getUserWithAuthoritiesByLogin("moderator").get());
+            comment4.setArticle(this.articleService.get(i));
+            this.articleCommentService.save(comment4);
+
+            VideoComment comment5 = new VideoComment();
+            comment5.setText("lorem ipsum");
+            comment5.setUser(this.userService.getUserWithAuthoritiesByLogin("user2").get());
+            comment5.setVideo(this.videoService.get(i));
+            this.videoCommentService.save(comment5);
+
+            VideoComment comment6 = new VideoComment();
+            comment6.setText("lorem ipsum");
+            comment6.setUser(this.userService.getUserWithAuthoritiesByLogin("moderator").get());
+            comment6.setVideo(this.videoService.get(i));
+            this.videoCommentService.save(comment6);
         }
     }
 }

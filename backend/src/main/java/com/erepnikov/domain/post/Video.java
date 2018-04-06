@@ -1,7 +1,12 @@
-package com.erepnikov.domain;
+package com.erepnikov.domain.post;
+
+import com.erepnikov.domain.category.VideoCategory;
+import com.erepnikov.domain.comment.VideoComment;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "video")
@@ -15,6 +20,9 @@ public class Video extends AbstractPost implements Serializable {
     @ManyToOne
     @JoinColumn(name = "video_category_id")
     private VideoCategory category;
+
+    @OneToMany(mappedBy = "video")
+    private List<VideoComment> comments = new ArrayList<>();
 
     public String getVideoUrl() {
         return videoUrl;
@@ -30,5 +38,13 @@ public class Video extends AbstractPost implements Serializable {
 
     public void setCategory(VideoCategory category) {
         this.category = category;
+    }
+
+    public List<VideoComment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<VideoComment> comments) {
+        this.comments = comments;
     }
 }
