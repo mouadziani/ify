@@ -19,6 +19,10 @@ public class VideoCommentService {
         this.videoCommentRepository.save(comment);
     }
 
+    public VideoComment get(Integer id) {
+        return this.videoCommentRepository.findOne(id);
+    }
+
     public void delete(Integer id) {
         this.videoCommentRepository.delete(id);
     }

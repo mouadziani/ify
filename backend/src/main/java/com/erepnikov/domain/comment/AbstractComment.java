@@ -3,6 +3,7 @@ package com.erepnikov.domain.comment;
 import com.erepnikov.domain.User;
 import org.hibernate.annotations.Type;
 
+import java.sql.Timestamp;
 import javax.persistence.*;
 
 @MappedSuperclass
@@ -19,6 +20,9 @@ public abstract class AbstractComment {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+
+    @Column(name = "created_date")
+    private Timestamp createdDate;
 
     public Integer getId() {
         return id;
@@ -42,5 +46,13 @@ public abstract class AbstractComment {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Timestamp getCreatedDate() {
+        return this.createdDate;
+    }
+
+    public void setCreatedDate(Timestamp createdDate) {
+        this.createdDate = createdDate;
     }
 }

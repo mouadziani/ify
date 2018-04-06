@@ -120,6 +120,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                     .antMatchers(HttpMethod.GET, "/api/**").permitAll()
                     .antMatchers("/api/**").authenticated()
                     .antMatchers(HttpMethod.POST, "/api/**/comment").hasAuthority(AuthoritiesConstants.USER)
+                    .antMatchers(HttpMethod.DELETE, "/api/**/comment").hasAuthority(AuthoritiesConstants.USER)
                     .antMatchers("/api/**").hasAuthority(AuthoritiesConstants.MODERATOR);
 
     }

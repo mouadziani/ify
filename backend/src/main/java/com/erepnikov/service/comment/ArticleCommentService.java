@@ -19,6 +19,10 @@ public class ArticleCommentService {
         this.articleCommentRepository.save(comment);
     }
 
+    public ArticleComment get(Integer id) {
+        return this.articleCommentRepository.findOne(id);
+    }
+
     public void delete(Integer id) {
         this.articleCommentRepository.delete(id);
     }
