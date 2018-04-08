@@ -3,9 +3,9 @@ package com.erepnikov.service.comment;
 import com.erepnikov.domain.comment.Comment;
 import com.erepnikov.repository.comment.CommentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class CommentService {
@@ -25,8 +25,8 @@ public class CommentService {
         return this.commentRepository.findOne(id);
     }
 
-    public Page<Comment> getAll(Pageable pageable) {
-        return this.commentRepository.findAll(pageable);
+    public List<Comment> getAll(String type) {
+        return this.commentRepository.findAllByType(type);
     }
 
     public void delete(Integer id) {

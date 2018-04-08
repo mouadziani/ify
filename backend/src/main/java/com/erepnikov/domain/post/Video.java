@@ -1,13 +1,9 @@
 package com.erepnikov.domain.post;
 
 import com.erepnikov.domain.category.VideoCategory;
-import com.erepnikov.domain.comment.Comment;
-import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Table(name = "video")
