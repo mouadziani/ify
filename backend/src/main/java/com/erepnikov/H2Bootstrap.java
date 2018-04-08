@@ -193,6 +193,7 @@ public class H2Bootstrap implements CommandLineRunner {
             Comment comment1 = new Comment();
             comment1.setText("lorem ipsum");
             comment1.setUser(this.userService.getUserWithAuthoritiesByLogin("user2").get());
+            comment1.setPostId(i);
             comment1.setType(CommentDiscriminators.NEWS_DISCRIMINATOR);
             comment1.setCreatedDate(new Timestamp(System.currentTimeMillis()));
             this.commentService.save(comment1);
@@ -200,6 +201,7 @@ public class H2Bootstrap implements CommandLineRunner {
             Comment comment2 = new Comment();
             comment2.setText("lorem ipsum");
             comment2.setUser(this.userService.getUserWithAuthoritiesByLogin("moderator").get());
+            comment2.setPostId(i);
             comment2.setType(CommentDiscriminators.NEWS_DISCRIMINATOR);
             comment2.setCreatedDate(new Timestamp(System.currentTimeMillis()));
             this.commentService.save(comment2);
@@ -207,6 +209,7 @@ public class H2Bootstrap implements CommandLineRunner {
             Comment comment3 = new Comment();
             comment3.setText("lorem ipsum");
             comment3.setUser(this.userService.getUserWithAuthoritiesByLogin("user2").get());
+            comment3.setPostId(i);
             comment3.setType(CommentDiscriminators.ARTICLE_DISCRIMINATOR);
             comment3.setCreatedDate(new Timestamp(System.currentTimeMillis()));
             this.commentService.save(comment3);
@@ -214,6 +217,7 @@ public class H2Bootstrap implements CommandLineRunner {
             Comment comment4 = new Comment();
             comment4.setText("lorem ipsum");
             comment4.setUser(this.userService.getUserWithAuthoritiesByLogin("moderator").get());
+            comment4.setPostId(i);
             comment4.setType(CommentDiscriminators.ARTICLE_DISCRIMINATOR);
             comment4.setCreatedDate(new Timestamp(System.currentTimeMillis()));
             this.commentService.save(comment4);
@@ -221,6 +225,7 @@ public class H2Bootstrap implements CommandLineRunner {
             Comment comment5 = new Comment();
             comment5.setText("lorem ipsum");
             comment5.setUser(this.userService.getUserWithAuthoritiesByLogin("user2").get());
+            comment5.setPostId(i);
             comment5.setType(CommentDiscriminators.VIDEO_DISCRIMINATOR);
             comment5.setCreatedDate(new Timestamp(System.currentTimeMillis()));
             this.commentService.save(comment5);
@@ -228,6 +233,7 @@ public class H2Bootstrap implements CommandLineRunner {
             Comment comment6 = new Comment();
             comment6.setText("lorem ipsum");
             comment6.setUser(this.userService.getUserWithAuthoritiesByLogin("moderator").get());
+            comment6.setPostId(i);
             comment6.setType(CommentDiscriminators.VIDEO_DISCRIMINATOR);
             comment6.setCreatedDate(new Timestamp(System.currentTimeMillis()));
             this.commentService.save(comment6);

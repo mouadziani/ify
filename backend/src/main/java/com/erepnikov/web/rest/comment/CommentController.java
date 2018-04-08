@@ -34,9 +34,12 @@ public class CommentController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @GetMapping("/comment/news")
-    public ResponseEntity<List<Comment>> getAllNewsComments() {
-        return new ResponseEntity<>(this.commentService.getAll(CommentDiscriminators.NEWS_DISCRIMINATOR), HttpStatus.OK);
+    @GetMapping("/comment/news/{id}")
+    public ResponseEntity<List<Comment>> getAllNewsComments(@PathVariable Integer postId) {
+        return new ResponseEntity<>(
+                this.commentService.getAllByPost(postId, CommentDiscriminators.NEWS_DISCRIMINATOR),
+                HttpStatus.OK
+        );
     }
 
     @PostMapping("/comment/article")
@@ -45,9 +48,12 @@ public class CommentController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @GetMapping("/comment/article")
-    public ResponseEntity<List<Comment>> getAllArticleComments() {
-        return new ResponseEntity<>(this.commentService.getAll(CommentDiscriminators.ARTICLE_DISCRIMINATOR), HttpStatus.OK);
+    @GetMapping("/comment/article/{id}")
+    public ResponseEntity<List<Comment>> getAllArticleComments(@PathVariable Integer postId) {
+        return new ResponseEntity<>(
+                this.commentService.getAllByPost(postId, CommentDiscriminators.ARTICLE_DISCRIMINATOR),
+                HttpStatus.OK
+        );
     }
 
     @PostMapping("/comment/video")
@@ -56,9 +62,12 @@ public class CommentController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @GetMapping("/comment/video")
-    public ResponseEntity<List<Comment>> getAllVideoComments() {
-        return new ResponseEntity<>(this.commentService.getAll(CommentDiscriminators.VIDEO_DISCRIMINATOR), HttpStatus.OK);
+    @GetMapping("/comment/video/{id}")
+    public ResponseEntity<List<Comment>> getAllVideoComments(@PathVariable Integer postId) {
+        return new ResponseEntity<>(
+                this.commentService.getAllByPost(postId, CommentDiscriminators.VIDEO_DISCRIMINATOR),
+                HttpStatus.OK
+        );
     }
 
     @DeleteMapping("/comment/{id}")
