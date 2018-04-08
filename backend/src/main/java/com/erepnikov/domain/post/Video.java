@@ -1,7 +1,8 @@
 package com.erepnikov.domain.post;
 
 import com.erepnikov.domain.category.VideoCategory;
-import com.erepnikov.domain.comment.VideoComment;
+import com.erepnikov.domain.comment.Comment;
+import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -21,9 +22,6 @@ public class Video extends AbstractPost implements Serializable {
     @JoinColumn(name = "video_category_id")
     private VideoCategory category;
 
-    @OneToMany(mappedBy = "video")
-    private List<VideoComment> comments = new ArrayList<>();
-
     public String getVideoUrl() {
         return videoUrl;
     }
@@ -38,13 +36,5 @@ public class Video extends AbstractPost implements Serializable {
 
     public void setCategory(VideoCategory category) {
         this.category = category;
-    }
-
-    public List<VideoComment> getComments() {
-        return comments;
-    }
-
-    public void setComments(List<VideoComment> comments) {
-        this.comments = comments;
     }
 }

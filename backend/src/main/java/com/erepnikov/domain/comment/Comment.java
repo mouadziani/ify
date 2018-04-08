@@ -1,13 +1,16 @@
 package com.erepnikov.domain.comment;
 
-import com.erepnikov.domain.User;
+import com.erepnikov.domain.user.User;
 import org.hibernate.annotations.Type;
 
-import java.sql.Timestamp;
 import javax.persistence.*;
+import java.io.Serializable;
+import java.sql.Timestamp;
 
-@MappedSuperclass
-public abstract class AbstractComment {
+@Entity
+public class Comment implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,6 +23,12 @@ public abstract class AbstractComment {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+
+    @Column(name = "type")
+    private String type;
+
+    @Column(name = "post_id")
+    private Integer postId;
 
     @Column(name = "created_date")
     private Timestamp createdDate;
@@ -46,6 +55,22 @@ public abstract class AbstractComment {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public Integer getPostId() {
+        return postId;
+    }
+
+    public void setPostId(Integer postId) {
+        this.postId = postId;
     }
 
     public Timestamp getCreatedDate() {

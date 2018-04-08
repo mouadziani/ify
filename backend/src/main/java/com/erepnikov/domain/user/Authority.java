@@ -1,4 +1,4 @@
-package com.erepnikov.domain;
+package com.erepnikov.domain.user;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;

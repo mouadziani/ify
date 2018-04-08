@@ -1,7 +1,7 @@
 package com.erepnikov.service.mapper;
 
-import com.erepnikov.domain.Authority;
-import com.erepnikov.domain.User;
+import com.erepnikov.domain.user.Authority;
+import com.erepnikov.domain.user.User;
 import com.erepnikov.service.dto.UserDTO;
 import org.springframework.stereotype.Service;
 

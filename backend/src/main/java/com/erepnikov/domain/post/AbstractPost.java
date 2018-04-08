@@ -2,7 +2,7 @@ package com.erepnikov.domain.post;
 
 import javax.persistence.*;
 
-import com.erepnikov.domain.User;
+import com.erepnikov.domain.user.User;
 import org.hibernate.annotations.Type;
 import java.sql.Timestamp;
 

@@ -5,7 +5,7 @@ import com.erepnikov.web.exceptions.InvalidPasswordException;
 import com.erepnikov.web.exceptions.LoginAlreadyUsedException;
 import com.erepnikov.web.exceptions.ServerErrorException;
 import com.erepnikov.web.vm.ManagedUserVM;
-import com.erepnikov.domain.User;
+import com.erepnikov.domain.user.User;
 import com.erepnikov.repository.user.UserRepository;
 import com.erepnikov.security.SecurityUtils;
 import com.erepnikov.service.user.UserService;

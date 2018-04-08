@@ -1,4 +1,4 @@
-package com.erepnikov.domain;
+package com.erepnikov.domain.user;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.data.annotation.CreatedDate;

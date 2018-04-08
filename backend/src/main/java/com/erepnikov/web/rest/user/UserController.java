@@ -5,7 +5,7 @@ import com.erepnikov.web.exceptions.EmailAlreadyUsedException;
 import com.erepnikov.web.exceptions.LoginAlreadyUsedException;
 import com.erepnikov.web.exceptions.ServerErrorException;
 import com.erepnikov.web.util.PaginationUtil;
-import com.erepnikov.domain.User;
+import com.erepnikov.domain.user.User;
 import com.erepnikov.repository.user.UserRepository;
 import com.erepnikov.security.AuthoritiesConstants;
 import com.erepnikov.service.user.UserService;

@@ -1,6 +1,6 @@
 package com.erepnikov.repository.user;
 
-import com.erepnikov.domain.User;
+import com.erepnikov.domain.user.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.EntityGraph;

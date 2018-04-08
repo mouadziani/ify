@@ -1,8 +1,8 @@
 package com.erepnikov.service.dto;
 
 import com.erepnikov.config.Constants;
-import com.erepnikov.domain.Authority;
-import com.erepnikov.domain.User;
+import com.erepnikov.domain.user.Authority;
+import com.erepnikov.domain.user.User;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 

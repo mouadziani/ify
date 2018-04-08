@@ -1,6 +1,6 @@
 package com.erepnikov.security;
 
-import com.erepnikov.domain.User;
+import com.erepnikov.domain.user.User;
 import com.erepnikov.repository.user.UserRepository;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

@@ -1,8 +1,8 @@
 package com.erepnikov.service.user;
 
 import com.erepnikov.config.Constants;
-import com.erepnikov.domain.Authority;
-import com.erepnikov.domain.User;
+import com.erepnikov.domain.user.Authority;
+import com.erepnikov.domain.user.User;
 import com.erepnikov.repository.user.AuthorityRepository;
 import com.erepnikov.repository.user.UserRepository;
 import com.erepnikov.security.AuthoritiesConstants;

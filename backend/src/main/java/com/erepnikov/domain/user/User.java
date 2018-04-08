@@ -1,4 +1,4 @@
-package com.erepnikov.domain;
+package com.erepnikov.domain.user;
 
 import com.erepnikov.config.Constants;
 import com.fasterxml.jackson.annotation.JsonIgnore;
