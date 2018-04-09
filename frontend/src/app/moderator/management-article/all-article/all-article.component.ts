@@ -68,7 +68,6 @@ export class AllArticleComponent implements OnInit {
   }
 
   deleteArticle(id: number) {
-    this.articleService.delete(id).subscribe();
-    this.loadAll();
+    this.articleService.delete(id).subscribe(() => this.loadAll());
   }
 }

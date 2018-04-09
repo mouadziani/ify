@@ -68,7 +68,6 @@ export class AllNewsComponent implements OnInit {
   }
 
   deleteNews(id: number) {
-    this.newsService.delete(id).subscribe();
-    this.loadAll();
+    this.newsService.delete(id).subscribe(() => this.loadAll());
   }
 }

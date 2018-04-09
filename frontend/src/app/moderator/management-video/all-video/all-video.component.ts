@@ -68,7 +68,6 @@ export class AllVideoComponent implements OnInit {
   }
 
   deleteVideo(id: number) {
-    this.videoService.delete(id).subscribe();
-    this.loadAll();
+    this.videoService.delete(id).subscribe(() => this.loadAll());
   }
 }

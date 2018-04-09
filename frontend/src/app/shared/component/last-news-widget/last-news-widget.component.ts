@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { News } from '../../model/news.model';
 import { NewsService } from '../../service/news.service';
 
@@ -6,7 +6,7 @@ import { NewsService } from '../../service/news.service';
   selector: 'ify-last-news-widget',
   templateUrl: './last-news-widget.component.html'
 })
-export class LastNewsWidgetComponent implements OnInit {
+export class LastNewsWidgetComponent implements OnInit, OnChanges {
 
   @Input()
   currentNews: News;
@@ -16,6 +16,14 @@ export class LastNewsWidgetComponent implements OnInit {
   constructor(private newsService: NewsService) {}
 
   ngOnInit() {
+    this.loadAll();
+  }
+
+  ngOnChanges() {
+    this.loadAll();
+  }
+
+  private loadAll() {
     this.newsService.query({
       page: 0,
       size: 5,

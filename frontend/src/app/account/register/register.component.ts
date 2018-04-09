@@ -29,7 +29,7 @@ export class RegisterComponent implements OnInit {
       ]),
       'password': new FormControl(null, [
         Validators.required,
-        Validators.minLength(4),
+        Validators.minLength(5),
         Validators.maxLength(50)
       ]),
       'repeat-password': new FormControl(null, [
