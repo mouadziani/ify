@@ -34,7 +34,7 @@ public class CommentController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @GetMapping("/comment/news/{id}")
+    @GetMapping("/comment/news/{postId}")
     public ResponseEntity<List<Comment>> getAllNewsComments(@PathVariable Integer postId) {
         return new ResponseEntity<>(
                 this.commentService.getAllByPost(postId, CommentDiscriminators.NEWS_DISCRIMINATOR),
@@ -48,7 +48,7 @@ public class CommentController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @GetMapping("/comment/article/{id}")
+    @GetMapping("/comment/article/{postId}")
     public ResponseEntity<List<Comment>> getAllArticleComments(@PathVariable Integer postId) {
         return new ResponseEntity<>(
                 this.commentService.getAllByPost(postId, CommentDiscriminators.ARTICLE_DISCRIMINATOR),
@@ -62,7 +62,7 @@ public class CommentController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @GetMapping("/comment/video/{id}")
+    @GetMapping("/comment/video/{postId}")
     public ResponseEntity<List<Comment>> getAllVideoComments(@PathVariable Integer postId) {
         return new ResponseEntity<>(
                 this.commentService.getAllByPost(postId, CommentDiscriminators.VIDEO_DISCRIMINATOR),
@@ -72,6 +72,7 @@ public class CommentController {
 
     @DeleteMapping("/comment/{id}")
     public ResponseEntity<Void> deleteComment(@PathVariable Integer id) {
+        System.out.println("START of DELEting");
         SecurityUtils.getCurrentUserLogin().ifPresent(
                 login -> this.userService.getUserWithAuthoritiesByLogin(login).ifPresent(user -> {
                     if (user.equals(this.commentService.get(id).getUser()) ||

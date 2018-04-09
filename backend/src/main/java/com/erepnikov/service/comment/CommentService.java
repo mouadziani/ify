@@ -26,7 +26,7 @@ public class CommentService {
     }
 
     public List<Comment> getAllByPost(Integer postId, String type) {
-        return this.commentRepository.findAllByPostIdAndType(postId, type);
+        return this.commentRepository.findAllByPostIdAndTypeOrderByIdDesc(postId, type);
     }
 
     public void delete(Integer id) {

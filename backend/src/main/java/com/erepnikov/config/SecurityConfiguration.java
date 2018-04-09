@@ -113,15 +113,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and()
                     .authorizeRequests()
                     .antMatchers("/api/register").permitAll()
-                    .antMatchers("/api/activate").permitAll()
                     .antMatchers("/api/authenticate").permitAll()
-                    .antMatchers("/api/account/reset-password/init").permitAll()
-                    .antMatchers("/api/account/reset-password/finish").permitAll()
                     .antMatchers(HttpMethod.GET, "/api/**").permitAll()
                     .antMatchers("/api/**").authenticated()
-                    .antMatchers(HttpMethod.POST, "/api/**/comment").hasAuthority(AuthoritiesConstants.USER)
-                    .antMatchers(HttpMethod.DELETE, "/api/**/comment").hasAuthority(AuthoritiesConstants.USER)
-                    .antMatchers("/api/**").hasAuthority(AuthoritiesConstants.MODERATOR);
-
+                    .antMatchers("/api/news/**").hasAuthority(AuthoritiesConstants.MODERATOR)
+                    .antMatchers("/api/article/**").hasAuthority(AuthoritiesConstants.MODERATOR)
+                    .antMatchers("/api/video/**").hasAuthority(AuthoritiesConstants.MODERATOR)
+                    .antMatchers("/api/comment/**").hasAuthority(AuthoritiesConstants.USER);
     }
 }
