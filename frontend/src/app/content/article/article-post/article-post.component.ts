@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Article } from '../../../shared/model/article.model';
 import { News } from '../../../shared/model/news.model';
-import { Subscription } from 'rxjs/Subscription';
 import { ArticleService } from '../../../shared/service/article.service';
-import { NewsService } from '../../../shared/service/news.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Meta, Title } from '@angular/platform-browser';
+import { ARTICLE_DISCRIMINATOR } from '../../../app.constants';
 
 @Component({
   selector: 'ify-article-post',
@@ -15,10 +14,10 @@ export class ArticlePostComponent implements OnInit {
 
   article: Article;
   lastNews: News[];
+  type = ARTICLE_DISCRIMINATOR;
 
   constructor(
     private articleService: ArticleService,
-    private newsService: NewsService,
     private route: ActivatedRoute,
     private router: Router,
     private title: Title,
@@ -26,6 +25,10 @@ export class ArticlePostComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.loadAll();
+  }
+
+  loadAll() {
     this.route.params.subscribe(params => {
       this.articleService.find(params['id'])
         .subscribe(res => {
@@ -39,13 +42,6 @@ export class ArticlePostComponent implements OnInit {
             this.router.navigate(['/404']);
           }
         });
-    });
-    this.newsService.query({
-      page: 0,
-      size: 4,
-      sort: ['id,desc']
-    }).subscribe(res => {
-      this.lastNews = res.body;
     });
   }
 }

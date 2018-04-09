@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NewsService } from '../../../shared/service/news.service';
 import { News } from '../../../shared/model/news.model';
-import { Subscription } from 'rxjs/Subscription';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Meta, Title } from '@angular/platform-browser';
+import { NEWS_DISCRIMINATOR } from '../../../app.constants';
 
 @Component({
   selector: 'ify-news-post',
@@ -13,6 +13,7 @@ export class NewsPostComponent implements OnInit {
 
   news: News;
   lastNews: News[];
+  type = NEWS_DISCRIMINATOR;
 
   constructor(
     private newsService: NewsService,

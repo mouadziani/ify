@@ -6,3 +6,7 @@ export const MONTHS_IN_RUSSIAN = [
   'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'
 ];
 export const YOUTUBE_PATH = 'https://www.youtube.com/embed/';
+
+export const NEWS_DISCRIMINATOR = 'news';
+export const ARTICLE_DISCRIMINATOR = 'article';
+export const VIDEO_DISCRIMINATOR = 'video';

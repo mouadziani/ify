@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Video } from '../../../shared/model/video.model';
 import { News } from '../../../shared/model/news.model';
-import { Subscription } from 'rxjs/Subscription';
 import { VideoService } from '../../../shared/service/video.service';
 import { NewsService } from '../../../shared/service/news.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Meta, Title, DomSanitizer } from '@angular/platform-browser';
-import { YOUTUBE_PATH } from '../../../app.constants';
+import { YOUTUBE_PATH, VIDEO_DISCRIMINATOR } from '../../../app.constants';
 
 @Component({
   selector: 'ify-video-post',
@@ -17,6 +16,7 @@ export class VideoPostComponent implements OnInit {
   video: Video;
   videoUrl: any;
   lastNews: News[];
+  type = VIDEO_DISCRIMINATOR;
 
   constructor(
     private videoService: VideoService,

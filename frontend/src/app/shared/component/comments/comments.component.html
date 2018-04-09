@@ -1,0 +1,47 @@
+<div id="comments" class="comments anchor">
+  <div class="comments-header">
+    <h5><i class="fa fa-comment-o m-r-5"></i> Комментарии</h5>
+  </div>
+  <ul *ngIf="comments">
+    <li *ngFor="let c of comments">
+      <div class="comment">
+        <div class="comment-avatar">
+          <a href="#"><img src="assets/img/user/user-1.jpg" [alt]="c.user.login"></a>
+        </div>
+        <div class="comment-post">
+          <div class="comment-header">
+            <div class="comment-author">
+              <h5>
+                <a href="#">{{ c.user.login }}</a>
+              </h5>
+            </div>
+            <div
+              class="comment-action"
+              *ngIf="currentAccount && (currentAccount.login === c.user.login || this.currentAccount.authorities.includes('ROLE_MODERATOR'))"
+            >
+              <div class="dropdown float-right">
+                <a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-chevron-down"></i></a>
+                <div class="dropdown-menu dropdown-menu-right">
+                  <a class="dropdown-item" (click)="deleteComment(c.id)">Удалить</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p>{{ c.text }}</p>
+          <div class="comment-footer">
+            <ul>
+              <li><i class="fa fa-clock-o"></i> {{ c.createdDate | dateConverter }}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </li>
+  </ul>
+  <form [formGroup]="form" (ngSubmit)="createComment()" *ifyHasAnyAuthority="'ROLE_USER'">
+    <h5>Оставить комментарий</h5>
+    <div class="form-group">
+      <textarea formControlName="text" class="form-control" rows="5" placeholder="Комментарий..."></textarea>
+    </div>
+    <button type="submit" [disabled]="form.invalid" class="btn btn-primary">Отправить</button>
+  </form>
+</div>

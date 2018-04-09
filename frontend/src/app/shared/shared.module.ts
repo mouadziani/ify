@@ -29,6 +29,8 @@ import { LastNewsWidgetComponent } from './component/last-news-widget/last-news-
 import { VkGroupWidgetComponent } from './component/vk-group-widget/vk-group-widget.component';
 import { RouterModule } from '@angular/router';
 import { LastNewsBottomComponent } from './component/last-news-bottom/last-news-bottom.component';
+import { CommentService } from './service/comment.service';
+import { CommentsComponent } from './component/comments/comments.component';
 
 @NgModule({
   imports: [
@@ -47,7 +49,8 @@ import { LastNewsBottomComponent } from './component/last-news-bottom/last-news-
     LastArticlesWidgetComponent,
     LastNewsWidgetComponent,
     VkGroupWidgetComponent,
-    LastNewsBottomComponent
+    LastNewsBottomComponent,
+    CommentsComponent
   ],
   providers: [
     BaseApiService,
@@ -67,7 +70,8 @@ import { LastNewsBottomComponent } from './component/last-news-bottom/last-news-
     ResolvePagingParamsService,
     ArticleCategoryService,
     VideoCategoryService,
-    NewsCategoryService
+    NewsCategoryService,
+    CommentService
   ],
   exports: [
     HasAnyAuthorityDirective,
@@ -81,7 +85,8 @@ import { LastNewsBottomComponent } from './component/last-news-bottom/last-news-
     LastArticlesWidgetComponent,
     LastNewsWidgetComponent,
     VkGroupWidgetComponent,
-    LastNewsBottomComponent
+    LastNewsBottomComponent,
+    CommentsComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

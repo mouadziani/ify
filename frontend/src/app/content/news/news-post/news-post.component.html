@@ -13,14 +13,7 @@
           </div>
           <div [innerHtml]="news.text"></div>
         </div>
-
         <div class="post-actions">
-          <div class="post-tags">
-            <a href="#">#TAG</a>
-            <a href="#">#TAG</a>
-            <a href="#">#TAG</a>
-            <a href="#">#TAG</a>
-          </div>
           <div class="social-share">
             <a class="btn btn-social btn-facebook btn-circle" href="#" data-toggle="tooltip" title="Поделись в Facebook" data-placement="bottom" role="button"><i class="fa fa-facebook"></i></a>
             <a class="btn btn-social btn-twitter btn-circle" href="#" data-toggle="tooltip" title="Поделись в Twitter" data-placement="bottom" role="button"><i class="fa fa-twitter"></i></a>
@@ -28,9 +21,7 @@
             <a class="btn btn-social btn-vk btn-circle" href="#" data-toggle="tooltip" title="Поделись в VK" data-placement="bottom" role="button"><i class="fa fa-vk"></i></a>
           </div>
         </div>
-        <div id="comments" class="comments anchor">
-          TODO COMMENTS
-        </div>
+        <ify-comments [postId]="news.id" [type]="type"></ify-comments>
       </div>
       <div class="col-lg-4">
         <div class="sidebar">
