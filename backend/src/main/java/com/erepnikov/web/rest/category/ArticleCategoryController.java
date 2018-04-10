@@ -1,8 +1,8 @@
 package com.erepnikov.web.rest.category;
 
-import com.erepnikov.web.exceptions.ServerErrorException;
 import com.erepnikov.domain.category.ArticleCategory;
 import com.erepnikov.service.category.ArticleCategoryService;
+import com.erepnikov.web.exceptions.ServerErrorException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

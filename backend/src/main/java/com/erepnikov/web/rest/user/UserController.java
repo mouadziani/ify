@@ -1,15 +1,15 @@
 package com.erepnikov.web.rest.user;
 
 import com.erepnikov.config.Constants;
+import com.erepnikov.domain.user.User;
+import com.erepnikov.repository.user.UserRepository;
+import com.erepnikov.security.AuthoritiesConstants;
+import com.erepnikov.service.dto.UserDTO;
+import com.erepnikov.service.user.UserService;
 import com.erepnikov.web.exceptions.EmailAlreadyUsedException;
 import com.erepnikov.web.exceptions.LoginAlreadyUsedException;
 import com.erepnikov.web.exceptions.ServerErrorException;
 import com.erepnikov.web.util.PaginationUtil;
-import com.erepnikov.domain.user.User;
-import com.erepnikov.repository.user.UserRepository;
-import com.erepnikov.security.AuthoritiesConstants;
-import com.erepnikov.service.user.UserService;
-import com.erepnikov.service.dto.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

@@ -1,8 +1,5 @@
 package com.erepnikov.web.rest.comment;
 
-import java.sql.Timestamp;
-import java.util.List;
-
 import com.erepnikov.domain.comment.Comment;
 import com.erepnikov.domain.comment.CommentDiscriminators;
 import com.erepnikov.security.AuthoritiesConstants;
@@ -13,6 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.sql.Timestamp;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api")
@@ -72,7 +72,6 @@ public class CommentController {
 
     @DeleteMapping("/comment/{id}")
     public ResponseEntity<Void> deleteComment(@PathVariable Integer id) {
-        System.out.println("START of DELEting");
         SecurityUtils.getCurrentUserLogin().ifPresent(
                 login -> this.userService.getUserWithAuthoritiesByLogin(login).ifPresent(user -> {
                     if (user.equals(this.commentService.get(id).getUser()) ||
@@ -85,11 +84,11 @@ public class CommentController {
     }
 
     private void saveComment(Comment comment, String discriminator) {
-        SecurityUtils.getCurrentUserLogin().ifPresent(
-                login -> this.userService.getUserWithAuthoritiesByLogin(login).ifPresent(comment::setUser)
-        );
-        comment.setType(discriminator);
-        comment.setCreatedDate(new Timestamp(System.currentTimeMillis()));
-        this.commentService.save(comment);
+        this.userService.getUserWithAuthorities().ifPresent(user -> {
+            comment.setUser(user);
+            comment.setType(discriminator);
+            comment.setCreatedDate(new Timestamp(System.currentTimeMillis()));
+            this.commentService.save(comment);
+        });
     }
 }

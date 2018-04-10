@@ -1,12 +1,10 @@
 package com.erepnikov.web.rest.post;
 
-import com.erepnikov.web.exceptions.ServerErrorException;
-import com.erepnikov.web.util.PaginationUtil;
 import com.erepnikov.domain.post.News;
-import com.erepnikov.security.SecurityUtils;
 import com.erepnikov.service.post.NewsService;
 import com.erepnikov.service.user.UserService;
-
+import com.erepnikov.web.exceptions.ServerErrorException;
+import com.erepnikov.web.util.PaginationUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -38,8 +36,7 @@ public class NewsController {
             throw new ServerErrorException("News already have an ID");
         }
         news.setCreatedDate(new Timestamp(System.currentTimeMillis()));
-        SecurityUtils.getCurrentUserLogin().ifPresent(login ->
-                this.userService.getUserWithAuthoritiesByLogin(login).ifPresent(news::setUser));
+        this.userService.getUserWithAuthorities().ifPresent(news::setUser);
         this.newsService.save(news);
         return new ResponseEntity<>(news, HttpStatus.OK);
     }

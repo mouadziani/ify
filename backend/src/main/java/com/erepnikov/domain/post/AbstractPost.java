@@ -1,9 +1,9 @@
 package com.erepnikov.domain.post;
 
-import javax.persistence.*;
-
 import com.erepnikov.domain.user.User;
 import org.hibernate.annotations.Type;
+
+import javax.persistence.*;
 import java.sql.Timestamp;
 
 @MappedSuperclass

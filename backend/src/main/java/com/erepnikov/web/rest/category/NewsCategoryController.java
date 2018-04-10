@@ -1,14 +1,14 @@
 package com.erepnikov.web.rest.category;
 
-import java.util.List;
-
-import com.erepnikov.web.exceptions.ServerErrorException;
 import com.erepnikov.domain.category.NewsCategory;
 import com.erepnikov.service.category.NewsCategoryService;
+import com.erepnikov.web.exceptions.ServerErrorException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api")

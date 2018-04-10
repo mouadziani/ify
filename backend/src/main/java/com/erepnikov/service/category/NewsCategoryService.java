@@ -1,11 +1,11 @@
 package com.erepnikov.service.category;
 
-import java.util.List;
-
 import com.erepnikov.domain.category.NewsCategory;
 import com.erepnikov.repository.category.NewsCategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class NewsCategoryService {

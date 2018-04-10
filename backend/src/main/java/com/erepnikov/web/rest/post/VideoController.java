@@ -1,11 +1,10 @@
 package com.erepnikov.web.rest.post;
 
+import com.erepnikov.domain.post.Video;
+import com.erepnikov.service.post.VideoService;
+import com.erepnikov.service.user.UserService;
 import com.erepnikov.web.exceptions.ServerErrorException;
 import com.erepnikov.web.util.PaginationUtil;
-import com.erepnikov.domain.post.Video;
-import com.erepnikov.security.SecurityUtils;
-import com.erepnikov.service.user.UserService;
-import com.erepnikov.service.post.VideoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -37,8 +36,7 @@ public class VideoController {
             throw new ServerErrorException("Video already have an ID");
         }
         video.setCreatedDate(new Timestamp(System.currentTimeMillis()));
-        SecurityUtils.getCurrentUserLogin().ifPresent(login ->
-                this.userService.getUserWithAuthoritiesByLogin(login).ifPresent(video::setUser));
+        this.userService.getUserWithAuthorities().ifPresent(video::setUser);
         this.videoService.save(video);
         return new ResponseEntity<>(video, HttpStatus.OK);
     }

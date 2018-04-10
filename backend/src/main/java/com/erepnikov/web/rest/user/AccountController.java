@@ -1,15 +1,15 @@
 package com.erepnikov.web.rest.user;
 
+import com.erepnikov.domain.user.User;
+import com.erepnikov.repository.user.UserRepository;
+import com.erepnikov.security.SecurityUtils;
+import com.erepnikov.service.dto.UserDTO;
+import com.erepnikov.service.user.UserService;
 import com.erepnikov.web.exceptions.EmailAlreadyUsedException;
 import com.erepnikov.web.exceptions.InvalidPasswordException;
 import com.erepnikov.web.exceptions.LoginAlreadyUsedException;
 import com.erepnikov.web.exceptions.ServerErrorException;
 import com.erepnikov.web.vm.ManagedUserVM;
-import com.erepnikov.domain.user.User;
-import com.erepnikov.repository.user.UserRepository;
-import com.erepnikov.security.SecurityUtils;
-import com.erepnikov.service.user.UserService;
-import com.erepnikov.service.dto.UserDTO;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
