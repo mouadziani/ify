@@ -1,6 +1,8 @@
 package com.erepnikov.web.rest.post;
 
+import com.erepnikov.domain.comment.CommentDiscriminators;
 import com.erepnikov.domain.post.Video;
+import com.erepnikov.service.comment.CommentService;
 import com.erepnikov.service.post.VideoService;
 import com.erepnikov.service.user.UserService;
 import com.erepnikov.web.exceptions.ServerErrorException;
@@ -24,10 +26,13 @@ public class VideoController {
 
     private UserService userService;
 
+    private CommentService commentService;
+
     @Autowired
-    public VideoController(VideoService videoService, UserService userService) {
+    public VideoController(VideoService videoService, UserService userService, CommentService commentService) {
         this.videoService = videoService;
         this.userService = userService;
+        this.commentService = commentService;
     }
 
     @PostMapping("/video")
@@ -64,6 +69,7 @@ public class VideoController {
 
     @DeleteMapping("/video/{id}")
     public ResponseEntity<Void> deleteVideo(@PathVariable Integer id) {
+        this.commentService.delete(CommentDiscriminators.VIDEO_DISCRIMINATOR, id);
         this.videoService.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }

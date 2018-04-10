@@ -4,6 +4,7 @@ import com.erepnikov.domain.comment.Comment;
 import com.erepnikov.repository.comment.CommentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -31,5 +32,10 @@ public class CommentService {
 
     public void delete(Integer id) {
         this.commentRepository.delete(id);
+    }
+
+    @Transactional
+    public void delete(String type, Integer id) {
+        this.commentRepository.deleteAllByTypeAndPostId(type, id);
     }
 }

@@ -68,7 +68,8 @@ export class UserManagementComponent implements OnInit {
   }
 
   deleteUser(login: string) {
-    this.userService.delete(login).subscribe();
-    this.loadAll();
+    this.userService.delete(login).subscribe(() => {
+      this.loadAll();
+    });
   }
 }

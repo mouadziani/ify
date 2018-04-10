@@ -1,6 +1,8 @@
 package com.erepnikov.web.rest.post;
 
+import com.erepnikov.domain.comment.CommentDiscriminators;
 import com.erepnikov.domain.post.Article;
+import com.erepnikov.service.comment.CommentService;
 import com.erepnikov.service.post.ArticleService;
 import com.erepnikov.service.user.UserService;
 import com.erepnikov.web.exceptions.ServerErrorException;
@@ -24,10 +26,13 @@ public class ArticleController {
 
     private UserService userService;
 
+    private CommentService commentService;
+
     @Autowired
-    public ArticleController(ArticleService articleService, UserService userService) {
+    public ArticleController(ArticleService articleService, UserService userService, CommentService commentService) {
         this.articleService = articleService;
         this.userService = userService;
+        this.commentService = commentService;
     }
 
     @PostMapping("/article")
@@ -64,6 +69,7 @@ public class ArticleController {
 
     @DeleteMapping("/article/{id}")
     public ResponseEntity<Void> deleteArticle(@PathVariable Integer id) {
+        this.commentService.delete(CommentDiscriminators.ARTICLE_DISCRIMINATOR, id);
         this.articleService.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
