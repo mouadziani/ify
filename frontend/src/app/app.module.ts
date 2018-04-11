@@ -16,6 +16,7 @@ import { Ng2Webstorage } from 'ngx-webstorage';
 import { ContentModule } from './content/content.module';
 import { ModeratorModule } from './moderator/moderator.module';
 import { PagesModule } from './pages/pages.module';
+import { AuthModule } from './auth/auth.module';
 
 
 @NgModule({
@@ -30,6 +31,7 @@ import { PagesModule } from './pages/pages.module';
     AppRoutingModule,
     SharedModule,
     HomeModule,
+    AuthModule,
     AccountModule,
     AdminModule,
     ModeratorModule,

@@ -1,7 +1,5 @@
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
 import { accountState } from './account.route';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
@@ -12,7 +10,6 @@ import { SharedModule } from '../shared/shared.module';
     SharedModule,
     RouterModule.forChild(accountState)
   ],
-  declarations: [LoginComponent, RegisterComponent],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  declarations: []
 })
 export class AccountModule { }
