@@ -2,6 +2,7 @@
   <div class="comments-header">
     <h5><i class="fa fa-comment-o m-r-5"></i> Комментарии</h5>
   </div>
+  <ify-loader *ngIf="comments === undefined"></ify-loader>
   <ul *ngIf="comments">
     <li *ngFor="let c of comments">
       <div class="comment">

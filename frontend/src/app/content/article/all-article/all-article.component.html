@@ -13,6 +13,7 @@
 
 <section>
   <div class="container">
+    <ify-loader *ngIf="articles === undefined"></ify-loader>
     <div class="row">
       <div class="col-lg-8">
         <div class="post post-md" *ngFor="let a of articles">

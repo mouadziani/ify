@@ -51,7 +51,8 @@
       <i class="fa fa-newspaper-o"></i>
       <h2>Последние Новости</h2>
     </div>
-    <div class="row row-5">
+    <ify-loader *ngIf="news === undefined"></ify-loader>
+    <div class="row row-5" *ngIf="news">
       <div class="col-12 col-sm-6 col-md-3" *ngFor="let n of news">
         <div class="card card-block">
           <div class="card-img">
@@ -69,9 +70,9 @@
           </div>
         </div>
       </div>
-    </div>
-    <div class="text-center">
-      <a [routerLink]="'/news'" class="btn btn-primary btn-shadow btn-rounded btn-effect btn-lg m-t-20">Все Новости</a>
+      <div class="text-center">
+        <a [routerLink]="'/news'" class="btn btn-primary btn-shadow btn-rounded btn-effect btn-lg m-t-20">Все Новости</a>
+      </div>
     </div>
   </div>
 </section>
@@ -82,7 +83,8 @@
       <i class="fa fa-gamepad"></i>
       <h2>Последние Статьи</h2>
     </div>
-    <div class="row">
+    <ify-loader *ngIf="articles === undefined"></ify-loader>
+    <div class="row" *ngIf="articles">
       <div class="col-12 col-sm-6 col-md-4" *ngFor="let a of articles">
         <div class="card card-lg">
           <div class="card-img">
@@ -102,9 +104,9 @@
           </div>
         </div>
       </div>
-    </div>
-    <div class="text-center">
-      <a [routerLink]="'/article'" class="btn btn-outline-primary btn-shadow btn-rounded btn-effect btn-lg m-t-20">Все Обзоры</a>
+      <div class="text-center">
+        <a [routerLink]="'/article'" class="btn btn-outline-primary btn-shadow btn-rounded btn-effect btn-lg m-t-20">Все Обзоры</a>
+      </div>
     </div>
   </div>
 </section>
@@ -115,8 +117,8 @@
       <i class="fa fa-film"></i>
       <h2>Последние Видео</h2>
     </div>
-    <div class="row row-5">
-
+    <ify-loader *ngIf="videos === undefined"></ify-loader>
+    <div class="row row-5" *ngIf="videos">
       <div class="col-12 col-sm-6 col-md-3" *ngFor="let v of videos">
         <div class="card card-video">
           <div class="card-img">
@@ -138,10 +140,9 @@
           </div>
         </div>
       </div>
-
-    </div>
-    <div class="text-center">
-      <a [routerLink]="'/video'" class="btn btn-primary btn-shadow btn-rounded btn-effect btn-lg m-t-20">Все Видео</a>
+      <div class="text-center">
+        <a [routerLink]="'/video'" class="btn btn-primary btn-shadow btn-rounded btn-effect btn-lg m-t-20">Все Видео</a>
+      </div>
     </div>
   </div>
 </section>

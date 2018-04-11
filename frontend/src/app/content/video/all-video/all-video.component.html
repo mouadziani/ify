@@ -13,6 +13,7 @@
 
 <section>
   <div class="container">
+    <ify-loader *ngIf="videos === undefined"></ify-loader>
     <div class="row row-5">
       <div class="col-12 col-sm-6 col-md-3" *ngFor="let v of videos">
         <div class="card card-video">

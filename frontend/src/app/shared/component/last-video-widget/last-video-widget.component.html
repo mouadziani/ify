@@ -1,6 +1,7 @@
-<div class="widget widget-video" *ngIf="video">
+<div class="widget widget-video">
   <h5 class="widget-title">Последнее видео</h5>
-  <div class="card card-video">
+  <ify-loader *ngIf="video === undefined"></ify-loader>
+  <div class="card card-video" *ngIf="video">
     <div class="card-img">
       <a [routerLink]="['/video', video.id]">
         <img [src]="video.image" [alt]="video.title">

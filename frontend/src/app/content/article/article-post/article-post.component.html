@@ -11,6 +11,7 @@
           </div>
         </div>
       </div>
+      <ify-loader *ngIf="article === undefined"></ify-loader>
       <div class="col-lg-10" *ngIf="article">
         <div class="post post-single">
           <h2 class="post-title">{{ article.title }}</h2>

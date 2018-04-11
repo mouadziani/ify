@@ -31,6 +31,7 @@ import { RouterModule } from '@angular/router';
 import { LastNewsBottomComponent } from './component/last-news-bottom/last-news-bottom.component';
 import { CommentService } from './service/comment.service';
 import { CommentsComponent } from './component/comments/comments.component';
+import { LoaderComponent } from './component/loader/loader.component';
 
 @NgModule({
   imports: [
@@ -50,7 +51,8 @@ import { CommentsComponent } from './component/comments/comments.component';
     LastNewsWidgetComponent,
     VkGroupWidgetComponent,
     LastNewsBottomComponent,
-    CommentsComponent
+    CommentsComponent,
+    LoaderComponent
   ],
   providers: [
     BaseApiService,
@@ -86,7 +88,8 @@ import { CommentsComponent } from './component/comments/comments.component';
     LastNewsWidgetComponent,
     VkGroupWidgetComponent,
     LastNewsBottomComponent,
-    CommentsComponent
+    CommentsComponent,
+    LoaderComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

@@ -1,5 +1,6 @@
 <div class="widget widget-post">
   <h5 class="widget-title">Последние новости</h5>
+  <ify-loader *ngIf="news === undefined"></ify-loader>
   <ul class="widget-list">
     <li *ngFor="let n of news">
       <div class="widget-img">

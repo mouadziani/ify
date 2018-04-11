@@ -2,36 +2,36 @@
   <div class="row">
     <table class="table table-striped" cellspacing="0" width="100%">
       <thead>
-      <tr>
-        <th>Картинка</th>
-        <th>Информация</th>
-        <th>Действия</th>
-      </tr>
+        <tr>
+          <th>Картинка</th>
+          <th>Информация</th>
+          <th>Действия</th>
+        </tr>
       </thead>
       <tbody *ngIf="videos && videos.length">
-      <tr *ngFor="let video of videos">
-        <td><img [src]="video.image" width="150" alt="{{ video.title }}"></td>
-        <td>
-          <ul>
-            <li>Название: <strong>{{ video.title }}</strong></li>
-            <li>Автор: <strong>{{ video.user.login }}</strong></li>
-            <li>Дата публикации: <strong>{{ video.createdDate | dateConverter }}</strong></li>
-            <li>Текст: <strong [innerHtml]="video.text | textSlicer"></strong></li>
-          </ul>
-        </td>
-        <td>
-          <span *ngIf="currentAccount.login === video.user.login || currentAccount.authorities.indexOf('ROLE_ADMIN') > -1">
+        <tr *ngFor="let video of videos">
+          <td><img [src]="video.image" width="150" alt="{{ video.title }}"></td>
+          <td>
             <ul>
-              <li>
-                <button class="btn btn-link p-a-5" (click)="deleteVideo(video.id)"><i class="fa fa-trash-o"></i></button>
-              </li>
-              <li>
-                <a class="btn btn-link p-a-5" [routerLink]="['/moderator/video', video.id]"><i class="fa fa-pencil"></i></a>
-              </li>
+              <li>Название: <strong>{{ video.title }}</strong></li>
+              <li>Автор: <strong>{{ video.user.login }}</strong></li>
+              <li>Дата публикации: <strong>{{ video.createdDate | dateConverter }}</strong></li>
+              <li>Текст: <strong [innerHtml]="video.text | textSlicer"></strong></li>
             </ul>
-          </span>
-        </td>
-      </tr>
+          </td>
+          <td>
+            <span *ngIf="currentAccount.login === video.user.login || currentAccount.authorities.indexOf('ROLE_ADMIN') > -1">
+              <ul>
+                <li>
+                  <button class="btn btn-link p-a-5" (click)="deleteVideo(video.id)"><i class="fa fa-trash-o"></i></button>
+                </li>
+                <li>
+                  <a class="btn btn-link p-a-5" [routerLink]="['/moderator/video', video.id]"><i class="fa fa-pencil"></i></a>
+                </li>
+              </ul>
+            </span>
+          </td>
+        </tr>
       </tbody>
     </table>
   </div>

@@ -9,6 +9,7 @@
           <th>Действия</th>
         </tr>
       </thead>
+      <ify-loader *ngIf="users === undefined"></ify-loader>
       <tbody *ngIf="users && users.length">
         <tr *ngFor="let user of users">
           <td>

@@ -9,29 +9,29 @@
       </tr>
       </thead>
       <tbody *ngIf="news && news.length">
-      <tr *ngFor="let n of news">
-        <td><img [src]="n.image" width="150" alt="{{ n.title }}"></td>
-        <td>
-          <ul>
-            <li>Название: <strong>{{ n.title }}</strong></li>
-            <li>Автор: <strong>{{ n.user.login }}</strong></li>
-            <li>Дата публикации: <strong>{{ n.createdDate | dateConverter }}</strong></li>
-            <li>Текст: <strong [innerHtml]="n.text | textSlicer"></strong></li>
-          </ul>
-        </td>
-        <td>
-          <span *ngIf="currentAccount.login === n.user.login || currentAccount.authorities.indexOf('ROLE_ADMIN') > -1">
+        <tr *ngFor="let n of news">
+          <td><img [src]="n.image" width="150" alt="{{ n.title }}"></td>
+          <td>
             <ul>
-              <li>
-                <button class="btn btn-link p-a-5" (click)="deleteNews(n.id)"><i class="fa fa-trash-o"></i></button>
-              </li>
-              <li>
-                <a class="btn btn-link p-a-5" [routerLink]="['/moderator/news', n.id]"><i class="fa fa-pencil"></i></a>
-              </li>
+              <li>Название: <strong>{{ n.title }}</strong></li>
+              <li>Автор: <strong>{{ n.user.login }}</strong></li>
+              <li>Дата публикации: <strong>{{ n.createdDate | dateConverter }}</strong></li>
+              <li>Текст: <strong [innerHtml]="n.text | textSlicer"></strong></li>
             </ul>
-          </span>
-        </td>
-      </tr>
+          </td>
+          <td>
+            <span *ngIf="currentAccount.login === n.user.login || currentAccount.authorities.indexOf('ROLE_ADMIN') > -1">
+              <ul>
+                <li>
+                  <button class="btn btn-link p-a-5" (click)="deleteNews(n.id)"><i class="fa fa-trash-o"></i></button>
+                </li>
+                <li>
+                  <a class="btn btn-link p-a-5" [routerLink]="['/moderator/news', n.id]"><i class="fa fa-pencil"></i></a>
+                </li>
+              </ul>
+            </span>
+          </td>
+        </tr>
       </tbody>
     </table>
   </div>

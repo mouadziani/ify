@@ -1,5 +1,6 @@
 <div class="post-related">
   <h6 class="subtitle">Последние Новости</h6>
+  <ify-loader *ngIf="news === undefined"></ify-loader>
   <div class="row">
     <div class="col-12 col-sm-6 col-md-3" *ngFor="let n of news">
       <div class="card card-widget">
