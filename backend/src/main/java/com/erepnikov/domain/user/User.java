@@ -3,10 +3,12 @@ package com.erepnikov.domain.user;
 import com.erepnikov.config.Constants;
 import com.erepnikov.domain.comment.Comment;
 import com.erepnikov.domain.post.Article;
+import com.erepnikov.domain.post.Blog;
 import com.erepnikov.domain.post.News;
 import com.erepnikov.domain.post.Video;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.BatchSize;
+import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.Email;
 
 import javax.persistence.*;
@@ -49,6 +51,10 @@ public class User extends AbstractAuditingEntity {
     @Column(length = 100, unique = true)
     private String email;
 
+    @Type(type = "text")
+    @Column(name = "image")
+    private String image;
+
     @JsonIgnore
     @ManyToMany
     @JoinTable(
@@ -69,6 +75,10 @@ public class User extends AbstractAuditingEntity {
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<Video> videos = new ArrayList<>();
+
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    private List<Blog> blogs = new ArrayList<>();
 
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
@@ -122,6 +132,14 @@ public class User extends AbstractAuditingEntity {
         this.email = email;
     }
 
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
     public Set<Authority> getAuthorities() {
         return authorities;
     }
@@ -152,6 +170,14 @@ public class User extends AbstractAuditingEntity {
 
     public void setVideos(List<Video> videos) {
         this.videos = videos;
+    }
+
+    public List<Blog> getBlogs() {
+        return blogs;
+    }
+
+    public void setBlogs(List<Blog> blogs) {
+        this.blogs = blogs;
     }
 
     public List<Comment> getComments() {

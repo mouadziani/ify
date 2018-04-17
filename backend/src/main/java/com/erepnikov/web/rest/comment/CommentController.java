@@ -70,6 +70,20 @@ public class CommentController {
         );
     }
 
+    @PostMapping("/comment/blog")
+    public ResponseEntity<Void> createBlogComment(@RequestBody Comment comment) {
+        this.saveComment(comment, CommentDiscriminators.BLOG_DISCRIMINATOR);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @GetMapping("/comment/blog/{postId}")
+    public ResponseEntity<List<Comment>> getAllBlogComments(@PathVariable Integer postId) {
+        return new ResponseEntity<>(
+                this.commentService.getAllByPost(postId, CommentDiscriminators.BLOG_DISCRIMINATOR),
+                HttpStatus.OK
+        );
+    }
+
     @DeleteMapping("/comment/{id}")
     public ResponseEntity<Void> deleteComment(@PathVariable Integer id) {
         SecurityUtils.getCurrentUserLogin().ifPresent(

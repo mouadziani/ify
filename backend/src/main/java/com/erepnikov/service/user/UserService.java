@@ -114,6 +114,12 @@ public class UserService {
                 });
     }
 
+    public void changeImage(String image) {
+        SecurityUtils.getCurrentUserLogin()
+                .flatMap(userRepository::findOneByLogin)
+                .ifPresent(user -> user.setImage(image));
+    }
+
     @Transactional(readOnly = true)
     public Page<UserDTO> getAllManagedUsers(Pageable pageable) {
         return userRepository.findAllByLoginNot(pageable, Constants.ANONYMOUS_USER).map(UserDTO::new);

@@ -80,12 +80,17 @@ public class AccountController {
         userService.updateUser(userDTO.getFirstName(), userDTO.getLastName(), userDTO.getEmail());
     }
 
-    @PostMapping(path = "/account/change-password")
+    @PostMapping("/account/change-password")
     public void changePassword(@RequestBody String password) throws InvalidPasswordException {
         if (!checkPasswordLength(password)) {
             throw new InvalidPasswordException();
         }
         userService.changePassword(password);
+    }
+
+    @PostMapping("/account/change-image")
+    public void changeImage(@RequestBody String image) {
+        this.userService.changeImage(image);
     }
 
     private static boolean checkPasswordLength(String password) {

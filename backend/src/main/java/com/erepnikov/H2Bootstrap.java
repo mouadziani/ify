@@ -1,22 +1,26 @@
 package com.erepnikov;
 
 import com.erepnikov.domain.category.ArticleCategory;
+import com.erepnikov.domain.category.BlogCategory;
 import com.erepnikov.domain.category.NewsCategory;
 import com.erepnikov.domain.category.VideoCategory;
 import com.erepnikov.domain.comment.Comment;
 import com.erepnikov.domain.comment.CommentDiscriminators;
 import com.erepnikov.domain.post.Article;
+import com.erepnikov.domain.post.Blog;
 import com.erepnikov.domain.post.News;
 import com.erepnikov.domain.post.Video;
 import com.erepnikov.repository.user.AuthorityRepository;
 import com.erepnikov.security.AuthoritiesConstants;
 import com.erepnikov.service.category.ArticleCategoryService;
+import com.erepnikov.service.category.BlogCategoryService;
 import com.erepnikov.service.category.NewsCategoryService;
 import com.erepnikov.service.category.VideoCategoryService;
 import com.erepnikov.service.comment.CommentService;
 import com.erepnikov.service.dto.UserDTO;
 import com.erepnikov.service.mapper.UserMapper;
 import com.erepnikov.service.post.ArticleService;
+import com.erepnikov.service.post.BlogService;
 import com.erepnikov.service.post.NewsService;
 import com.erepnikov.service.post.VideoService;
 import com.erepnikov.service.user.UserService;
@@ -36,7 +40,9 @@ public class H2Bootstrap implements CommandLineRunner {
     private NewsService newsService;
     private ArticleService articleService;
     private VideoService videoService;
+    private BlogService blogService;
     private UserService userService;
+    private BlogCategoryService blogCategoryService;
     private NewsCategoryService newsCategoryService;
     private ArticleCategoryService articleCategoryService;
     private VideoCategoryService videoCategoryService;
@@ -56,7 +62,9 @@ public class H2Bootstrap implements CommandLineRunner {
             VideoCategoryService videoCategoryService,
             AuthorityRepository authorityRepository,
             UserMapper userMapper,
-            CommentService commentService
+            CommentService commentService,
+            BlogCategoryService blogCategoryService,
+            BlogService blogService
     ) {
         this.newsService = newsService;
         this.articleService = articleService;
@@ -68,6 +76,8 @@ public class H2Bootstrap implements CommandLineRunner {
         this.authorityRepository = authorityRepository;
         this.userMapper = userMapper;
         this.commentService = commentService;
+        this.blogCategoryService = blogCategoryService;
+        this.blogService = blogService;
         this.setTestImage();
     }
 
@@ -153,6 +163,10 @@ public class H2Bootstrap implements CommandLineRunner {
         videoCategory.setName("Video Category");
         this.videoCategoryService.save(videoCategory);
 
+        BlogCategory blogCategory = new BlogCategory();
+        blogCategory.setName("Blog category");
+        this.blogCategoryService.save(blogCategory);
+
         for (int i = 0; i < 15; i++) {
             News news = new News();
             news.setTitle("Test news number " + (i + 1));
@@ -181,6 +195,15 @@ public class H2Bootstrap implements CommandLineRunner {
             video.setVideoUrl("zeCmW6Kyx8o");
             video.setUser(this.userService.getUserWithAuthoritiesByLogin("moderator").get());
             this.videoService.save(video);
+
+            Blog blog = new Blog();
+            blog.setTitle("Test article number " + (i + 1));
+            blog.setText("Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam at consectetur dolor doloribus ducimus, earum expedita harum ipsam, laborum libero mollitia necessitatibus nostrum possimus quo ratione rem veritatis vero voluptatem!");
+            blog.setCreatedDate(new Timestamp(System.currentTimeMillis()));
+            blog.setCategory(blogCategory);
+            blog.setImage(this.imageInBase64);
+            blog.setUser(this.userService.getUserWithAuthoritiesByLogin("user2").get());
+            this.blogService.save(blog);
         }
     }
 
@@ -233,6 +256,22 @@ public class H2Bootstrap implements CommandLineRunner {
             comment6.setType(CommentDiscriminators.VIDEO_DISCRIMINATOR);
             comment6.setCreatedDate(new Timestamp(System.currentTimeMillis()));
             this.commentService.save(comment6);
+
+            Comment comment7 = new Comment();
+            comment7.setText("lorem ipsum");
+            comment7.setUser(this.userService.getUserWithAuthoritiesByLogin("user2").get());
+            comment7.setPostId(i);
+            comment7.setType(CommentDiscriminators.BLOG_DISCRIMINATOR);
+            comment7.setCreatedDate(new Timestamp(System.currentTimeMillis()));
+            this.commentService.save(comment7);
+
+            Comment comment8 = new Comment();
+            comment8.setText("lorem ipsum");
+            comment8.setUser(this.userService.getUserWithAuthoritiesByLogin("moderator").get());
+            comment8.setPostId(i);
+            comment8.setType(CommentDiscriminators.BLOG_DISCRIMINATOR);
+            comment8.setCreatedDate(new Timestamp(System.currentTimeMillis()));
+            this.commentService.save(comment8);
         }
     }
 }

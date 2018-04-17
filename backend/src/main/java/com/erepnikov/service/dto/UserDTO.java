@@ -31,6 +31,8 @@ public class UserDTO {
     @Size(min = 5, max = 100)
     private String email;
 
+    private String image;
+
     private Timestamp createdDate;
 
     private Set<String> authorities;
@@ -45,6 +47,7 @@ public class UserDTO {
         this.lastName = user.getLastName();
         this.email = user.getEmail();
         this.createdDate = user.getCreatedDate();
+        this.image = user.getImage();
         this.authorities = user.getAuthorities().stream()
                 .map(Authority::getName)
                 .collect(Collectors.toSet());
@@ -88,6 +91,14 @@ public class UserDTO {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public Timestamp getCreatedDate() {

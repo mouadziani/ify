@@ -1,6 +1,5 @@
 package com.erepnikov.domain.user;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -15,7 +14,6 @@ public abstract class AbstractAuditingEntity {
 
     @CreatedDate
     @Column(name = "created_date", nullable = false)
-    @JsonIgnore
     private Timestamp createdDate = new Timestamp(System.currentTimeMillis());
 
     public Timestamp getCreatedDate() {

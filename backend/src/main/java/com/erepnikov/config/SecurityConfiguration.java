@@ -119,6 +119,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                     .antMatchers("/api/news/**").hasAuthority(AuthoritiesConstants.MODERATOR)
                     .antMatchers("/api/article/**").hasAuthority(AuthoritiesConstants.MODERATOR)
                     .antMatchers("/api/video/**").hasAuthority(AuthoritiesConstants.MODERATOR)
-                    .antMatchers("/api/comment/**").hasAuthority(AuthoritiesConstants.USER);
+                    .antMatchers("/api/comment/**").hasAuthority(AuthoritiesConstants.USER)
+                    .antMatchers("/api/blog/**").hasAuthority(AuthoritiesConstants.USER);
     }
 }
