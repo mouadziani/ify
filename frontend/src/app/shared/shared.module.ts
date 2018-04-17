@@ -32,6 +32,8 @@ import { LastNewsBottomComponent } from './component/last-news-bottom/last-news-
 import { CommentService } from './service/comment.service';
 import { CommentsComponent } from './component/comments/comments.component';
 import { LoaderComponent } from './component/loader/loader.component';
+import { BlogCategoryService } from './service/blog-category.service';
+import { BlogService } from './service/blog.service';
 
 @NgModule({
   imports: [
@@ -73,7 +75,9 @@ import { LoaderComponent } from './component/loader/loader.component';
     ArticleCategoryService,
     VideoCategoryService,
     NewsCategoryService,
-    CommentService
+    CommentService,
+    BlogCategoryService,
+    BlogService
   ],
   exports: [
     HasAnyAuthorityDirective,

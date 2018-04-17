@@ -7,6 +7,7 @@ export class User {
   public authorities?: any[];
   public createdDate?: Date;
   public password?: string;
+  public image?: string;
 
   constructor(
     id?: any,
@@ -16,7 +17,8 @@ export class User {
     email?: string,
     authorities?: any[],
     createdDate?: Date,
-    password?: string
+    password?: string,
+    image?: string
   ) {
     this.id = id ? id : null;
     this.login = login ? login : null;
@@ -26,5 +28,6 @@ export class User {
     this.authorities = authorities ? authorities : null;
     this.createdDate = createdDate ? createdDate : null;
     this.password = password ? password : null;
+    this.image = image ? image : null;
   }
 }

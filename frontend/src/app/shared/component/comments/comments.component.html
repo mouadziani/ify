@@ -7,7 +7,9 @@
     <li *ngFor="let c of comments">
       <div class="comment">
         <div class="comment-avatar">
-          <a href="#"><img src="assets/img/user/user-1.jpg" [alt]="c.user.login"></a>
+          <a [routerLink]="['/account', c.user.login]">
+            <img [src]="c.user.image ? c.user.image : 'assets/img/user/avatar.jpg'" [alt]="c.user.login">
+          </a>
         </div>
         <div class="comment-post">
           <div class="comment-header">

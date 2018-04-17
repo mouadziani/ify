@@ -10,3 +10,4 @@ export const YOUTUBE_PATH = 'https://www.youtube.com/embed/';
 export const NEWS_DISCRIMINATOR = 'news';
 export const ARTICLE_DISCRIMINATOR = 'article';
 export const VIDEO_DISCRIMINATOR = 'video';
+export const BLOG_DISCRIMINATOR = 'blog';

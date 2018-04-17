@@ -1,17 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { Article } from '../../../shared/model/article.model';
-import { Subscription } from 'rxjs/Subscription';
-import { ArticleService } from '../../../shared/service/article.service';
+import { Blog } from '../../../shared/model/blog.model';
+import { BlogService } from '../../../shared/service/blog.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { POSTS_PER_PAGE } from '../../../app.constants';
 
 @Component({
-  selector: 'ify-all-article',
-  templateUrl: './all-article.component.html'
+  selector: 'ify-all-blog',
+  templateUrl: './all-blog.component.html'
 })
-export class AllArticleComponent implements OnInit {
+export class AllBlogComponent implements OnInit {
 
-  articles: Article[];
+  blogs: Blog[];
   routeData;
   page;
   previousPage;
@@ -20,7 +19,7 @@ export class AllArticleComponent implements OnInit {
   postsPerPage;
 
   constructor(
-    private articleService: ArticleService,
+    private blogService: BlogService,
     private activatedRoute: ActivatedRoute,
     private router: Router
   ) {
@@ -37,12 +36,12 @@ export class AllArticleComponent implements OnInit {
   }
 
   loadAll() {
-    this.articleService.query({
+    this.blogService.query({
       page: this.page - 1,
       size: this.postsPerPage,
       sort: ['id,desc']
     }).subscribe(res => {
-      this.articles = res.body;
+      this.blogs = res.body;
       this.totalItems = res.headers.get('X-Total-Count');
     });
   }
@@ -50,7 +49,7 @@ export class AllArticleComponent implements OnInit {
   loadPage(page: number) {
     if (page !== this.previousPage) {
       this.previousPage = page;
-      this.router.navigate(['/article'], {
+      this.router.navigate(['/blog'], {
         queryParams: {
           page: this.page,
           size: this.postsPerPage,

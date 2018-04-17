@@ -11,20 +11,20 @@
           </div>
         </div>
       </div>
-      <ify-loader *ngIf="article === undefined"></ify-loader>
-      <div class="col-lg-10" *ngIf="article">
+      <ify-loader *ngIf="blog === undefined"></ify-loader>
+      <div class="col-lg-10" *ngIf="blog">
         <div class="post post-single">
-          <h2 class="post-title">{{ article.title }}</h2>
+          <h2 class="post-title">{{ blog.title }}</h2>
           <div class="post-meta">
             <span>
-              <i class="fa fa-clock-o"></i>{{ article.createdDate | dateConverter }} |
-              <i class="fa fa-user"></i><a [routerLink]="['/account', article.user.login]">{{ article.user.login }}</a>
+              <i class="fa fa-clock-o"></i>{{ blog.createdDate | dateConverter }} |
+              <i class="fa fa-user"></i><a [routerLink]="['/account', blog.user.login]">{{ blog.user.login }}</a>
             </span>
           </div>
           <div class="post-thumbnail">
-            <img [src]="article.image" [alt]="article.title">
+            <img [src]="blog.image" [alt]="blog.title">
           </div>
-          <div [innerHtml]="article.text"></div>
+          <div [innerHtml]="blog.text"></div>
         </div>
         <div class="post-actions">
           <div class="social-share">
@@ -35,7 +35,7 @@
           </div>
         </div>
         <ify-last-news-bottom></ify-last-news-bottom>
-        <ify-comments [postId]="article.id" [type]="type"></ify-comments>
+        <ify-comments [postId]="blog.id" [type]="type"></ify-comments>
       </div>
     </div>
   </div>

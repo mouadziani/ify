@@ -1,22 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-import { Article } from '../../../shared/model/article.model';
-import { News } from '../../../shared/model/news.model';
-import { ArticleService } from '../../../shared/service/article.service';
+import { Blog } from '../../../shared/model/blog.model';
+import { BLOG_DISCRIMINATOR } from '../../../app.constants';
+import { BlogService } from '../../../shared/service/blog.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Meta, Title } from '@angular/platform-browser';
-import { ARTICLE_DISCRIMINATOR } from '../../../app.constants';
+import { Title, Meta } from '@angular/platform-browser';
 
 @Component({
-  selector: 'ify-article-post',
-  templateUrl: './article-post.component.html'
+  selector: 'ify-blog-post',
+  templateUrl: './blog-post.component.html'
 })
-export class ArticlePostComponent implements OnInit {
+export class BlogPostComponent implements OnInit {
 
-  article: Article;
-  type = ARTICLE_DISCRIMINATOR;
+  blog: Blog;
+  type = BLOG_DISCRIMINATOR;
 
   constructor(
-    private articleService: ArticleService,
+    private blogService: BlogService,
     private route: ActivatedRoute,
     private router: Router,
     private title: Title,
@@ -29,10 +28,10 @@ export class ArticlePostComponent implements OnInit {
 
   loadAll() {
     this.route.params.subscribe(params => {
-      this.articleService.find(params['id'])
+      this.blogService.find(params['id'])
         .subscribe(res => {
           if (res) {
-            this.article = res;
+            this.blog = res;
             this.title.setTitle(res.title + ' - IdeaForYou');
             this.meta.addTags([
               { name: 'description', content: res.text }

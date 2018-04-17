@@ -1,0 +1,10 @@
+<div class="col-sm-12 col-md-10 col-lg-8 mx-auto">
+  <div class="post post-card">
+    <div class="post-thumbnail">
+      <img [src]="image ? image : 'assets/img/user/avatar.jpg'">
+    </div>
+    <div class="post-footer">
+      <input type="file" accept="image/*" (change)="saveImg($event)" class="form-control"/>
+    </div>
+  </div>
+</div>

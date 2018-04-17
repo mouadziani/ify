@@ -28,7 +28,7 @@
             </h2>
             <div class="post-meta">
               <span><i class="fa fa-clock-o"></i> {{ a.createdDate | dateConverter }}</span>
-              <span><i class="fa fa-user"></i> <a href="#">{{ a.user.login }}</a></span>
+              <span><i class="fa fa-user"></i> <a [routerLink]="['/account', a.user.login]">{{ a.user.login }}</a></span>
               <span><i class="fa fa-tag"></i> {{ a.category.name }}</span>
             </div>
             <p [innerHtml]="a.text | textSlicer"></p>

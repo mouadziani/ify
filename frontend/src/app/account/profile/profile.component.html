@@ -1,0 +1,52 @@
+<section class="hero hero-profile" style="background-image: url('https://img.youtube.com/vi/D3pYbbA1kfk/maxresdefault.jpg');">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="hero-block">
+      <h5>{{ user.login }}</h5>
+    </div>
+  </div>
+</section>
+
+<section class="toolbar toolbar-profile" data-fixed="true">
+  <div class="container">
+    <div class="profile-avatar">
+      <a href="#"><img [src]="user.image ? user.image : 'assets/img/user/avatar.jpg'" [alt]="user.login"></a>
+    </div>
+    <div class="dropdown float-right hidden-md-down">
+      <a class="btn btn-secondary btn-icon btn-sm m-l-25 float-right" href="#" data-toggle="dropdown" role="button">
+        <i class="fa fa-cog"></i>
+      </a>
+      <div class="dropdown-menu dropdown-menu-right" *ngIf="currentAccount.login === user.login">
+        <a class="dropdown-item" [routerLink]="'/settings/change-image'">Сменить аватарку</a>
+        <a class="dropdown-item" [routerLink]="'/settings/change-password'">Сменить пароль</a>
+      </div>
+    </div>
+    <ul class="toolbar-nav hidden-md-down">
+      <li class="active"><a href="#">Блог</a></li>
+      <li><a href="#">Публикации</a></li>
+      <li><a href="#">О себе</a></li>
+    </ul>
+  </div>
+</section>
+
+<section class="p-y-30">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-3 hidden-md-down">
+        <div class="widget widget-about">
+          <h5 class="widget-title">О себе</h5>
+          <p>TODO</p>
+          <ul>
+            <li><i class="fa fa-clock-o"></i> Дата регистрации: {{ user.createdDate | dateConverter }}</li>
+            <!-- <li><a href="#" target="_blank"><i class="fa fa-vk"></i> ВК</a></li> -->
+          </ul>
+        </div>
+      </div>
+
+      <div class="col-lg-9">
+        <router-outlet></router-outlet>
+      </div>
+      
+    </div>
+  </div>
+</section>

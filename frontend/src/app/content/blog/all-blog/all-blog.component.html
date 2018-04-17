@@ -1,0 +1,29 @@
+<section>
+  <div class="container">
+    <div class="post-columns">
+      <div class="post post-card" *ngFor="let blog of blogs">
+        <h2 class="post-title"><a [routerLink]="['/blog', blog.id]">{{ blog.title }}</a></h2>
+        <div class="post-meta">
+          <span>{{ blog.createdDate | dateConverter }}</span>
+          <span><a [routerLink]="['/account', blog.user.login]"></a>{{ blog.user.login }}</span>
+        </div>
+        <div class="post-thumbnail">
+          <img [src]="blog.image" [alt]="blog.title">
+        </div>
+        <p>{{ blog.text | textSlicer }}</p>
+        <div class="post-footer">
+          <a class="btn btn-default" [routerLink]="['/blog', blog.id]" role="button">Читать полностью</a>
+        </div>
+      </div>
+      <div class="pagination-results m-t-10" *ngIf="blogs && blogs.length">
+        <ngb-pagination
+          [collectionSize]="totalItems"
+          [(page)]="page"
+          [pageSize]="postsPerPage"
+          [maxSize]="5"
+          (pageChange)="loadPage(page)"
+        ></ngb-pagination>
+      </div>
+    </div>
+  </div>
+</section>

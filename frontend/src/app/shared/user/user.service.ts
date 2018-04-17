@@ -31,6 +31,14 @@ export class UserService {
     return this.api.delete(`${this.url}/${login}`);
   }
 
+  changeImage(req: any): Observable<any> {
+    return this.api.post('api/account/change-image', req);
+  }
+
+  changePassword(req: any): Observable<any> {
+    return this.api.post('api/account/change-password', req);
+  }
+
   authorities(): Observable<string[]> {
     return this.api.get<string[]>('api/users/authorities');
   }

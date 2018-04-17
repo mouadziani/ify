@@ -1,15 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { accountState } from './account.route';
-import { RouterModule } from '@angular/router';
-import { SharedModule } from '../shared/shared.module';
+import { ProfileModule } from './profile/profile.module';
+import { SettingsModule } from './settings/settings.module';
 
 @NgModule({
   imports: [
     CommonModule,
-    SharedModule,
-    RouterModule.forChild(accountState)
+    ProfileModule,
+    SettingsModule
   ],
   declarations: []
 })
-export class AccountModule { }
+export class AccountModule {}

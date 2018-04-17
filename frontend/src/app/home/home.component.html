@@ -70,9 +70,9 @@
           </div>
         </div>
       </div>
-      <div class="text-center">
-        <a [routerLink]="'/news'" class="btn btn-primary btn-shadow btn-rounded btn-effect btn-lg m-t-20">Все Новости</a>
-      </div>
+    </div>
+    <div class="text-center" *ngIf="news">
+      <a [routerLink]="'/news'" class="btn btn-primary btn-shadow btn-rounded btn-effect btn-lg m-t-20">Все Новости</a>
     </div>
   </div>
 </section>
@@ -104,9 +104,9 @@
           </div>
         </div>
       </div>
-      <div class="text-center">
-        <a [routerLink]="'/article'" class="btn btn-outline-primary btn-shadow btn-rounded btn-effect btn-lg m-t-20">Все Обзоры</a>
-      </div>
+    </div>
+    <div class="text-center" *ngIf="articles">
+      <a [routerLink]="'/article'" class="btn btn-outline-primary btn-shadow btn-rounded btn-effect btn-lg m-t-20">Все Обзоры</a>
     </div>
   </div>
 </section>
@@ -136,13 +136,12 @@
               <span><i class="fa fa-clock-o"></i> {{ v.createdDate | dateConverter }}</span>
               <!--<span>Просмотры</span>-->
             </div>
-            <p [innerHtml]="v.text | textSlicer"></p>
           </div>
         </div>
       </div>
-      <div class="text-center">
-        <a [routerLink]="'/video'" class="btn btn-primary btn-shadow btn-rounded btn-effect btn-lg m-t-20">Все Видео</a>
-      </div>
+    </div>
+    <div class="text-center" *ngIf="videos">
+      <a [routerLink]="'/video'" class="btn btn-primary btn-shadow btn-rounded btn-effect btn-lg m-t-20">Все Видео</a>
     </div>
   </div>
 </section>
