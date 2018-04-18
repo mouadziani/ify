@@ -51,7 +51,6 @@ public class ArticleController {
         if (article.getId() == null) {
             this.createArticle(article);
         }
-        article.setUser(this.articleService.get(article.getId()).getUser());
         this.articleService.save(article);
     }
 

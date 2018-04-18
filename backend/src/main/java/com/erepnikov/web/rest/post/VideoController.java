@@ -51,7 +51,6 @@ public class VideoController {
         if (video.getId() == null) {
             this.createVideo(video);
         }
-        video.setUser(this.videoService.get(video.getId()).getUser());
         this.videoService.save(video);
     }
 

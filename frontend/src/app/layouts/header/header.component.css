@@ -1,0 +1,9 @@
+@font-face {
+  font-family: Oblivious;
+  src: url('/assets/font/oblivious.ttf');
+}
+
+#main-title {
+  color: white;
+  font-family: Oblivious;
+}

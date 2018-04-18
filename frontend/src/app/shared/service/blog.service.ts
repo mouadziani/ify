@@ -27,6 +27,10 @@ export class BlogService {
     return this.api.getWithPagination<Blog[]>(this.url, req);
   }
 
+  queryByUser(login: string, req?: any): Observable<HttpResponse<Blog[]>> {
+    return this.api.getWithPagination<Blog[]>(`${this.url}/user/${login}`, req);
+  }
+
   delete(id: number): Observable<any> {
     return this.api.delete(`${this.url}/${id}`);
   }

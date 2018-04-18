@@ -74,15 +74,7 @@ export class Principal {
     return this.authenticated;
   }
 
-  isIdentityResolved(): boolean {
-    return this.userIdentity !== undefined;
-  }
-
   getAuthenticationState(): Observable<any> {
     return this.authenticationState.asObservable();
-  }
-
-  getImageUrl(): String {
-    return this.isIdentityResolved() ? this.userIdentity.imageUrl : null;
   }
 }

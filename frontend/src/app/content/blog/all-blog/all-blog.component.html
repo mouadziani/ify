@@ -10,7 +10,7 @@
         <div class="post-thumbnail">
           <img [src]="blog.image" [alt]="blog.title">
         </div>
-        <p>{{ blog.text | textSlicer }}</p>
+        <p [innerHtml]="blog.text | textSlicer"></p>
         <div class="post-footer">
           <a class="btn btn-default" [routerLink]="['/blog', blog.id]" role="button">Читать полностью</a>
         </div>

@@ -51,7 +51,6 @@ public class NewsController {
         if (news.getId() == null) {
             this.createNews(news);
         }
-        news.setUser(this.newsService.get(news.getId()).getUser());
         this.newsService.save(news);
     }
 

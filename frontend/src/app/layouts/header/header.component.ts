@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnChanges, OnInit} from '@angular/core';
 import { Principal } from '../../shared/auth/principal.service';
 import { Router } from '@angular/router';
 import { LoginService } from '../../shared/auth/login.service';
@@ -6,7 +6,8 @@ import { Account } from '../../shared/user/account.model';
 
 @Component({
   selector: 'ify-header',
-  templateUrl: './header.component.html'
+  templateUrl: './header.component.html',
+  styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
 
@@ -19,7 +20,13 @@ export class HeaderComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.principal.identity().then(account => this.currentAccount = account);
+    this.loadAccount();
+  }
+
+  loadAccount() {
+    this.principal.identity().then(account => {
+      this.currentAccount = account;
+    });
   }
 
   isAuthenticated() {
@@ -29,9 +36,5 @@ export class HeaderComponent implements OnInit {
   logout() {
     this.loginService.logout();
     this.router.navigate(['']);
-  }
-
-  getImageUrl() {
-    return this.isAuthenticated() ? this.principal.getImageUrl() : null;
   }
 }

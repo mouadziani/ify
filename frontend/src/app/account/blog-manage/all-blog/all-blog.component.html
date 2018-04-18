@@ -1,0 +1,48 @@
+<div class="container">
+  <div class="row">
+    <table class="table table-striped" cellspacing="0" width="100%">
+      <thead>
+        <tr>
+          <th>Картинка</th>
+          <th>Информация</th>
+          <th>Действия</th>
+        </tr>
+      </thead>
+      <tbody *ngIf="blogs && blogs.length">
+        <tr *ngFor="let blog of blogs">
+          <td><img [src]="blog.image" width="150" alt="{{ blog.title }}"></td>
+          <td>
+            <ul>
+              <li>Название: <strong>{{ blog.title }}</strong></li>
+              <li>Дата публикации: <strong>{{ blog.createdDate | dateConverter }}</strong></li>
+              <li>Текст: <strong [innerHtml]="blog.text | textSlicer"></strong></li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li>
+                <button class="btn btn-link p-a-5" (click)="deleteBlog(blog.id)"><i class="fa fa-trash-o"></i></button>
+              </li>
+              <li>
+                <a class="btn btn-link p-a-5" [routerLink]="['/blog-manage', blog.id]"><i class="fa fa-pencil"></i></a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="pagination-results m-t-10" *ngIf="blogs && blogs.length">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="page"
+        [pageSize]="postsPerPage"
+        [maxSize]="5"
+        (pageChange)="loadPage(page)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

@@ -2,6 +2,8 @@ package com.erepnikov.web.rest.post;
 
 import com.erepnikov.domain.comment.CommentDiscriminators;
 import com.erepnikov.domain.post.Blog;
+import com.erepnikov.security.AuthoritiesConstants;
+import com.erepnikov.security.SecurityUtils;
 import com.erepnikov.service.comment.CommentService;
 import com.erepnikov.service.post.BlogService;
 import com.erepnikov.service.user.UserService;
@@ -38,7 +40,7 @@ public class BlogController {
     @PostMapping("/blog")
     public ResponseEntity<Blog> createBlog(@RequestBody Blog blog) throws ServerErrorException {
         if (blog.getId() != null) {
-            throw new ServerErrorException("Article already have an ID");
+            throw new ServerErrorException("Blog already have an ID");
         }
         blog.setCreatedDate(new Timestamp(System.currentTimeMillis()));
         this.userService.getUserWithAuthorities().ifPresent(blog::setUser);
@@ -51,7 +53,6 @@ public class BlogController {
         if (blog.getId() == null) {
             this.createBlog(blog);
         }
-        blog.setUser(this.blogService.get(blog.getId()).getUser());
         this.blogService.save(blog);
     }
 
@@ -62,6 +63,13 @@ public class BlogController {
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 
+    @GetMapping("/blog/user/{login}")
+    public ResponseEntity<List<Blog>> getAllBlogsByUserId(Pageable pageable, @PathVariable String login) {
+        Page<Blog> page = this.blogService.getAllByUser(pageable, this.userService.getUserWithAuthoritiesByLogin(login).get());
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/blog/user/" + login);
+        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+    }
+
     @GetMapping("/blog/{id}")
     public ResponseEntity<Blog> getBlog(@PathVariable Integer id) {
         return new ResponseEntity<>(this.blogService.get(id), HttpStatus.OK);
@@ -69,8 +77,13 @@ public class BlogController {
 
     @DeleteMapping("/blog/{id}")
     public ResponseEntity<Void> deleteBlog(@PathVariable Integer id) {
-        this.commentService.delete(CommentDiscriminators.BLOG_DISCRIMINATOR, id);
-        this.blogService.delete(id);
+        this.userService.getUserWithAuthorities().ifPresent(user -> {
+            if (user.getLogin().equals(this.blogService.get(id).getUser().getLogin()) || 
+                    SecurityUtils.isCurrentUserInRole(AuthoritiesConstants.MODERATOR)) {
+                this.commentService.delete(CommentDiscriminators.BLOG_DISCRIMINATOR, id);
+                this.blogService.delete(id);
+            }
+        });
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }

@@ -1,6 +1,7 @@
 package com.erepnikov.service.post;
 
 import com.erepnikov.domain.post.Blog;
+import com.erepnikov.domain.user.User;
 import com.erepnikov.repository.post.BlogRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -23,6 +24,10 @@ public class BlogService {
 
     public Page<Blog> getAll(Pageable pageable) {
         return this.blogRepository.findAll(pageable);
+    }
+
+    public Page<Blog> getAllByUser(Pageable pageable, User user) {
+        return this.blogRepository.findAllByUser(pageable, user);
     }
 
     public Blog get(Integer id) {
