@@ -3,7 +3,15 @@
     <div class="navbar-backdrop">
       <div class="navbar">
         <div class="navbar-left">
-          <a class="navbar-toggle"><i class="fa fa-bars"></i></a>
+
+          <!-- <button class="navbar-toggler" 
+            type="button" data-toggle="collapse" 
+            data-target="#navbar1" aria-controls="navbar1" 
+            aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fa fa-bars"></i>
+          </button> -->
+
+          <a class="navbar-toggle" data-toggle="offcanvas" role="button"><i class="fa fa-bars"></i></a>
           <a [routerLink]="''" class="logo">
             <h4 id="main-title">IdeaForYou</h4>
           </a>
@@ -54,9 +62,18 @@
             </li>
             <li *ngIf="!isAuthenticated()" class="hidden-xs-down"><a [routerLink]="'login'">Логин</a></li>
             <li *ngIf="!isAuthenticated()" class="hidden-xs-down"><a [routerLink]="'register'">Регистрация</a></li>
+            <!-- <li><a data-toggle="search"><i class="fa fa-search"></i></a></li> -->
           </ul>
         </div>
       </div>
     </div>
+    <!-- <div class="navbar-search">
+      <div class="container">
+        <form method="post">
+          <input type="text" class="form-control" placeholder="Search...">
+          <i class="fa fa-times close"></i>
+        </form>
+      </div>
+    </div> -->
   </div>
 </header>
