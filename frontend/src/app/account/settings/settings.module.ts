@@ -6,6 +6,7 @@ import { settingsState } from './settings.route';
 import { SettingsComponent } from './settings.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { ChangeImageComponent } from './change-image/change-image.component';
+import { ChangeInfoComponent } from './change-info/change-info.component';
 
 @NgModule({
   imports: [
@@ -13,6 +14,6 @@ import { ChangeImageComponent } from './change-image/change-image.component';
     SharedModule,
     RouterModule.forChild(settingsState)
   ],
-  declarations: [SettingsComponent, ChangePasswordComponent, ChangeImageComponent]
+  declarations: [SettingsComponent, ChangePasswordComponent, ChangeImageComponent, ChangeInfoComponent]
 })
 export class SettingsModule {}
