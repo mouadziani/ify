@@ -39,6 +39,10 @@ export class UserService {
     return this.api.post('api/account/change-password', req);
   }
 
+  updateUser(req: any): Observable<any> {
+    return this.api.post('api/account', req);
+  }
+
   authorities(): Observable<string[]> {
     return this.api.get<string[]>('api/users/authorities');
   }

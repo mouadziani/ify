@@ -1,0 +1,74 @@
+<div class="col-sm-12 col-md-10 col-lg-8 mx-auto">
+    <div class="post post-card">
+      <h2 class="post-title">Смена информации аккаунта</h2>
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="post-thumbnail">
+          <div
+            class="form-group input-icon-left m-b-10"
+            [ngClass]="{'form-group has-danger': form.get('firstName').invalid && form.get('firstName').touched}"
+          >
+            <i class="fa fa-address-book"></i>
+            <input
+              type="text"
+              class="form-control form-control-secondary"
+              formControlName="firstName"
+              placeholder="Имя"
+            >
+            <div
+              class="alert alert-danger m-b-0" role="alert"
+              *ngIf="form.get('firstName').invalid && form.get('firstName').touched"
+            >
+              Имя не может быть пустым и содержать специальные символы (№, #, *, < и т.д.)
+            </div>
+          </div>
+          <div
+            class="form-group input-icon-left m-b-10"
+            [ngClass]="{'form-group has-danger': form.get('lastName').invalid && form.get('lastName').touched}"
+          >
+            <i class="fa fa-address-book-o"></i>
+            <input
+              type="text"
+              class="form-control form-control-secondary"
+              formControlName="lastName"
+              placeholder="Фамилия"
+            >
+            <div
+              class="alert alert-danger m-b-0" role="alert"
+              *ngIf="form.get('lastName').invalid && form.get('lastName').touched"
+            >
+              Фамилия не может быть пустой и содержать специальные символы (№, #, *, < и т.д.)
+            </div>
+          </div>
+          <div
+            class="form-group input-icon-left m-b-10"
+            [ngClass]="{'form-group has-danger': form.get('email').invalid && form.get('email').touched}"
+          >
+            <i class="fa fa-envelope"></i>
+            <input
+              type="email"
+              class="form-control form-control-secondary"
+              formControlName="email"
+              placeholder="Email"
+            >
+            <div
+              class="alert alert-danger m-b-0" role="alert"
+              *ngIf="form.get('email').invalid && form.get('email').touched"
+            >
+              <span *ngIf="form.get('email')['errors']['required']">Email не может быть пустым</span>
+              <span *ngIf="form.get('email')['errors']['email']">Введите корректный Email</span>
+            </div>
+          </div>
+        </div>
+        <div class="post-footer">
+          <button
+            type="submit"
+            class="btn btn-primary m-t-10 btn-block"
+            [disabled]="form.invalid"
+          >
+            Сохранить
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+  

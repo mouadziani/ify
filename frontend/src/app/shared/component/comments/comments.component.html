@@ -15,7 +15,7 @@
           <div class="comment-header">
             <div class="comment-author">
               <h5>
-                <a href="#">{{ c.user.login }}</a>
+                <a [routerLink]="['/account', c.user.login]">{{ c.user.login }}</a>
               </h5>
             </div>
             <div

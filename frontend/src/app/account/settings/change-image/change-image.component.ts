@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../../shared/user/user.service';
 import { Principal } from '../../../shared/auth/principal.service';
 import { User } from '../../../shared/user/user.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'ify-change-image',
@@ -13,7 +14,8 @@ export class ChangeImageComponent implements OnInit {
 
   constructor(
     private userService: UserService,
-    private principal: Principal
+    private principal: Principal,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -27,6 +29,7 @@ export class ChangeImageComponent implements OnInit {
     reader.onloadend = () => {
       this.image = reader.result;
       this.userService.changeImage(this.image).subscribe();
+      this.router.navigate(['']).then(() => window.location.reload());
     };
     reader.readAsDataURL($event.target.files[0]);
   }

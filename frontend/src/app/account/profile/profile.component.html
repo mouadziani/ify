@@ -18,6 +18,7 @@
       </a>
       <div class="dropdown-menu dropdown-menu-right">
         <a class="dropdown-item" [routerLink]="'/settings/change-image'">Сменить аватарку</a>
+        <a class="dropdown-item" [routerLink]="'/settings/change-info'">Редактировать аккаунт</a>
         <a class="dropdown-item" [routerLink]="'/settings/change-password'">Сменить пароль</a>
       </div>
     </div>
@@ -35,9 +36,11 @@
       <div class="col-lg-3 hidden-md-down">
         <div class="widget widget-about">
           <h5 class="widget-title">О себе</h5>
-          <p>TODO</p>
           <ul>
             <li><i class="fa fa-clock-o"></i> Дата регистрации: {{ user.createdDate | dateConverter }}</li>
+            <li *ngIf="user.firstName && user.lastName">
+              <i class="fa fa-user"></i> Имя: {{ user.firstName }} {{ user.lastName }}
+            </li>
             <!-- <li><a href="#" target="_blank"><i class="fa fa-vk"></i> ВК</a></li> -->
           </ul>
         </div>
