@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
       password: formData.password,
       rememberMe: formData.rememberMe
     }).then(() => {
-      this.router.navigate(['']);
+      this.router.navigate(['']).then(() => window.location.reload()); // get acquainted, this is a crutch
     });
   }
 }

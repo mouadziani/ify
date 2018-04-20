@@ -4,7 +4,7 @@ import { VideoService } from '../../../shared/service/video.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Principal } from '../../../shared/auth/principal.service';
 import { POSTS_PER_PAGE } from '../../../app.constants';
-import { Account } from '../../../shared/user/account.model';
+import { User } from '../../../shared/user/user.model';
 
 @Component({
   selector: 'ify-all-video',
@@ -19,7 +19,7 @@ export class AllVideoComponent implements OnInit {
   predicate;
   totalItems;
   postsPerPage;
-  currentAccount: Account;
+  currentUser: User;
 
   constructor(
     private videoService: VideoService,
@@ -37,7 +37,7 @@ export class AllVideoComponent implements OnInit {
 
   ngOnInit() {
     this.principal.identity().then(account => {
-      this.currentAccount = account;
+      this.currentUser = account;
       this.loadAll();
     });
   }

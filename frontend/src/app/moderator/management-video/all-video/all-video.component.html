@@ -20,7 +20,7 @@
             </ul>
           </td>
           <td>
-            <span *ngIf="currentAccount.login === video.user.login || currentAccount.authorities.indexOf('ROLE_ADMIN') > -1">
+            <span *ngIf="currentUser.login === video.user.login || currentUser.authorities.indexOf('ROLE_ADMIN') > -1">
               <ul>
                 <li>
                   <button class="btn btn-link p-a-5" (click)="deleteVideo(video.id)"><i class="fa fa-trash-o"></i></button>

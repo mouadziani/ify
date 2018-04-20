@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { News } from '../../../shared/model/news.model';
-import { Account } from '../../../shared/user/account.model';
 import { NewsService } from '../../../shared/service/news.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Principal } from '../../../shared/auth/principal.service';
 import { POSTS_PER_PAGE } from '../../../app.constants';
+import { User } from '../../../shared/user/user.model';
 
 @Component({
   selector: 'ify-all-news',
@@ -19,7 +19,7 @@ export class AllNewsComponent implements OnInit {
   predicate;
   totalItems;
   postsPerPage;
-  currentAccount: Account;
+  currentUser: User;
 
   constructor(
     private newsService: NewsService,
@@ -37,7 +37,7 @@ export class AllNewsComponent implements OnInit {
 
   ngOnInit() {
     this.principal.identity().then(account => {
-      this.currentAccount = account;
+      this.currentUser = account;
       this.loadAll();
     });
   }

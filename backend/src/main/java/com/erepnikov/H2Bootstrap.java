@@ -87,8 +87,8 @@ public class H2Bootstrap implements CommandLineRunner {
             InputStream is = new BufferedInputStream(
                     new FileInputStream(
                             "/Users/egor/Documents/wallpapers/dragon_age_Wallpaper_2560x1600_www.wall321.com.jpg"
-                        )
-                    );
+                    )
+            );
             int data = 0;
             while ((data = is.read()) != -1){
                 baos.write(data);
