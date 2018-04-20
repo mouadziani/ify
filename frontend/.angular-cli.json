@@ -24,7 +24,9 @@
         "../node_modules/bootstrap/dist/css/bootstrap.min.css",
         "../node_modules/animate.css/animate.min.css",
         "../node_modules/owl.carousel/dist/assets/owl.carousel.min.css",
-        "../node_modules/summernote/dist/summernote-bs4.css"
+        "../node_modules/summernote/dist/summernote-bs4.css",
+
+        "../src/assets/css/theme.min.css"
       ],
       "scripts": [
         "../node_modules/jquery/dist/jquery.min.js",

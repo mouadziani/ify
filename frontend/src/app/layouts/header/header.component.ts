@@ -1,8 +1,8 @@
-import {Component, OnChanges, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Principal } from '../../shared/auth/principal.service';
 import { Router } from '@angular/router';
 import { LoginService } from '../../shared/auth/login.service';
-import { Account } from '../../shared/user/account.model';
+import { User } from '../../shared/user/user.model';
 
 @Component({
   selector: 'ify-header',
@@ -11,7 +11,7 @@ import { Account } from '../../shared/user/account.model';
 })
 export class HeaderComponent implements OnInit {
 
-  currentAccount: Account;
+  currentUser: User;
 
   constructor(
     private loginService: LoginService,
@@ -25,7 +25,7 @@ export class HeaderComponent implements OnInit {
 
   loadAccount() {
     this.principal.identity().then(account => {
-      this.currentAccount = account;
+      this.currentUser = account;
     });
   }
 

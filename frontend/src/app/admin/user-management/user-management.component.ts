@@ -4,7 +4,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../../shared/user/user.service';
 import { POSTS_PER_PAGE } from '../../app.constants';
 import { Principal } from '../../shared/auth/principal.service';
-import { Account } from '../../shared/user/account.model';
 
 @Component({
   selector: 'ify-user-management',
@@ -19,7 +18,7 @@ export class UserManagementComponent implements OnInit {
   predicate;
   totalItems;
   postsPerPage;
-  currentAccount: Account;
+  currentUser: User;
 
   constructor(
     private userService: UserService,
@@ -37,7 +36,7 @@ export class UserManagementComponent implements OnInit {
 
   ngOnInit() {
     this.principal.identity().then(account => {
-      this.currentAccount = account;
+      this.currentUser = account;
       this.loadAll();
     });
   }

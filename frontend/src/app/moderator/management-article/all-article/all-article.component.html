@@ -20,7 +20,7 @@
             </ul>
           </td>
           <td>
-            <span *ngIf="currentAccount.login === article.user.login || currentAccount.authorities.indexOf('ROLE_ADMIN') > -1">
+            <span *ngIf="currentUser.login === article.user.login || currentUser.authorities.indexOf('ROLE_ADMIN') > -1">
               <ul>
                 <li>
                   <button class="btn btn-link p-a-5" (click)="deleteArticle(article.id)"><i class="fa fa-trash-o"></i></button>

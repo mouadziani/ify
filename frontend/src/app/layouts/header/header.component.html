@@ -4,9 +4,9 @@
       <div class="navbar">
         <div class="navbar-left">
 
-          <!-- <button class="navbar-toggler" 
-            type="button" data-toggle="collapse" 
-            data-target="#navbar1" aria-controls="navbar1" 
+          <!-- <button class="navbar-toggler"
+            type="button" data-toggle="collapse"
+            data-target="#navbar1" aria-controls="navbar1"
             aria-expanded="false" aria-label="Toggle navigation">
             <i class="fa fa-bars"></i>
           </button> -->
@@ -45,11 +45,11 @@
           <ul>
             <li class="dropdown dropdown-profile" *ngIf="isAuthenticated()">
               <a href="#" data-toggle="dropdown">
-                <img src="assets/img/user/avatar-sm.jpg" [alt]="currentAccount.login">
-                <span>{{ currentAccount.login }}</span>
+                <img [src]="currentUser.image ? currentUser.image : 'assets/img/user/avatar-sm.jpg'" [alt]="currentUser.login">
+                <span>{{ currentUser.login }}</span>
               </a>
               <div class="dropdown-menu dropdown-menu-right">
-                <a class="dropdown-item" [routerLink]="['/account', currentAccount.login]">
+                <a class="dropdown-item" [routerLink]="['/account', currentUser.login]">
                   <i class="fa fa-user"></i> Моя страница
                 </a>
                 <a class="dropdown-item" [routerLink]="'/blog-manage'">Мои посты</a>
@@ -57,7 +57,7 @@
                 <a class="dropdown-item" [routerLink]="'/settings/change-image'">Сменить аватарку</a>
                 <a class="dropdown-item" [routerLink]="'/settings/change-password'">Сменить пароль</a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" role="button" (click)="logout()"><i class="fa fa-sign-out"></i> Logout</a>
+                <a class="dropdown-item" role="button" (click)="logout()"><i class="fa fa-sign-out"></i> Выйти</a>
               </div>
             </li>
             <li *ngIf="!isAuthenticated()" class="hidden-xs-down"><a [routerLink]="'login'">Логин</a></li>

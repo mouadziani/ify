@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Blog } from '../../../shared/model/blog.model';
-import { Account } from '../../../shared/user/account.model';
 import { BlogService } from '../../../shared/service/blog.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Principal } from '../../../shared/auth/principal.service';
 import { POSTS_PER_PAGE } from '../../../app.constants';
+import { User } from '../../../shared/user/user.model';
 
 @Component({
   selector: 'ify-all-blog',
@@ -19,7 +19,7 @@ export class AllBlogComponent implements OnInit {
   predicate;
   totalItems;
   postsPerPage;
-  currentAccount: Account;
+  currentUser: User;
 
   constructor(
     private blogService: BlogService,
@@ -37,13 +37,13 @@ export class AllBlogComponent implements OnInit {
 
   ngOnInit() {
     this.principal.identity().then(account => {
-      this.currentAccount = account;
+      this.currentUser = account;
       this.loadAll();
     });
   }
 
   loadAll() {
-    this.blogService.queryByUser(this.currentAccount.login, {
+    this.blogService.queryByUser(this.currentUser.login, {
       page: this.page - 1,
       size: this.postsPerPage,
       sort: ['id,desc']

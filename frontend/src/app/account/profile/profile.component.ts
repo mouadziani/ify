@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../shared/user/user.model';
-import { Account } from '../../shared/user/account.model';
 import { Principal } from '../../shared/auth/principal.service';
 import { UserService } from '../../shared/user/user.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -13,7 +12,7 @@ import { Title } from '@angular/platform-browser';
 export class ProfileComponent implements OnInit {
 
   user: User;
-  currentAccount: Account;
+  currentUser: User;
 
   constructor(
     private principal: Principal,
@@ -24,7 +23,7 @@ export class ProfileComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.principal.identity().then(account => this.currentAccount = account);
+    this.principal.identity().then(account => this.currentUser = account);
     this.activedRoute.params.subscribe(params => {
       this.userService.find(params['login']).subscribe(user => {
         this.user = user;

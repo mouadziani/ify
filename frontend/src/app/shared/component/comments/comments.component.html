@@ -20,7 +20,7 @@
             </div>
             <div
               class="comment-action"
-              *ngIf="currentAccount && (currentAccount.login === c.user.login || this.currentAccount.authorities.includes('ROLE_MODERATOR'))"
+              *ngIf="currentUser && (currentUser.login === c.user.login || this.currentUser.authorities.includes('ROLE_MODERATOR'))"
             >
               <div class="dropdown float-right">
                 <a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-chevron-down"></i></a>

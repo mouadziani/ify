@@ -3,7 +3,7 @@ import { CommentService } from '../../service/comment.service';
 import { Principal } from '../../auth/principal.service';
 import { Comment } from '../../model/comment.model';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Account } from '../../user/account.model';
+import { User } from '../../user/user.model';
 
 @Component({
   selector: 'ify-comments',
@@ -15,7 +15,7 @@ export class CommentsComponent implements OnInit, OnChanges {
   @Input() type: string;
   comments: Comment[];
   form: FormGroup;
-  currentAccount: Account;
+  currentUser: User;
 
   constructor(
     private commentService: CommentService,
@@ -33,7 +33,7 @@ export class CommentsComponent implements OnInit, OnChanges {
       ])
     });
     this.principal.identity().then(account => {
-      this.currentAccount = account;
+      this.currentUser = account;
       this.loadAll();
     });
   }

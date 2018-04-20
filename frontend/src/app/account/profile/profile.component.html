@@ -12,11 +12,11 @@
     <div class="profile-avatar">
       <a href="#"><img [src]="user.image ? user.image : 'assets/img/user/avatar.jpg'" [alt]="user.login"></a>
     </div>
-    <div class="dropdown float-right hidden-md-down">
+    <div class="dropdown float-right hidden-md-down" *ngIf="currentUser.login === user.login">
       <a class="btn btn-secondary btn-icon btn-sm m-l-25 float-right" href="#" data-toggle="dropdown" role="button">
         <i class="fa fa-cog"></i>
       </a>
-      <div class="dropdown-menu dropdown-menu-right" *ngIf="currentAccount.login === user.login">
+      <div class="dropdown-menu dropdown-menu-right">
         <a class="dropdown-item" [routerLink]="'/settings/change-image'">Сменить аватарку</a>
         <a class="dropdown-item" [routerLink]="'/settings/change-password'">Сменить пароль</a>
       </div>
@@ -46,7 +46,7 @@
       <div class="col-lg-9">
         <router-outlet></router-outlet>
       </div>
-      
+
     </div>
   </div>
 </section>
